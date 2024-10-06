@@ -1,0 +1,11 @@
+@media print {
+  .non-print-content {
+    display: none;
+  }
+}
+
+/* Optionally, add more styles to format printed content */
+.print-content {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
