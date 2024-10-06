@@ -1,14 +1,19 @@
 import { Textarea } from "@nextui-org/input";
-import React from "react";
+import { useFormContext } from "react-hook-form";
 
-const GGTextArea = ({ label, placeholder }) => {
+import { IInput } from "@/src/types";
+
+interface IProps extends IInput {
+  type?: string;
+}
+
+export const GGTextArea = ({ name, label, variant = "bordered" }: IProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
   return (
-    <Textarea
-      label="Description"
-      placeholder="Enter your description"
-      className="max-w-xs"
-    />
+    <Textarea {...register(name)} label={label} minRows={6} variant={variant} />
   );
 };
-
-export default GGTextArea;

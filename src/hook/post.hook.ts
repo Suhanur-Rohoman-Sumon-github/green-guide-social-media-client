@@ -15,7 +15,7 @@ import {
 } from "../service/postsServices";
 import { ICommentData } from "../components/modals/CommentModal";
 
-// Hook to create posts
+// Hook to create posts and refetch posts
 export const useCreatePosts = () => {
   const queryClient = useQueryClient();
 
@@ -26,8 +26,10 @@ export const useCreatePosts = () => {
     },
     onSuccess: () => {
       toast.success("Post created successfully");
-      // Invalidate the posts query after a new post is created
-      queryClient.invalidateQueries(["get-posts"]);
+      // Refetch posts after creating
+      queryClient.refetchQueries({
+        queryKey: ["get-posts"],
+      });
     },
     onError: (error) => {
       toast.error(error.message);
@@ -37,18 +39,20 @@ export const useCreatePosts = () => {
 
 // Hook to get all posts
 export const getAllPostsFromDb = () => {
-  return useQuery<any, Error>({
+  const { data, refetch,isLoading } = useQuery<any, Error>({
     queryKey: ["get-posts"],
     queryFn: async () => {
       const data = await getAllPosts();
       return data?.data;
     },
   });
+
+  return { data, refetch,isLoading };
 };
 
 // Hook to get a single post
 export const getSinglePostsFromDB = (postId: string) => {
-  return useQuery<any, Error>({
+  const { data, refetch } = useQuery<any, Error>({
     queryKey: ["get single posts", postId],
     queryFn: async () => {
       const data = await getSinglePosts(postId);
@@ -56,11 +60,13 @@ export const getSinglePostsFromDB = (postId: string) => {
     },
     enabled: Boolean(postId),
   });
+
+  return { data, refetch };
 };
 
 // Hook to check if a user liked a post
 export const useLikes = (userId: string | undefined, postId: string) => {
-  return useQuery<any, Error>({
+  const { data, refetch } = useQuery<any, Error>({
     queryKey: ["get is liked", postId, userId],
     queryFn: async () => {
       const data = await getIsLikes(userId, postId);
@@ -68,11 +74,13 @@ export const useLikes = (userId: string | undefined, postId: string) => {
     },
     enabled: Boolean(postId && userId),
   });
+
+  return { data, refetch };
 };
 
 // Hook to get user's posts
 export const useGetMyPostsQuery = (userId: string) => {
-  return useQuery<any, Error>({
+  const { data, refetch } = useQuery<any, Error>({
     queryKey: ["get my posts", userId],
     queryFn: async () => {
       const data = await getMyPosts(userId);
@@ -80,9 +88,13 @@ export const useGetMyPostsQuery = (userId: string) => {
     },
     enabled: Boolean(userId),
   });
+
+  return { data, refetch };
 };
+
+// Hook to get favorite posts
 export const useGetAllFavoritePostQuery = (userId: string) => {
-  return useQuery<any, Error>({
+  const { data, refetch,isLoading } = useQuery<any, Error>({
     queryKey: ["get my favorite posts", userId],
     queryFn: async () => {
       const data = await getFavoritePosts(userId);
@@ -90,10 +102,14 @@ export const useGetAllFavoritePostQuery = (userId: string) => {
     },
     enabled: Boolean(userId),
   });
+
+  return { data, refetch,isLoading };
 };
 
-// Hook to share posts
+// Hook to share posts and refetch posts
 export const useSharePostsMutation = (postId: string, userId: string | undefined) => {
+  const queryClient = useQueryClient();
+
   return useMutation<void, Error, { postId: string; userId: string | undefined }>({
     mutationKey: ["share posts"],
     mutationFn: async ({ postId, userId }) => {
@@ -104,6 +120,9 @@ export const useSharePostsMutation = (postId: string, userId: string | undefined
     },
     onSuccess: () => {
       toast.success("Post shared successfully");
+      queryClient.refetchQueries({
+        queryKey: ["get-posts"],
+      });
     },
     onError: (error) => {
       toast.error(error.message);
@@ -111,7 +130,7 @@ export const useSharePostsMutation = (postId: string, userId: string | undefined
   });
 };
 
-// Hook to create likes
+// Hook to create likes and refetch posts
 export const useCreateLikesMutation = () => {
   const queryClient = useQueryClient();
 
@@ -122,47 +141,60 @@ export const useCreateLikesMutation = () => {
     },
     onSuccess: () => {
       toast.success("Post liked successfully");
-      // Invalidate the posts query after a like is created
-      queryClient.invalidateQueries(["get posts"]); 
+      queryClient.refetchQueries({
+        queryKey: ["get-posts"],
+      });
     },
     onError: (error) => {
       toast.error(error.message);
     },
   });
 };
+
+// Hook to create comments and refetch posts
 export const useCreateCommentsMutation = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<void, Error, { postId: string;  commentData:ICommentData }>({
-    mutationKey: ["create comments"], // Updated mutation key
-    mutationFn: async ({ postId,  commentData }) => {
-      await createComments(postId,  commentData);
+  return useMutation<void, Error, { postId: string; commentData: ICommentData }>({
+    mutationKey: ["create comments"],
+    mutationFn: async ({ postId, commentData }) => {
+      await createComments(postId, commentData);
     },
     onSuccess: () => {
       toast.success("Comment added successfully");
-      // Invalidate the posts query after a comment is created
-      queryClient.invalidateQueries(["get posts"]);
+      queryClient.refetchQueries({
+        queryKey: ["get-posts"],
+      });
     },
     onError: (error) => {
       toast.error(error.message);
     },
   });
 };
-export const useAddFavoritePostsMutations = (postId: string , userId:string) => {
+
+// Hook to add favorite posts and refetch favorite posts
+export const useAddFavoritePostsMutations = (postId: string, userId: string|undefined) => {
   const queryClient = useQueryClient();
 
-  return useMutation<void, Error, { }>({
-    mutationKey: ["create favorite posts"], 
-    mutationFn: async ({   }) => {
-      await addFavoritePosts(postId,  userId);
+  return useMutation<void, Error, string, unknown>({
+    mutationKey: ["create favorite posts"],
+    mutationFn: async () => {
+      await addFavoritePosts(postId, userId);
     },
     onSuccess: () => {
       toast.success("Favorite added successfully");
-      // Invalidate the posts query after a comment is created
-      queryClient.invalidateQueries(["get posts"]);
+      queryClient.refetchQueries({
+        queryKey: ["get my favorite posts", userId],
+      });
     },
     onError: (error) => {
       toast.error(error.message);
     },
   });
 };
+
+// Example usage of fetching payments data
+
+
+
+

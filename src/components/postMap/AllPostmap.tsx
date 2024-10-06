@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { TbRosetteDiscountCheck } from "react-icons/tb";
 import Reaction from "../modules/home/Reaction";
+import { formatDistanceToNow } from "date-fns";
 
 const AllPostsMap = ({ data }: { data: IPost[] }) => {
   return (
@@ -27,13 +28,14 @@ const AllPostsMap = ({ data }: { data: IPost[] }) => {
             <div className="flex items-center gap-2">
               <h1 className="text-lg font-semibold">
                 {post?.user?.name?.slice(0, 14)}
-              </h1>{" "}
+              </h1>
               <p className="text-green-500">
                 <TbRosetteDiscountCheck />
               </p>
-              <h1 className="font-semibold text-gray-500">{`@${post.user?.username}`}</h1>{" "}
+              <h1 className="font-semibold text-gray-500">{`@${post.user?.username}`}</h1>
               <p>.</p>
-              <p>{new Date(post.createdAt).toLocaleTimeString()}</p>
+              <p>{formatDistanceToNow(new Date(post.updatedAt))} ago</p>{" "}
+              {/* Display "time ago" */}
             </div>
 
             <div>

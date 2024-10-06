@@ -5,21 +5,23 @@ import { FieldValues } from "react-hook-form"
 
 import axiosInstance from "@/src/lib/AxiosInostance"
 import { IPost } from "@/src/types"
+import { revalidateTag } from "next/cache"
 
 
 
-export const createPosts = async(postData:FieldValues) =>{
-    
-    try {
-        const {data} =await axiosInstance.post('/posts',postData)
+export const createPosts = async (postData: FieldValues) => {
+  try {
+    const { data } = await axiosInstance.post("/posts", postData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
-       console.log(data);
-       
-       return data
-    } catch (error:any) {
-        throw new Error(error)
-    }
-}
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};
 export const getAllPosts = async() =>{
     
     try {
@@ -83,7 +85,7 @@ export const createComments = async (postId: string,  commentData: { user: strin
     throw new Error(error.response?.data?.message || error.message);
   }
 };
-export const addFavoritePosts = async (postId: string,userId:string, ) => {
+export const addFavoritePosts = async (postId: string,userId:string|undefined, ) => {
   try {
     const { data } = await axiosInstance.patch(`/posts/addFavorite/${postId}/${userId}`);
     return data;

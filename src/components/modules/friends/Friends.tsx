@@ -15,7 +15,7 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/table";
-import React from "react";
+import React, { useEffect } from "react";
 interface IFriends {
   id: string;
   profilePicture: string;
@@ -24,8 +24,12 @@ interface IFriends {
 
 const Friends = () => {
   const { user } = useUser();
-  const { data: AllFriends } = useGetAllMyFriends(user?._id ? user?._id : "");
-  console.log(AllFriends);
+  const { data: AllFriends, refetch } = useGetAllMyFriends(
+    user?._id ? user?._id : ""
+  );
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   return (
     <div className="w-full mx-auto p-4">

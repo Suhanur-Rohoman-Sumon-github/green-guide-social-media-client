@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaComment } from "react-icons/fa";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { CiBookmark } from "react-icons/ci";
@@ -24,17 +24,23 @@ import Link from "next/link";
 
 const Reaction = ({ postId }: { postId: string }) => {
   const isDownload = useSearchParams();
-  console.log(isDownload);
+
   const { user } = useUser();
+  const userIds = user?._id;
 
   // Fetch post data (e.g. comments)
-  const { data: postData, isLoading, isError } = getSinglePostsFromDB(postId);
+  const { data: postData, refetch } = getSinglePostsFromDB(postId);
 
   // Check if the post is liked by the user
-  const { data: handleAddLikesIsLikes, isLoading: isLikesLoading } = useLikes(
+  const { data: handleAddLikesIsLikes, refetch: likeRefetch } = useLikes(
     user?._id,
     postId
   );
+
+  useEffect(() => {
+    refetch();
+    likeRefetch();
+  }, [refetch]);
 
   const { mutate: handleShare } = useSharePostsMutation(postId, user?._id);
   const { mutate: handleAddFavorite } = useAddFavoritePostsMutations(
@@ -50,6 +56,8 @@ const Reaction = ({ postId }: { postId: string }) => {
   const handleLikes = () => {
     if (user?._id) {
       handleLike({ postId, userId, likeData: { like: user._id } });
+      likeRefetch();
+      refetch();
     }
   };
 
@@ -62,10 +70,6 @@ const Reaction = ({ postId }: { postId: string }) => {
       console.error("Failed to copy the link", err);
     }
   };
-
-  if (isError) {
-    return <p>Failed to load post data.</p>;
-  }
 
   return (
     <div className="flex justify-between items-center mt-7 mr-24">
@@ -129,7 +133,7 @@ const Reaction = ({ postId }: { postId: string }) => {
         <DropdownMenu aria-label="Share Actions">
           <DropdownItem
             key="favorite"
-            onClick={() => handleAddFavorite({ postId, userId: user?._id })}
+            onClick={() => handleAddFavorite(postId)}
           >
             Add to Favorite
           </DropdownItem>

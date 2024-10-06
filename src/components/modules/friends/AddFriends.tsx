@@ -12,10 +12,9 @@ import { useState, useEffect } from "react";
 
 const FindFriends = () => {
   const { user } = useUser();
-  const { data: Alluser } = useGetAllUserQuery();
-  const { data: myRequests } = useGetAllMyFriendsRequest(
-    user?._id ? user?._id : ""
-  );
+  const { data: Alluser, refetch } = useGetAllUserQuery();
+  const { data: myRequests, refetch: friendRequestRefetch } =
+    useGetAllMyFriendsRequest(user?._id ? user?._id : "");
   console.log(myRequests);
   const { mutate: createFriendRequests } = useCreateFriendRequestsMutations();
   const { mutate: acceptFriendRequests } = useAcceptFriendRequestMutation(
@@ -35,17 +34,20 @@ const FindFriends = () => {
 
   const handleAcceptRequest = (userId: string) => {
     acceptFriendRequests(userId);
+    friendRequestRefetch();
+    refetch();
   };
 
   const handleRejectRequest = (userId: string) => {
-    console.log(userId);
     RejectFriendRequest(userId);
+    friendRequestRefetch();
+    refetch();
   };
 
   const handleAddFriend = (userId: string) => {
     if (!user?._id) {
       console.error("User ID is not defined");
-      return; // Exit early
+      return;
     }
 
     const friends = {
@@ -54,6 +56,8 @@ const FindFriends = () => {
     };
 
     createFriendRequests(friends);
+    friendRequestRefetch();
+    refetch();
   };
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
