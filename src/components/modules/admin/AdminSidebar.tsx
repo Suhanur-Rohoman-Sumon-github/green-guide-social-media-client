@@ -1,0 +1,58 @@
+"use client";
+import Link from "next/link";
+import React from "react";
+import { BiHome, BiSearch, BiSolidPaperPlane } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
+import { SiSimpleanalytics } from "react-icons/si";
+import { LiaUserCheckSolid } from "react-icons/lia";
+import { usePathname } from "next/navigation"; // Import the usePathname hook
+import { FaRegCreditCard, FaRegMessage, FaUsers } from "react-icons/fa6";
+import { Button } from "@nextui-org/button";
+import { FaUserFriends } from "react-icons/fa";
+
+import { IoMdImages } from "react-icons/io";
+import CommunityProfileDown from "../home/CommunityProfileDown";
+import { BsPostcardFill } from "react-icons/bs";
+const AdminSidebar = () => {
+  const pathname = usePathname();
+  const f = "flex item-center gap-4 text-xl md:text-xl";
+  // Function to apply green text for the active route
+  const activeStyle = (route: string) =>
+    pathname === route ? "text-green-500" : "text-gray-700";
+
+  return (
+    <div className="border">
+      <div className="flex flex-col gap-6 py-2 fixed  ">
+        {/* Main navigation */}
+        <Link href={"/admin"}>
+          <button className={`${f} ${activeStyle("/admin")}`}>
+            <SiSimpleanalytics /> Admin home
+          </button>
+        </Link>
+
+        <Link href={"/admin/alluser"}>
+          <button className={`${f} ${activeStyle("/admin/alluser")}`}>
+            <FaUserFriends /> All user
+          </button>
+        </Link>
+        <Link href={"/admin/allPosts"}>
+          <button className={`${f} ${activeStyle("/admin/allPosts")}`}>
+            <BsPostcardFill /> All posts
+          </button>
+        </Link>
+        <Link href={"/admin/allPosts"}>
+          <button className={`${f} ${activeStyle("/admin/allPosts")}`}>
+            <FaRegCreditCard /> Recent Parches
+          </button>
+        </Link>
+
+        {/* Community profile at the bottom on larger screens */}
+        <div className="mt-14 hidden md:block">
+          <CommunityProfileDown />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AdminSidebar;

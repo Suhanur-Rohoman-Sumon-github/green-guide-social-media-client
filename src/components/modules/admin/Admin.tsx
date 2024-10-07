@@ -4,7 +4,7 @@ import AdminHome from "./AdminHome";
 
 const Admin = () => {
   return (
-    <div>
+    <div className="border">
       <AdminContent />
       <AdminHome />
     </div>
