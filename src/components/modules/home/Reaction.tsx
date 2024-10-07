@@ -33,7 +33,7 @@ const Reaction = ({ postId }: { postId: string }) => {
   // Check if the post is liked by the user
   const { data: handleAddLikesIsLikes, refetch: likeRefetch } = useLikes(
     user?._id,
-    postId,
+    postId
   );
 
   useEffect(() => {
@@ -41,12 +41,15 @@ const Reaction = ({ postId }: { postId: string }) => {
     likeRefetch();
   }, [refetch]);
 
-  const { mutate: handleShare } = useSharePostsMutation(postId, user?._id);
+  const { mutate: handleShare } = useSharePostsMutation();
   const { mutate: handleAddFavorite } = useAddFavoritePostsMutations(
     postId,
-    user?._id ? user?._id : "",
+    user?._id ? user?._id : ""
   );
-  const { mutate: handleLike } = useCreateLikesMutation();
+  const { mutate: handleLike } = useCreateLikesMutation(
+    postId,
+    user?._id ? user._id : ""
+  );
   let userId: string;
 
   if (user) {

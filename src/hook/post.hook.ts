@@ -40,7 +40,7 @@ export const useCreatePosts = () => {
 
 // Hook to get all posts
 export const useGetAllPostQuery = () => {
-  const { data, refetch, isLoading } = useQuery<any, Error>({
+  const { data, refetch, isLoading, isError } = useQuery<any, Error>({
     queryKey: ["get-posts"],
     queryFn: async () => {
       const data = await getAllPosts();
@@ -49,12 +49,12 @@ export const useGetAllPostQuery = () => {
     },
   });
 
-  return { data, refetch, isLoading };
+  return { data, refetch, isLoading, isError };
 };
 
 // Hook to get a single post
 export const useGetSinglePostQuery = (postId: string) => {
-  const { data, refetch, isLoading } = useQuery<any, Error>({
+  const { data, refetch, isLoading, isError } = useQuery<any, Error>({
     queryKey: ["get single posts", postId],
     queryFn: async () => {
       const data = await getSinglePosts(postId);
@@ -64,12 +64,12 @@ export const useGetSinglePostQuery = (postId: string) => {
     enabled: Boolean(postId),
   });
 
-  return { data, refetch, isLoading };
+  return { data, refetch, isLoading, isError };
 };
 
 // Hook to get user's posts
 export const useGetMyPostsQuery = (userId: string) => {
-  const { data, refetch, isLoading } = useQuery<any, Error>({
+  const { data, refetch, isLoading, isError } = useQuery<any, Error>({
     queryKey: ["get my posts", userId],
     queryFn: async () => {
       const data = await getMyPosts(userId);
@@ -79,7 +79,7 @@ export const useGetMyPostsQuery = (userId: string) => {
     enabled: Boolean(userId),
   });
 
-  return { data, refetch, isLoading };
+  return { data, refetch, isLoading,isError };
 };
 
 // Hook to get favorite posts
