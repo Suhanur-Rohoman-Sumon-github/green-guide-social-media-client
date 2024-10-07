@@ -7,7 +7,7 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 export interface IUser {
   _id: string;
   name: string;
-  username: string;
+  username?: string; // Use this if you prefer "username"
   role: string;
   email: string;
   status: string;
@@ -16,8 +16,7 @@ export interface IUser {
   createdAt?: string;
   updatedAt?: string;
   __v?: number;
-  userName: string;
-  currentState: string;
+  currentState?: string; // Remove userName property if keeping username
 }
 
 export interface IInput {

@@ -70,3 +70,23 @@ export const createFriendRequests = async (friends: FriendsProps) => {
     throw new Error(error.response?.data?.message || error.message);
   }
 };
+
+
+export const updateProfilePictureService = async (
+  profilePicture: File,
+): Promise<any> => {
+  const formData = new FormData();
+  formData.append('profilePicture', profilePicture);
+
+  try {
+    const { data } = await axiosInstance.post('/update-profile', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};

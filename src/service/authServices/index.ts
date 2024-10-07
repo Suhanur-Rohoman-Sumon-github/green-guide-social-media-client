@@ -50,7 +50,7 @@ export const getCurrentUser = async () => {
     return {
       _id: decodedToken?._id,
       name: decodedToken?.name,
-      userName: decodedToken?.userName,
+      userName: decodedToken?.username,
       email: decodedToken?.email,
 
       role: decodedToken?.role,
