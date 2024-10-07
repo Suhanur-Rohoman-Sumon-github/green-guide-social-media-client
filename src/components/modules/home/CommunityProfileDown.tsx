@@ -47,14 +47,14 @@ const CommunityProfileDown = () => {
               width={40}
             />
             <div>
-              <h1 className="">{`@${user?.userName}`}</h1>
+              <h1 className="">{`@${user?.username}`}</h1>
               <h1 className="">{`${user?.name.slice(0, 14)}`}</h1>
             </div>
           </div>
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">
           <DropdownItem key="copy" onClick={handleLogout}>
-            {`Logout from @${user?.userName}`}
+            {`Logout from @${user?.username}`}
           </DropdownItem>
           <DropdownItem
             key="settings"

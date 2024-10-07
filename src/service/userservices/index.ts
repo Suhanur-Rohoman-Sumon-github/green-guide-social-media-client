@@ -76,7 +76,7 @@ export const updateProfilePictureService = async (
   profilePicture: File,
 ): Promise<any> => {
   const formData = new FormData();
-  formData.append('profilePicture', profilePicture);
+  
 
   try {
     const { data } = await axiosInstance.post('/update-profile', formData, {
