@@ -8,6 +8,7 @@ import {
   getAllUsers,
   getMyFriendRequests,
   rejectFriendRequests,
+  updateProfilePictureService,
 } from "../service/userservices";
 
 // Fetch all users
@@ -110,6 +111,24 @@ export const useRejectFriendRequestMutation = (userId: string) => {
       queryClient.refetchQueries({
         queryKey: ["get-all-my-friends", userId],
       });
+    },
+    onError: (error: Error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+export const useUpdateProfilePictureMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (profilePicture: File) => {
+      return await updateProfilePictureService(profilePicture);
+    },
+    onSuccess: () => {
+      toast.success("Profile picture updated successfully");
+      // Optionally refetch user data or other queries here
+     // Example query key
     },
     onError: (error: Error) => {
       toast.error(error.message);

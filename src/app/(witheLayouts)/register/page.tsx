@@ -1,6 +1,6 @@
 "use client";
 // pages/register.js
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
@@ -54,9 +54,13 @@ const RegisterPage = () => {
           <hr className="flex-grow border-t border-gray-300" />
         </div>
 
-        <RegisterModal />
+        <Suspense fallback={<div>Loading...</div>}>
+          <RegisterModal />
+        </Suspense>
         <p className="text-sm  text-center my-4">Already have an account?</p>
-        <LoginModal isOpens={false} isProfile={false} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <LoginModal isOpens={false} isProfile={false} />
+        </Suspense>
       </div>
     </div>
   );
