@@ -1,10 +1,13 @@
-import { IPost } from "@/src/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { TbRosetteDiscountCheck } from "react-icons/tb";
-import Reaction from "../modules/home/Reaction";
 import { formatDistanceToNow } from "date-fns";
+
+import { IPost } from "@/src/types";
+
+import Reaction from "../modules/home/Reaction";
+import LightGelary from "./LightGelary";
 
 const AllPostsMap = ({ data }: { data: IPost[] }) => {
   return (
@@ -16,11 +19,11 @@ const AllPostsMap = ({ data }: { data: IPost[] }) => {
         >
           <div className="col-span-1 mx-auto">
             <Image
+              alt="profile pic"
               className="rounded-full"
               height={80}
-              width={40}
-              alt="profile pic"
               src={post?.user?.profilePicture || "/default-profile.png"}
+              width={40}
             />
           </div>
 
@@ -34,21 +37,16 @@ const AllPostsMap = ({ data }: { data: IPost[] }) => {
               </p>
               <h1 className="font-semibold text-gray-500">{`@${post.user?.username}`}</h1>
               <p>.</p>
-              <p>{formatDistanceToNow(new Date(post.updatedAt))} ago</p>{" "}
+              <p>{formatDistanceToNow(new Date(post.createdAt))} ago</p>{" "}
               {/* Display "time ago" */}
             </div>
 
             <div>
               <p className="my-8">{post.content}</p>
               <Link href={`${post._id}`}>
-                {post.imageUrl && (
-                  <Image
-                    height={300}
-                    width={400}
-                    alt="post image"
-                    src={post.imageUrl}
-                  />
-                )}
+                <div className="flex flex-col">
+                  <LightGelary images={post.imageUrls} />
+                </div>
               </Link>
             </div>
 

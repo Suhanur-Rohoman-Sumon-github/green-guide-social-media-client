@@ -1,6 +1,5 @@
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
-import Link from "next/link";
 import React from "react";
 import { IoIosNotifications } from "react-icons/io";
 const CommunityProfileRight = () => {
@@ -11,11 +10,12 @@ const CommunityProfileRight = () => {
     "Morocco_Earthquake",
     "Biden",
   ];
+
   return (
     <div className="px-4">
       <label htmlFor="search">
         {" "}
-        <Input placeholder="search" variant="bordered" className="max-w-xs" />
+        <Input className="max-w-xs" placeholder="search" variant="bordered" />
       </label>
       <div className={`${style} flex flex-col gap-3`}>
         {" "}
@@ -25,7 +25,7 @@ const CommunityProfileRight = () => {
         <p className="">
           Subscribe to unlock all news and articles, and get weekly newsletter.
         </p>
-        <Button variant="shadow" className="bg-green-500 text-white">
+        <Button className="bg-green-500 text-white" variant="shadow">
           <IoIosNotifications /> Subscribe
         </Button>
       </div>

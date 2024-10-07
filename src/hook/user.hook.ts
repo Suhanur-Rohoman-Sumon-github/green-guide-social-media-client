@@ -1,4 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
+
 import {
   acceptFriendRequest,
   createFriendRequests,
@@ -7,7 +9,6 @@ import {
   getMyFriendRequests,
   rejectFriendRequests,
 } from "../service/userservices";
-import { toast } from "sonner";
 
 // Fetch all users
 export const useGetAllUserQuery = () => {
@@ -15,6 +16,7 @@ export const useGetAllUserQuery = () => {
     queryKey: ["get-user"],
     queryFn: async () => {
       const data = await getAllUsers();
+
       return data?.data;
     },
     // Add loading state
@@ -28,6 +30,7 @@ export const useGetAllMyFriendsRequest = (userId: string) => {
     queryKey: ["get-all-my-friend-requests", userId],
     queryFn: async () => {
       const data = await getMyFriendRequests(userId);
+
       return data?.data;
     },
   });
@@ -39,6 +42,7 @@ export const useGetAllMyFriends = (userId: string) => {
     queryKey: ["get-all-my-friends", userId],
     queryFn: async () => {
       const data = await getAllMyFriends(userId);
+
       return data?.data;
     },
   });
@@ -47,6 +51,7 @@ export const useGetAllMyFriends = (userId: string) => {
 // Create friend requests mutation
 export const useCreateFriendRequestsMutations = () => {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async (friends: { sender: string; receiver: string }) => {
       return await createFriendRequests({ friends });
@@ -69,6 +74,7 @@ export const useCreateFriendRequestsMutations = () => {
 // Accept friend request mutation
 export const useAcceptFriendRequestMutation = (userId: string) => {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async (friendsId: string) => {
       return await acceptFriendRequest(userId, friendsId);
@@ -91,6 +97,7 @@ export const useAcceptFriendRequestMutation = (userId: string) => {
 // Reject friend request mutation
 export const useRejectFriendRequestMutation = (userId: string) => {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async (friendsId: string) => {
       return await rejectFriendRequests(userId, friendsId);

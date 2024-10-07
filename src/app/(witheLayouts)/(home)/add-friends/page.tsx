@@ -1,5 +1,6 @@
-import FindFriends from "@/src/components/modules/friends/AddFriends";
 import React from "react";
+
+import FindFriends from "@/src/components/modules/friends/AddFriends";
 
 const page = () => {
   return (

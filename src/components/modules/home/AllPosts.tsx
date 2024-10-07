@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
+
 import { getAllPostsFromDb } from "@/src/hook/post.hook";
+
 import SkeletonPost from "../../skeleton/SkeletonPost";
 import AllPostsMap from "../../postMap/AllPostmap";
 

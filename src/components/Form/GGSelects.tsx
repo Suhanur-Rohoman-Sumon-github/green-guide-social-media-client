@@ -1,6 +1,7 @@
-import { IInput } from "@/src/types";
 import { Select, SelectItem } from "@nextui-org/select";
 import { useFormContext } from "react-hook-form";
+
+import { IInput } from "@/src/types";
 
 interface IProps extends IInput {
   options: {
@@ -18,6 +19,7 @@ export default function FXSelect({
 }: IProps) {
   const {
     register,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     formState: { errors },
   } = useFormContext();
 

@@ -3,13 +3,17 @@ import { FaComment } from "react-icons/fa";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { CiBookmark } from "react-icons/ci";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
-import CommentModal from "../../modals/CommentModal";
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/dropdown";
+import { toast } from "sonner";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+
+import { useUser } from "@/src/context/useProviders";
 import {
   useLikes,
   getSinglePostsFromDB,
@@ -17,24 +21,19 @@ import {
   useCreateLikesMutation,
   useAddFavoritePostsMutations,
 } from "@/src/hook/post.hook";
-import { useUser } from "@/src/context/useProviders";
-import { toast } from "sonner";
-import { useSearchParams } from "next/navigation";
-import Link from "next/link";
+
+import CommentModal from "../../modals/CommentModal";
 
 const Reaction = ({ postId }: { postId: string }) => {
   const isDownload = useSearchParams();
-
   const { user } = useUser();
   const userIds = user?._id;
-
   // Fetch post data (e.g. comments)
   const { data: postData, refetch } = getSinglePostsFromDB(postId);
-
   // Check if the post is liked by the user
   const { data: handleAddLikesIsLikes, refetch: likeRefetch } = useLikes(
     user?._id,
-    postId
+    postId,
   );
 
   useEffect(() => {
@@ -45,10 +44,11 @@ const Reaction = ({ postId }: { postId: string }) => {
   const { mutate: handleShare } = useSharePostsMutation(postId, user?._id);
   const { mutate: handleAddFavorite } = useAddFavoritePostsMutations(
     postId,
-    user?._id ? user?._id : ""
+    user?._id ? user?._id : "",
   );
   const { mutate: handleLike } = useCreateLikesMutation();
   let userId: string;
+
   if (user) {
     userId = user!._id;
   }
@@ -60,10 +60,10 @@ const Reaction = ({ postId }: { postId: string }) => {
       refetch();
     }
   };
-
   const handleCopyLink = async () => {
     try {
       const postURL = `${window.location.origin}/${postId}`;
+
       await navigator.clipboard.writeText(postURL);
       toast.success("link copy successfully");
     } catch (err) {
@@ -76,7 +76,7 @@ const Reaction = ({ postId }: { postId: string }) => {
       {/* Like/Unlike Button */}
 
       <div className="flex items-center">
-        <button onClick={handleLikes} title="Love">
+        <button title="Love" onClick={handleLikes}>
           {handleAddLikesIsLikes && postData?.likes?.length > 0 ? (
             <FaHeart className="text-pink-500" />
           ) : (
@@ -93,13 +93,13 @@ const Reaction = ({ postId }: { postId: string }) => {
       {/* Comments */}
       <div className="flex items-center">
         <CommentModal
-          postId={postId}
           buttonText={
             <div className="flex">
               <FaComment />
               <p className="ml-1 text-xs ">{postData?.comments?.length || 0}</p>
             </div>
           }
+          postId={postId}
         />
       </div>
 

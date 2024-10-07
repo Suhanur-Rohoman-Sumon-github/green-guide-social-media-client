@@ -4,21 +4,19 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };
 
-
 export interface IUser {
-  _id: string
-  name: string
-  username:string
-  role: string
-  email: string
-  status: string
-  mobileNumber?: string
-  profilePicture: string
-  createdAt?: string
-  updatedAt?: string
-  __v?: number
-  userName:string
-
+  _id: string;
+  name: string;
+  username: string;
+  role: string;
+  email: string;
+  status: string;
+  mobileNumber?: string;
+  profilePicture: string;
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
+  userName: string;
 }
 
 export interface IInput {
@@ -31,37 +29,34 @@ export interface IInput {
   disabled?: boolean;
 }
 
-
-export interface IComment  {
+export interface IComment {
   user: IUser;
   content: string;
   createdAt?: Date;
-};
-
+}
 
 export interface IPost {
-  _id: string;          
-  user: IUser;          
-  content: string;      
-  imageUrl?: string;   
-  createdAt: string;    
-  updatedAt: string;    
-  likes: number;       
-  comments: number;  
+  _id: string;
+  user: IUser;
+  content: string;
+  imageUrls?: string[];
+  createdAt: string;
+  updatedAt: string;
+  likes: number;
+  comments: number;
 }
 
 export type FriendsProps = {
-  friends: { 
-    sender: string; 
-    receiver: string; 
+  friends: {
+    sender: string;
+    receiver: string;
   };
 };
-
 
 export type FriendRequest = {
   createdAt: string;
   receiver: string;
-  sender:IUser
+  sender: IUser;
   status: string;
   updatedAt: string;
   __v: number;

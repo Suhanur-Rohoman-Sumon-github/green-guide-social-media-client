@@ -3,9 +3,8 @@ import React from "react";
 import { BiHome, BiSearch, BiPencil } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { MdEventNote, MdForum, MdOutlineArticle } from "react-icons/md";
-
-import CommunityProfileDown from "./CommunityProfileDown";
 import { Tooltip } from "@nextui-org/tooltip";
+
 import SmallScreenProfile from "./SmallscreenProfile";
 
 const SmallScreenSidebar = () => {

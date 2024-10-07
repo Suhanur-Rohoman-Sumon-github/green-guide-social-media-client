@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect } from "react"; // Import useEffect
-import { useReactToPrint } from "react-to-print";
-import { getSinglePostsFromDB } from "@/src/hook/post.hook";
 import Link from "next/link";
 import { FaLongArrowAltLeft } from "react-icons/fa";
+import { useSearchParams } from "next/navigation";
+
+import { getSinglePostsFromDB } from "@/src/hook/post.hook";
 import Loading from "@/src/components/ui/Loading";
 import Reaction from "@/src/components/modules/home/Reaction";
-import { useSearchParams } from "next/navigation";
+
 import "./print.css";
 
 type ParamsType = {
@@ -18,7 +19,6 @@ const PostLayout = ({ params }: { params: ParamsType }) => {
   const { data: singlePosts, isLoading } = getSinglePostsFromDB(
     params?.singlePosts
   );
-
   const printContent = () => {
     window.print();
   };
@@ -43,19 +43,27 @@ const PostLayout = ({ params }: { params: ParamsType }) => {
       </Link>
       <div className="flex flex-col md:flex-row items-start justify-center p-4 gap-14 md:mt-32">
         <div className="w-full md:w-1/2 bg-white shadow-lg rounded-lg overflow-hidden mb-4 md:mb-0">
-          <img
-            className="w-full h-full object-cover"
-            src={singlePosts?.imageUrl}
-            alt="Post"
-          />
+          {/* Map over imageUrls array */}
+          {singlePosts?.imageUrls?.length > 0 ? (
+            singlePosts.imageUrls.map((url: string, index: number) => (
+              <img
+                key={index}
+                alt={`Post image ${index + 1}`}
+                className="w-full h-full object-cover"
+                src={url}
+              />
+            ))
+          ) : (
+            <p>No images available for this post.</p>
+          )}
         </div>
 
         <div className="w-full md:w-1/2 shadow-lg rounded-lg p-6">
           <div className="flex items-center mb-4 non-print-content">
             <img
+              alt="User Profile"
               className="w-12 h-12 rounded-full object-cover mr-4"
               src={singlePosts?.user?.profilePicture}
-              alt="User Profile"
             />
             <div>
               <h2 className="text-lg font-semibold">

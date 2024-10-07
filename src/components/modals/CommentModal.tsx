@@ -1,16 +1,19 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import GGModal from "./GGModal";
 import Image from "next/image";
 import { TbRosetteDiscountCheck } from "react-icons/tb";
+import { Button } from "@nextui-org/button";
+
 import { useUser } from "@/src/context/useProviders";
 import {
   getSinglePostsFromDB,
   useCreateCommentsMutation,
 } from "@/src/hook/post.hook";
 import { IComment } from "@/src/types";
+
 import GGForm from "../Form/GGForm";
 import GGInput from "../Form/GGInput";
-import { Button } from "@nextui-org/button";
+
+import GGModal from "./GGModal";
 
 interface TPostsProps {
   buttonText: ReactNode | string;
@@ -25,7 +28,6 @@ export interface ICommentData {
 const CommentModal = ({ buttonText, postId }: TPostsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useUser();
-
   // Use the getSinglePostsFromDB hook directly
   const { data, isLoading, isError } = getSinglePostsFromDB(postId);
   const { mutate: handleComments } = useCreateCommentsMutation();
@@ -33,7 +35,6 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
     const content = data.comments;
     const users = user?._id as string;
     const postIds = postId;
-
     const commentData: ICommentData = {
       content,
       user: users,
@@ -55,12 +56,12 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
 
   return (
     <GGModal
-      setIsOpen={setIsModalOpen}
-      isOpen={isModalOpen}
-      isProfile={false}
-      sizes={"2xl"}
       buttonText={buttonText}
       isComment={true}
+      isOpen={isModalOpen}
+      isProfile={false}
+      setIsOpen={setIsModalOpen}
+      sizes={"2xl"}
     >
       <div className="flex flex-col h-full">
         <div className="sticky top-0 z-10 p-4 border-b flex justify-between items-center">
@@ -73,11 +74,11 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
             <div className="grid grid-cols-8 my-4">
               <div className="col-span-1 mx-auto">
                 <Image
+                  alt="profile pic"
                   className="rounded-full"
                   height={40}
-                  width={40}
-                  alt="profile pic"
                   src={data?.user?.profilePicture}
+                  width={40}
                 />
               </div>
               <div className="col-span-7">
@@ -97,13 +98,13 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
                     {data.content || "This is an example post text."}
                   </p>
                   <Image
-                    height={200}
-                    width={400}
                     alt="post image"
+                    height={200}
                     src={
                       data.imageUrl ||
                       "https://i.ibb.co/3Mrx6Fg/blank-profile.webp"
                     }
+                    width={400}
                   />
                 </div>
               </div>
@@ -118,10 +119,10 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
               <div key={index} className="grid grid-cols-8 px-2 py-3 my-4">
                 <div className="col-span-1 mx-auto">
                   <Image
+                    alt="profile pic"
                     className="rounded-full"
                     height={40}
                     width={40}
-                    alt="profile pic"
                     src={
                       comment?.user?.profilePicture ||
                       "https://example.com/default-profile-pic.png"
@@ -152,19 +153,19 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
         <div className="sticky bottom-0 border-t mt-4 pt-4">
           <div className="flex items-center gap-2 p-2">
             <Image
+              alt="profile pic"
               className="rounded-full"
               height={40}
-              width={40}
-              alt="profile pic"
               src={user?.profilePicture || ""}
+              width={40}
             />
             <GGForm onSubmit={handlesubmit}>
               <div className="flex items-center w-full gap-8">
                 <GGInput
-                  name="comments"
                   label="comments"
-                  type="text"
+                  name="comments"
                   size="sm"
+                  type="text"
                 />
                 <Button className="bg-green-500 text-white" type="submit">
                   post

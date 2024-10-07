@@ -3,9 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@nextui-org/button";
+import Link from "next/link";
+
 import RegisterModal from "@/src/components/modals/RegisterModal";
 import LoginModal from "@/src/components/modals/LoginModal";
-import Link from "next/link";
 // Adjust import based on Next UI version
 
 const RegisterPage = () => {
@@ -14,11 +15,11 @@ const RegisterPage = () => {
       <div className="relative w-full md:w-1/2">
         <Link href={"/"}>
           <Image
-            src="https://i.ibb.co/kqFvCWJ/Black-White-Minimalist-Logo-removebg-preview.png"
             alt="Registration Image"
+            className=""
             layout="fill"
             objectFit="cover"
-            className=""
+            src="https://i.ibb.co/kqFvCWJ/Black-White-Minimalist-Logo-removebg-preview.png"
           />
         </Link>
       </div>
@@ -31,18 +32,18 @@ const RegisterPage = () => {
 
         <Button className="mb-4 w-full md:w-3/4" color="primary">
           <img
-            src="https://i.ibb.co.com/8MSzcYn/google-icon-2048x2048-pks9lbdv-removebg-preview.png"
             alt="Google"
             className="w-5 h-5 inline mr-2"
+            src="https://i.ibb.co.com/8MSzcYn/google-icon-2048x2048-pks9lbdv-removebg-preview.png"
           />
           Continue with Google
         </Button>
 
         <Button className="mb-4 w-full md:w-3/4" color="primary">
           <img
-            src="https://i.ibb.co.com/0nvmDfT/Git-Hub-Symbol-removebg-preview.png"
             alt="GitHub"
             className="w-5 h-5 inline mr-2"
+            src="https://i.ibb.co.com/0nvmDfT/Git-Hub-Symbol-removebg-preview.png"
           />
           Continue with GitHub
         </Button>
@@ -55,7 +56,7 @@ const RegisterPage = () => {
 
         <RegisterModal />
         <p className="text-sm  text-center my-4">Already have an account?</p>
-        <LoginModal isProfile={false} isOpens={false} />
+        <LoginModal isOpens={false} isProfile={false} />
       </div>
     </div>
   );

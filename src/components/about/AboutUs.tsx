@@ -11,11 +11,11 @@ const AboutUs = () => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <Image
-                src="https://i.ibb.co/kqFvCWJ/Black-White-Minimalist-Logo-removebg-preview.png"
                 alt="Gardening Community"
-                width={1000}
-                height={1000}
                 className="rounded-lg shadow-lg"
+                height={1000}
+                src="https://i.ibb.co/kqFvCWJ/Black-White-Minimalist-Logo-removebg-preview.png"
+                width={1000}
               />
             </div>
             <div className="md:w-1/2 md:pl-12">
@@ -78,22 +78,22 @@ const AboutUs = () => {
             {/* Example team member */}
             <div className="text-center">
               <Image
-                src="https://scontent.fdac134-1.fna.fbcdn.net/v/t39.30808-6/449256923_1647670442699966_40383884863262577_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGwGwXKNRG3WGaPKi91KizNcHiMBtGhQnVweIwG0aFCdX6_QdtD-czt7xIiIpKG0_h3PVOB8OFe9ktplpWl2Q8y&_nc_ohc=K04XejdbJykQ7kNvgExeZq3&_nc_ht=scontent.fdac134-1.fna&_nc_gid=AnPqogWvqs130wt7u5dw5QV&oh=00_AYAUsj8H8QcW7NdmRYQSxsq2nuNXme5lIfdDuIS9YMJ2GQ&oe=6705B26E"
                 alt="Team Member"
-                width={150}
-                height={150}
                 className="rounded-full mx-auto"
+                height={150}
+                src="https://scontent.fdac134-1.fna.fbcdn.net/v/t39.30808-6/449256923_1647670442699966_40383884863262577_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGwGwXKNRG3WGaPKi91KizNcHiMBtGhQnVweIwG0aFCdX6_QdtD-czt7xIiIpKG0_h3PVOB8OFe9ktplpWl2Q8y&_nc_ohc=K04XejdbJykQ7kNvgExeZq3&_nc_ht=scontent.fdac134-1.fna&_nc_gid=AnPqogWvqs130wt7u5dw5QV&oh=00_AYAUsj8H8QcW7NdmRYQSxsq2nuNXme5lIfdDuIS9YMJ2GQ&oe=6705B26E"
+                width={150}
               />
               <h3 className="text-xl font-semibold mt-4">Suhanur Rohoman</h3>
               <p className="text-green-500">Founder & Head Gardener</p>
             </div>
             <div className="text-center">
               <Image
-                src="https://scontent.fdac134-1.fna.fbcdn.net/v/t39.30808-6/385089168_1493369571463388_4406300329570507922_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEaMiN-Y8n6gW2oWKjEeATY9yp5ccp_RML3Knlxyn9EwnxX1EOGBpdTE7Kbk89Sl3yaPyYIWpAgoqB8FFe_xN9Z&_nc_ohc=Vo5nSz4FWhwQ7kNvgGA5t-E&_nc_ht=scontent.fdac134-1.fna&_nc_gid=AKNySnSkzQuw1l1A09FaUub&oh=00_AYDMjPI_rCMdxZT-_Q-Xu-BjvGwm3-YHPZTnKl5V4--AWg&oe=6705B200"
                 alt="Team Member"
-                width={150}
-                height={150}
                 className="rounded-full mx-auto"
+                height={150}
+                src="https://scontent.fdac134-1.fna.fbcdn.net/v/t39.30808-6/385089168_1493369571463388_4406300329570507922_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEaMiN-Y8n6gW2oWKjEeATY9yp5ccp_RML3Knlxyn9EwnxX1EOGBpdTE7Kbk89Sl3yaPyYIWpAgoqB8FFe_xN9Z&_nc_ohc=Vo5nSz4FWhwQ7kNvgGA5t-E&_nc_ht=scontent.fdac134-1.fna&_nc_gid=AKNySnSkzQuw1l1A09FaUub&oh=00_AYDMjPI_rCMdxZT-_Q-Xu-BjvGwm3-YHPZTnKl5V4--AWg&oe=6705B200"
+                width={150}
               />
               <h3 className="text-xl font-semibold mt-11">Sumon</h3>
               <p className="text-green-500">Community Manager</p>

@@ -1,13 +1,13 @@
 "use client";
+import React, { useState } from "react";
+
 import AccountSettings from "@/src/components/modules/settings/AccountSettings";
 import NotificationSettings from "@/src/components/modules/settings/NotificationSettings";
 import PrivacySettings from "@/src/components/modules/settings/PrivacySettings";
 import SettingsSidebar from "@/src/components/modules/settings/SettingsSidebar";
-import React, { useState } from "react";
 
-const page = () => {
+const Settings = () => {
   const [activeTab, setActiveTab] = useState<string>("account");
-
   const renderContent = () => {
     switch (activeTab) {
       case "account":
@@ -20,6 +20,7 @@ const page = () => {
         return <AccountSettings />;
     }
   };
+
   return (
     <div className="flex  border mt-32">
       {/* Sidebar */}
@@ -34,4 +35,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Settings;

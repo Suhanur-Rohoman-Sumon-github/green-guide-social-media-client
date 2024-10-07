@@ -1,5 +1,6 @@
-import PricingSection from "@/src/components/modules/pricing/Pricing";
 import React from "react";
+
+import PricingSection from "@/src/components/modules/pricing/Pricing";
 
 const page = () => {
   return (

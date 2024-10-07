@@ -1,5 +1,6 @@
-import Home from "@/src/components/modules/home/Home";
 import React from "react";
+
+import Home from "@/src/components/modules/home/Home";
 import "./page.css";
 
 const page = () => {

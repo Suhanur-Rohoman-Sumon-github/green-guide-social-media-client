@@ -40,7 +40,6 @@ const GGModal = ({
       setIsOpen(true);
     }
   };
-
   const handleClose = () => {
     if (setIsOpen) {
       setIsOpen(false);
@@ -51,9 +50,9 @@ const GGModal = ({
     <>
       {!isComment && !isProfile && !isUserProfile && !isPoll && (
         <Button
+          className="w-9/12"
           color="primary"
           variant="bordered"
-          className="w-9/12"
           onPress={handleOpen}
         >
           {buttonText}
@@ -61,8 +60,8 @@ const GGModal = ({
       )}
       {isUserProfile && (
         <Button
-          variant="shadow"
           className="bg-green-500 text-white"
+          variant="shadow"
           onPress={handleOpen}
         >
           {buttonText}
@@ -70,23 +69,23 @@ const GGModal = ({
       )}
 
       {isComment && (
-        <h1 onClick={handleOpen} className="cursor-pointer">
+        <h1 className="cursor-pointer" onClick={handleOpen}>
           {buttonText}
         </h1>
       )}
 
       {isProfile && (
-        <h1 onClick={handleOpen} className="cursor-pointer">
+        <h1 className="cursor-pointer" onClick={handleOpen}>
           {buttonText}
         </h1>
       )}
       {isPoll && (
-        <h1 onClick={handleOpen} className="cursor-pointer">
+        <h1 className="cursor-pointer" onClick={handleOpen}>
           {buttonText}
         </h1>
       )}
 
-      <Modal size={sizes} isOpen={isOpen} onOpenChange={handleClose}>
+      <Modal isOpen={isOpen} size={sizes} onOpenChange={handleClose}>
         <ModalContent>
           <ModalBody>{children}</ModalBody>
         </ModalContent>

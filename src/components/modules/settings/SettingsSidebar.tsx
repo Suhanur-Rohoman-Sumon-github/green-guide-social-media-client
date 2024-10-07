@@ -23,20 +23,20 @@ const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
           </li>
         </Link>
         <li
-          onClick={() => setActiveTab("account")}
           className={`cursor-pointer p-2 rounded-lg `}
+          onClick={() => setActiveTab("account")}
         >
           ⚙️ Account Settings
         </li>
         <li
-          onClick={() => setActiveTab("privacy")}
           className={`cursor-pointer p-2 rounded-lg $`}
+          onClick={() => setActiveTab("privacy")}
         >
           🔒 Privacy & Security
         </li>
         <li
-          onClick={() => setActiveTab("notifications")}
           className={`cursor-pointer p-2 rounded-lg $`}
+          onClick={() => setActiveTab("notifications")}
         >
           🔔 Notifications
         </li>

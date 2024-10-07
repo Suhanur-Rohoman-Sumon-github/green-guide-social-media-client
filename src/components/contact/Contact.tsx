@@ -7,14 +7,13 @@ const ContactUs = () => {
     email: "",
     message: "",
   });
-
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
+
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission logic here (e.g., send data to an API or email service)
@@ -37,62 +36,62 @@ const ContactUs = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
               <label
-                htmlFor="name"
                 className="block text-lg font-medium text-gray-700 mb-2"
+                htmlFor="name"
               >
                 Your Name
               </label>
               <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
                 required
                 className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                id="name"
+                name="name"
                 placeholder="Enter your name"
+                type="text"
+                value={formData.name}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-6">
               <label
-                htmlFor="email"
                 className="block text-lg font-medium text-gray-700 mb-2"
+                htmlFor="email"
               >
                 Your Email
               </label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
                 required
                 className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                id="email"
+                name="email"
                 placeholder="Enter your email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-6">
               <label
-                htmlFor="message"
                 className="block text-lg font-medium text-gray-700 mb-2"
+                htmlFor="message"
               >
                 Your Message
               </label>
               <textarea
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                 id="message"
                 name="message"
+                placeholder="Write your message here"
+                rows={5}
                 value={formData.message}
                 onChange={handleChange}
-                required
-                rows={5}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
-                placeholder="Write your message here"
-              ></textarea>
+              />
             </div>
             <div className="text-center">
               <button
-                type="submit"
                 className="px-6 py-3 bg-green-600 text-white rounded-md font-medium hover:bg-green-700 focus:ring-4 focus:ring-green-500"
+                type="submit"
               >
                 Send Message
               </button>

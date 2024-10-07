@@ -30,10 +30,8 @@ const GGInput = ({
     register,
     formState: { errors },
   } = useFormContext();
-
   const errorMessage = errors[name]?.message?.toString() || "";
   const [isVisible, setIsVisible] = React.useState(false);
-
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   return (
@@ -42,33 +40,31 @@ const GGInput = ({
       {!islogin && (
         <Input
           {...register(name)}
+          className="w-full"
           errorMessage={errorMessage}
           isInvalid={!!errors[name]}
-          variant={variant}
-          size={size}
-          required={required}
-          type={type}
           label={label}
-          className="w-full"
+          required={required}
+          size={size}
+          type={type}
+          variant={variant}
         />
       )}
       {islogin && (
         <Input
-          variant={variant}
-          size={size}
-          required={required}
           label={label}
           placeholder="Enter your password"
+          required={required}
+          size={size}
+          variant={variant}
           {...register(name)}
-          errorMessage={errorMessage}
-          isInvalid={!!errors[name]}
           className={`w-full ${fullWidth ? "w-full" : ""}`}
           endContent={
             <button
+              aria-label="toggle password visibility"
               className="focus:outline-none"
               type="button"
               onClick={toggleVisibility}
-              aria-label="toggle password visibility"
             >
               {isVisible ? (
                 <GoEye className="text-2xl text-default-400 pointer-events-none" />
@@ -77,6 +73,8 @@ const GGInput = ({
               )}
             </button>
           }
+          errorMessage={errorMessage}
+          isInvalid={!!errors[name]}
           type={isVisible ? "text" : "password"}
         />
       )}

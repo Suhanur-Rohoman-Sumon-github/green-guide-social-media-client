@@ -6,7 +6,6 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import Link from "next/link";
 const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
-
   const cards = [
     {
       id: 1,
@@ -86,15 +85,15 @@ const Pricing = () => {
                 {card.rate} $
               </p>
               <Button
+                className="w-full text-white"
                 color="primary"
                 variant="bordered"
-                className="w-full text-white"
               >
                 {card.button}
               </Button>
               <h3 className="text-xl font-semibold mt-4">Features:</h3>
               {card.description.map((descriptionText, index) => (
-                <div className="flex items-center gap-x-3 mb-2" key={index}>
+                <div key={index} className="flex items-center gap-x-3 mb-2">
                   <TiTick className="text-green-500" />
                   <p className="text-lg ">{descriptionText}</p>
                 </div>

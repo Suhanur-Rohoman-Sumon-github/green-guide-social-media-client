@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+
 import Reaction from "./Reaction";
 
 const AllFollowerPost = () => {
@@ -26,6 +27,7 @@ const AllFollowerPost = () => {
       image: "https://i.ibb.co/3Mrx6Fg/blank-profile.webp",
     },
   ];
+
   return (
     <div>
       {posts.map((post) => (
@@ -35,11 +37,11 @@ const AllFollowerPost = () => {
         >
           <div className="col-span-1 mx-auto">
             <Image
+              alt="profile pic"
               className="rounded-full"
               height={40}
-              width={40}
-              alt="profile pic"
               src={post.image}
+              width={40}
             />
           </div>
 
@@ -53,10 +55,10 @@ const AllFollowerPost = () => {
               {/* Text Box */}
               <p>{post.content}</p>
               <Image
-                height={300}
-                width={400}
                 alt="post image"
+                height={300}
                 src={post.image}
+                width={400}
               />
             </div>
             {/* Bottom Like Comment Share Nav */}

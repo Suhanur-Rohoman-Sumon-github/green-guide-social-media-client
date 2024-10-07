@@ -1,4 +1,3 @@
-
 import envConfig from "@/src/config/envConfig";
 
 const fetchOptions = {

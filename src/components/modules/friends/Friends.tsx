@@ -1,10 +1,5 @@
 // Ensure you're importing from the correct path
 "use client";
-import { useUser } from "@/src/context/useProviders";
-import {
-  useGetAllMyFriends,
-  useGetAllMyFriendsRequest,
-} from "@/src/hook/user.hook";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
 import {
@@ -16,6 +11,9 @@ import {
   TableRow,
 } from "@nextui-org/table";
 import React, { useEffect } from "react";
+
+import { useGetAllMyFriends } from "@/src/hook/user.hook";
+import { useUser } from "@/src/context/useProviders";
 interface IFriends {
   id: string;
   profilePicture: string;
@@ -25,8 +23,9 @@ interface IFriends {
 const Friends = () => {
   const { user } = useUser();
   const { data: AllFriends, refetch } = useGetAllMyFriends(
-    user?._id ? user?._id : ""
+    user?._id ? user?._id : "",
   );
+
   useEffect(() => {
     refetch();
   }, [refetch]);
@@ -44,7 +43,7 @@ const Friends = () => {
           {AllFriends?.map((friend: IFriends) => (
             <TableRow key={friend.id}>
               <TableCell>
-                <Avatar src={friend.profilePicture} size="lg" />
+                <Avatar size="lg" src={friend.profilePicture} />
               </TableCell>
               <TableCell>{friend.name}</TableCell>
 

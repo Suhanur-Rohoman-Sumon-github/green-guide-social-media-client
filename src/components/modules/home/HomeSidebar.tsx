@@ -1,26 +1,23 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { BiHome, BiSearch, BiPencil, BiSolidPaperPlane } from "react-icons/bi";
+import { BiHome, BiSearch, BiSolidPaperPlane } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import {
   MdOutlineArticle,
-  MdEventNote,
-  MdForum,
   MdRoundaboutLeft,
   MdOutlineContactSupport,
 } from "react-icons/md";
 import { LiaUserCheckSolid } from "react-icons/lia";
 import { usePathname } from "next/navigation"; // Import the usePathname hook
-import CommunityProfileDown from "./CommunityProfileDown";
 import { FaRegMessage } from "react-icons/fa6";
 import { Button } from "@nextui-org/button";
-import { IoIosNotifications } from "react-icons/io";
 import { FaUserFriends } from "react-icons/fa";
+
+import CommunityProfileDown from "./CommunityProfileDown";
 const HomeSidebar = () => {
   const pathname = usePathname();
   const f = "flex gap-4 text-xl md:text-xl";
-
   // Function to apply green text for the active route
   const activeStyle = (route: string) =>
     pathname === route ? "text-green-500" : "text-gray-700";
@@ -73,7 +70,7 @@ const HomeSidebar = () => {
             <FaUserFriends /> Find Friends
           </button>
         </Link>
-        <Button variant="shadow" className="bg-green-500 text-white">
+        <Button className="bg-green-500 text-white" variant="shadow">
           <BiSolidPaperPlane /> Posts
         </Button>
 

@@ -1,5 +1,6 @@
-import Chat from "@/src/components/modules/chat/Chat";
 import React from "react";
+
+import Chat from "@/src/components/modules/chat/Chat";
 
 const page = () => {
   return (
