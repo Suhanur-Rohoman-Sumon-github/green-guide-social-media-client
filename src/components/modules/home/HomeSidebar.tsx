@@ -15,6 +15,7 @@ import { Button } from "@nextui-org/button";
 import { FaUserFriends } from "react-icons/fa";
 
 import CommunityProfileDown from "./CommunityProfileDown";
+import { IoMdImages } from "react-icons/io";
 const HomeSidebar = () => {
   const pathname = usePathname();
   const f = "flex gap-4 text-xl md:text-xl";
@@ -44,6 +45,11 @@ const HomeSidebar = () => {
             <MdOutlineArticle /> My Favorite
           </button>
         </Link>
+        <Link href={"/add-friends"}>
+          <button className={`${f} ${activeStyle("/add-friends")}`}>
+            <FaUserFriends /> Find Friends
+          </button>
+        </Link>
         <Link href={"/chat"}>
           <button className={`${f} ${activeStyle("/chat")}`}>
             <FaRegMessage /> Messages
@@ -53,6 +59,11 @@ const HomeSidebar = () => {
         <Link href={"/pricing"}>
           <button className={`${f} ${activeStyle("/pricing")}`}>
             <LiaUserCheckSolid /> Premium
+          </button>
+        </Link>
+        <Link href={"/ImageGalleryNew"}>
+          <button className={`${f} ${activeStyle("/ImageGalleryNew")}`}>
+            <IoMdImages /> Image Gallery
           </button>
         </Link>
         <Link href={"/about"}>
@@ -65,14 +76,6 @@ const HomeSidebar = () => {
             <MdOutlineContactSupport /> Contact us
           </button>
         </Link>
-        <Link href={"/add-friends"}>
-          <button className={`${f} ${activeStyle("/add-friends")}`}>
-            <FaUserFriends /> Find Friends
-          </button>
-        </Link>
-        <Button className="bg-green-500 text-white" variant="shadow">
-          <BiSolidPaperPlane /> Posts
-        </Button>
 
         {/* Community profile at the bottom on larger screens */}
         <div className="mt-14 hidden md:block">

@@ -16,6 +16,7 @@ import { protectedRoutes } from "@/src/constant";
 
 const CommunityProfileDown = () => {
   const { setIsLoading: userLoading, setUser, user } = useUser();
+  console.log(user?.username);
   const pathname = usePathname();
   const router = useRouter();
   const handleNavigation = (pathname: string) => {
