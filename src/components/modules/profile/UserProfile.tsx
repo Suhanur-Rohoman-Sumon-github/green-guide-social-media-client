@@ -42,7 +42,7 @@ const UserProfile = () => {
 
       {/* User Information */}
       <div className="flex flex-col items-start mt-16">
-        <h1 className="text-2xl font-bold">{`${user?.name}(${user?.userName})`}</h1>
+        <h1 className="text-2xl font-bold">{`${user?.name}(${user?.username})`}</h1>
         <p className="text-gray-600">Bio: Lorem ipsum dolor sit amet.</p>
         <p className="text-gray-600">Location: City, Country</p>
         <div className="flex space-x-4 mt-2">
