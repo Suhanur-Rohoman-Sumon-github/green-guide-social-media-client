@@ -6,7 +6,7 @@
 
 // TODO add admin dashboard
 
-// TODO Implemnt image gelary this will start at 9:40 pm 
+// Done Implemnt image gelary this will start at 9:40 pm  done
 
 // TODO implement small sidbar for mobile device and check the all componnet withe mobile view
 

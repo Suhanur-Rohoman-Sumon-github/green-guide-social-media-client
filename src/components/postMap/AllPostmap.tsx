@@ -19,13 +19,15 @@ const AllPostsMap = ({ data }: { data: IPost[] }) => {
           className="grid grid-cols-8 border-t border-b px-2 py-3 my-4"
         >
           <div className="col-span-1 mx-auto">
-            <Image
-              alt="profile pic"
-              className="rounded-full"
-              height={80}
-              src={post?.user?.profilePicture || "/default-profile.png"}
-              width={40}
-            />
+            <Link href={"/profile"}>
+              <Image
+                alt="profile pic"
+                className="rounded-full"
+                height={80}
+                src={post?.user?.profilePicture || "/default-profile.png"}
+                width={40}
+              />
+            </Link>
           </div>
 
           <div className="col-span-7">
