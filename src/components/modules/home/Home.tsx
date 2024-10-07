@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { AllNavbar } from "../../ui/AllsideNavbar";
 
 import AllPosts from "./AllPosts";
-import AllFollowerPost from "./AllFollowerPost";
 import Posts from "./PostsHeader";
 
 const Home = () => {
@@ -13,8 +12,6 @@ const Home = () => {
     switch (activeTab) {
       case "For-You":
         return <AllPosts />;
-      case "Following":
-        return <AllFollowerPost />;
 
       default:
         return <AllPosts />;
@@ -23,7 +20,6 @@ const Home = () => {
 
   return (
     <div>
-      <AllNavbar />
       <Posts />
       {renderTabContent()}
     </div>

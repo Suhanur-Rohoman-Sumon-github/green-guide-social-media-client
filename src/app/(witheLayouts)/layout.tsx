@@ -6,6 +6,7 @@ import { siteConfig } from "@/src/config/site";
 import { fontSans } from "@/src/config/fonts";
 
 import { Providers } from "../providers";
+import { AllNavbar } from "@/src/components/ui/AllsideNavbar";
 
 export const metadata: Metadata = {
   title: {
@@ -36,12 +37,13 @@ export default function RootLayout({
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
             <main className="container mx-auto max-w-7xl  flex-grow">
+              <AllNavbar />
               {children}
             </main>
           </div>
