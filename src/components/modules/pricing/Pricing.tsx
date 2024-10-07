@@ -4,8 +4,20 @@ import React, { useState } from "react";
 import { TiTick } from "react-icons/ti";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import Link from "next/link";
+import CheckoutForm from "./CheckOutForm";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import envConfig from "@/src/config/envConfig";
+
 const Pricing = () => {
-  const [selectedPlan, setSelectedPlan] = useState(null);
+  const stripePromise = loadStripe(
+    "pk_test_51Q6wvwF9KoYQU66VV99jrgUnGwIk0NUWA5UcSrkaw5RQuKI5DfgFXrJv74NJ2SmL4vLIukf71purwYKsIsTwJMYS00rSM4YY8s"
+  );
+  const [selectedPlan, setSelectedPlan] = useState<{
+    id: number;
+    rate: number;
+  } | null>(null);
+
   const cards = [
     {
       id: 1,
@@ -60,9 +72,9 @@ const Pricing = () => {
   return (
     <div className="mt-8 mx-auto">
       <div className=" ">
-        <h1 className=" pb-12 text-center">Upgrade to Premium</h1>
+        <h1 className="pb-12 text-center">Upgrade to Premium</h1>
         <div className="flex items-center gap-2 mb-4">
-          <Link href={"/"}>
+          <Link className="flex items-center gap-4" href={"/"}>
             <FaLongArrowAltLeft />
             <p>back to home</p>
           </Link>
@@ -74,34 +86,44 @@ const Pricing = () => {
         {cards.map((card) => (
           <div
             key={card.id}
-            className={`cursor-pointer grid flex-grow  border p-8 `}
+            className={`cursor-pointer grid flex-grow border p-8 ${
+              selectedPlan?.id === card.id ? "border-green-500" : ""
+            }`}
+            onClick={() => setSelectedPlan({ id: card.id, rate: card.rate })}
           >
             <div className="text-center">
               <h2 className="text-2xl font-bold text-third uppercase">
                 {card.heading}
               </h2>
-              <p className="text-lg  mt-2">{card.para}</p>
+              <p className="text-lg mt-2">{card.para}</p>
               <p className="text-lg text-third mt-2 font-semibold">
                 {card.rate} $
               </p>
-              <Button
-                className="w-full text-white"
-                color="primary"
-                variant="bordered"
-              >
-                {card.button}
-              </Button>
+
               <h3 className="text-xl font-semibold mt-4">Features:</h3>
               {card.description.map((descriptionText, index) => (
                 <div key={index} className="flex items-center gap-x-3 mb-2">
                   <TiTick className="text-green-500" />
-                  <p className="text-lg ">{descriptionText}</p>
+                  <p className="text-lg">{descriptionText}</p>
                 </div>
               ))}
             </div>
           </div>
         ))}
       </div>
+
+      {/* Show CheckoutForm when a plan is selected */}
+      {selectedPlan && (
+        <div className="mt-8 mb-48">
+          <h2 className="text-center text-2xl font-bold mb-4">
+            Selected Plan:{" "}
+            {cards.find((card) => card.id === selectedPlan.id)?.heading}
+          </h2>
+          <Elements stripe={stripePromise}>
+            <CheckoutForm price={selectedPlan.rate} />
+          </Elements>
+        </div>
+      )}
     </div>
   );
 };
