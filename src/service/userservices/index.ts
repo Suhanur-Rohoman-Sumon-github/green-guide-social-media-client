@@ -1,5 +1,6 @@
 import axiosInstance from "@/src/lib/AxiosInostance";
 import { FriendsProps } from "@/src/types";
+import { FieldValues } from "react-hook-form";
 
 export const getAllUsers = async () => {
   try {
@@ -76,7 +77,7 @@ export const updateProfilePictureService = async (
   profilePicture: File,
 ): Promise<any> => {
   const formData = new FormData();
-  
+  formData.append('profilePicture', profilePicture);
 
   try {
     const { data } = await axiosInstance.post('/update-profile', formData, {

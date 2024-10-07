@@ -10,6 +10,7 @@ import {
   rejectFriendRequests,
   updateProfilePictureService,
 } from "../service/userservices";
+import { FieldValues } from "react-hook-form";
 
 // Fetch all users
 export const useGetAllUserQuery = () => {
@@ -128,7 +129,7 @@ export const useUpdateProfilePictureMutation = () => {
     onSuccess: () => {
       toast.success("Profile picture updated successfully");
       // Optionally refetch user data or other queries here
-     // Example query key
+      
     },
     onError: (error: Error) => {
       toast.error(error.message);
