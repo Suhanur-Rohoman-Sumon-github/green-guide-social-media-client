@@ -63,7 +63,7 @@ const HomeSidebar = () => {
         </Link>
         <Link href={"/ImageGalleryNew"}>
           <button className={`${f} ${activeStyle("/ImageGalleryNew")}`}>
-            <IoMdImages /> Image Gallery
+            <IoMdImages /> Gallery
           </button>
         </Link>
         <Link href={"/about"}>

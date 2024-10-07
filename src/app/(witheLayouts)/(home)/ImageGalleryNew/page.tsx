@@ -39,7 +39,7 @@ const ImageGallery = () => {
 
   return (
     <div>
-      <h2 className="text-center text-2xl font-bold mb-5">Image Gallery</h2>
+      <h2 className="text-center text-2xl font-bold mb-5">Gallery</h2>
       <LightGallery plugins={[lgThumbnail, lgZoom]} mode="lg-fade">
         {images.map((image, index) => (
           <a
