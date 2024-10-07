@@ -16,7 +16,7 @@ import Link from "next/link";
 import { useUser } from "@/src/context/useProviders";
 import {
   useLikes,
-  getSinglePostsFromDB,
+  useGetSinglePostQuery,
   useSharePostsMutation,
   useCreateLikesMutation,
   useAddFavoritePostsMutations,
@@ -29,7 +29,7 @@ const Reaction = ({ postId }: { postId: string }) => {
   const { user } = useUser();
   const userIds = user?._id;
   // Fetch post data (e.g. comments)
-  const { data: postData, refetch } = getSinglePostsFromDB(postId);
+  const { data: postData, refetch } = useGetSinglePostQuery(postId);
   // Check if the post is liked by the user
   const { data: handleAddLikesIsLikes, refetch: likeRefetch } = useLikes(
     user?._id,

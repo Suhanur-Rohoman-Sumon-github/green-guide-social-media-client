@@ -39,7 +39,7 @@ export const useCreatePosts = () => {
 };
 
 // Hook to get all posts
-export const getAllPostsFromDb = () => {
+export const useGetAllPostQuery = () => {
   const { data, refetch, isLoading } = useQuery<any, Error>({
     queryKey: ["get-posts"],
     queryFn: async () => {
@@ -53,7 +53,7 @@ export const getAllPostsFromDb = () => {
 };
 
 // Hook to get a single post
-export const getSinglePostsFromDB = (postId: string) => {
+export const useGetSinglePostQuery = (postId: string) => {
   const { data, refetch, isLoading } = useQuery<any, Error>({
     queryKey: ["get single posts", postId],
     queryFn: async () => {
@@ -67,11 +67,9 @@ export const getSinglePostsFromDB = (postId: string) => {
   return { data, refetch, isLoading };
 };
 
-
-
 // Hook to get user's posts
 export const useGetMyPostsQuery = (userId: string) => {
-  const { data, refetch,isLoading } = useQuery<any, Error>({
+  const { data, refetch, isLoading } = useQuery<any, Error>({
     queryKey: ["get my posts", userId],
     queryFn: async () => {
       const data = await getMyPosts(userId);
@@ -81,7 +79,7 @@ export const useGetMyPostsQuery = (userId: string) => {
     enabled: Boolean(userId),
   });
 
-  return { data, refetch,isLoading };
+  return { data, refetch, isLoading };
 };
 
 // Hook to get favorite posts
@@ -100,9 +98,7 @@ export const useGetAllFavoritePostQuery = (userId: string) => {
 };
 
 // Hook to share posts and refetch posts
-export const useSharePostsMutation = (
-  
-) => {
+export const useSharePostsMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation<

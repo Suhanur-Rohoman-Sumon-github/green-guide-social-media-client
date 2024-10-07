@@ -3,14 +3,12 @@ import React, { useRef, useState, useEffect } from "react";
 import { BiSolidPaperPlane, BiSolidPhotoAlbum } from "react-icons/bi";
 import Picker from "emoji-picker-react";
 import { Button } from "@nextui-org/button";
-import { CgPoll } from "react-icons/cg";
 import { FieldValues } from "react-hook-form";
 
 import { useUser } from "@/src/context/useProviders";
 import { useCreatePosts } from "@/src/hook/post.hook";
 
 import GGForm from "../../Form/GGForm";
-import PollModal from "../../modals/PollModal";
 import { GGTextArea } from "../../Form/GGTextArea";
 import Loading from "../../ui/Loading";
 
@@ -64,7 +62,7 @@ const Posts: React.FC = () => {
   };
   const handleEmojiClick = (
     event: any,
-    emojiObject: MouseEvent | undefined
+    emojiObject: MouseEvent | undefined,
   ) => {
     setDescription((prev) => prev + event.emoji);
   };
@@ -124,10 +122,6 @@ const Posts: React.FC = () => {
                 onChange={handleImageChange}
               />
             </label>
-
-            <div className="text-green-500">
-              <PollModal buttons={<CgPoll />} />
-            </div>
 
             <button
               className="flex gap-2"

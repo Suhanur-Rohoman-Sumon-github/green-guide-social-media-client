@@ -22,9 +22,9 @@ const AboutUs = () => {
               <p className="text-lg mb-6">
                 Welcome to the Gardening Social Network, a place where plant
                 enthusiasts from all around the world can connect, share, and
-                grow together. Whether you're a seasoned gardener or just
-                getting started, our platform is designed to help you learn,
-                share tips, and build a thriving community.
+                grow together. Whether youre a seasoned gardener or just getting
+                started, our platform is designed to help you learn, share tips,
+                and build a thriving community.
               </p>
               <p className="text-lg mb-6">
                 Our mission is simple: to inspire people to cultivate their own
@@ -58,7 +58,7 @@ const AboutUs = () => {
               <h3 className="text-2xl font-semibold mb-4">Growth</h3>
               <p className="text-lg">
                 Gardening is a journey of growth, both for plants and people.
-                We're here to help you along the way.
+                Were here to help you along the way.
               </p>
             </div>
           </div>

@@ -1,12 +1,12 @@
 import React from "react";
 
-import { getAllPostsFromDb } from "@/src/hook/post.hook";
+import { useGetAllPostQuery } from "@/src/hook/post.hook";
 
 import SkeletonPost from "../../skeleton/SkeletonPost";
 import AllPostsMap from "../../postMap/AllPostmap";
 
 const AllPosts = () => {
-  const { data: posts, isLoading } = getAllPostsFromDb();
+  const { data: posts, isLoading } = useGetAllPostQuery();
 
   return (
     <div>

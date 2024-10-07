@@ -1,17 +1,16 @@
 "use client";
-import { Button } from "@nextui-org/button";
 import React, { useState } from "react";
 import { TiTick } from "react-icons/ti";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import Link from "next/link";
-import CheckoutForm from "./CheckOutForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import envConfig from "@/src/config/envConfig";
+
+import CheckoutForm from "./CheckOutForm";
 
 const Pricing = () => {
   const stripePromise = loadStripe(
-    "pk_test_51Q6wvwF9KoYQU66VV99jrgUnGwIk0NUWA5UcSrkaw5RQuKI5DfgFXrJv74NJ2SmL4vLIukf71purwYKsIsTwJMYS00rSM4YY8s"
+    "pk_test_51Q6wvwF9KoYQU66VV99jrgUnGwIk0NUWA5UcSrkaw5RQuKI5DfgFXrJv74NJ2SmL4vLIukf71purwYKsIsTwJMYS00rSM4YY8s",
   );
   const [selectedPlan, setSelectedPlan] = useState<{
     id: number;
@@ -89,7 +88,14 @@ const Pricing = () => {
             className={`cursor-pointer grid flex-grow border p-8 ${
               selectedPlan?.id === card.id ? "border-green-500" : ""
             }`}
+            role="button"
+            tabIndex={0}
             onClick={() => setSelectedPlan({ id: card.id, rate: card.rate })}
+            onKeyPress={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setSelectedPlan({ id: card.id, rate: card.rate });
+              }
+            }}
           >
             <div className="text-center">
               <h2 className="text-2xl font-bold text-third uppercase">
@@ -99,7 +105,6 @@ const Pricing = () => {
               <p className="text-lg text-third mt-2 font-semibold">
                 {card.rate} $
               </p>
-
               <h3 className="text-xl font-semibold mt-4">Features:</h3>
               {card.description.map((descriptionText, index) => (
                 <div key={index} className="flex items-center gap-x-3 mb-2">

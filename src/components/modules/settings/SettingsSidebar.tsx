@@ -13,32 +13,38 @@ const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
   setActiveTab,
 }) => {
   return (
-    <div className="w-64  shadow-lg p-6 border-r-1">
+    <div className="w-64 shadow-lg p-6 border-r-1">
       <ul className="space-y-4">
         <Link href={"/"}>
-          <li
-            className={`cursor-pointer p-2 rounded-lg  flex items-center gap-2`}
-          >
-            <FaLongArrowAltLeft /> Back To home
+          <li className="flex items-center gap-2">
+            <button className="cursor-pointer p-2 rounded-lg flex items-center gap-2">
+              <FaLongArrowAltLeft /> Back To home
+            </button>
           </li>
         </Link>
-        <li
-          className={`cursor-pointer p-2 rounded-lg `}
-          onClick={() => setActiveTab("account")}
-        >
-          ⚙️ Account Settings
+        <li>
+          <button
+            className="cursor-pointer p-2 rounded-lg w-full text-left"
+            onClick={() => setActiveTab("account")}
+          >
+            ⚙️ Account Settings
+          </button>
         </li>
-        <li
-          className={`cursor-pointer p-2 rounded-lg $`}
-          onClick={() => setActiveTab("privacy")}
-        >
-          🔒 Privacy & Security
+        <li>
+          <button
+            className="cursor-pointer p-2 rounded-lg w-full text-left"
+            onClick={() => setActiveTab("privacy")}
+          >
+            🔒 Privacy & Security
+          </button>
         </li>
-        <li
-          className={`cursor-pointer p-2 rounded-lg $`}
-          onClick={() => setActiveTab("notifications")}
-        >
-          🔔 Notifications
+        <li>
+          <button
+            className="cursor-pointer p-2 rounded-lg w-full text-left"
+            onClick={() => setActiveTab("notifications")}
+          >
+            🔔 Notifications
+          </button>
         </li>
       </ul>
     </div>

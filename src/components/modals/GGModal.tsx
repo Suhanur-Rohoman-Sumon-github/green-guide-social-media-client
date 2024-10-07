@@ -69,20 +69,21 @@ const GGModal = ({
       )}
 
       {isComment && (
-        <h1 className="cursor-pointer" onClick={handleOpen}>
+        <button className="cursor-pointer" onClick={handleOpen}>
           {buttonText}
-        </h1>
+        </button>
       )}
 
       {isProfile && (
-        <h1 className="cursor-pointer" onClick={handleOpen}>
+        <button className="cursor-pointer" onClick={handleOpen}>
           {buttonText}
-        </h1>
+        </button>
       )}
+
       {isPoll && (
-        <h1 className="cursor-pointer" onClick={handleOpen}>
+        <button className="cursor-pointer" onClick={handleOpen}>
           {buttonText}
-        </h1>
+        </button>
       )}
 
       <Modal isOpen={isOpen} size={sizes} onOpenChange={handleClose}>

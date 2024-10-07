@@ -7,6 +7,7 @@ import { formatDistanceToNow } from "date-fns";
 import { IPost } from "@/src/types";
 
 import Reaction from "../modules/home/Reaction";
+
 import LightGelary from "./LightGelary";
 
 const AllPostsMap = ({ data }: { data: IPost[] }) => {
@@ -32,9 +33,11 @@ const AllPostsMap = ({ data }: { data: IPost[] }) => {
               <h1 className="text-lg font-semibold">
                 {post?.user?.name?.slice(0, 14)}
               </h1>
-              <p className="text-green-500">
-                <TbRosetteDiscountCheck />
-              </p>
+              {post?.user?.currentState === "pro" && (
+                <p className="text-green-500">
+                  <TbRosetteDiscountCheck />
+                </p>
+              )}
               <h1 className="font-semibold text-gray-500">{`@${post.user?.username}`}</h1>
               <p>.</p>
               <p>{formatDistanceToNow(new Date(post.createdAt))} ago</p>{" "}

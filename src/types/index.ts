@@ -17,6 +17,7 @@ export interface IUser {
   updatedAt?: string;
   __v?: number;
   userName: string;
+  currentState: string;
 }
 
 export interface IInput {

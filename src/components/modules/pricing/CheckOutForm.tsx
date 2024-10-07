@@ -1,24 +1,32 @@
-import { useCretePaymentIntentMutations } from "@/src/hook/price.hook";
 import { Button } from "@nextui-org/button";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
+
+import {
+  useCretePaymentIntentMutations,
+  useUpdateUserPlaneMutations,
+} from "@/src/hook/price.hook";
+import { useUser } from "@/src/context/useProviders";
 
 interface IProps {
   price: number;
 }
 
 const CheckoutForm = ({ price }: IProps) => {
-  console.log(price);
+  const { user } = useUser();
   const [clientSecret, setClientSecret] = useState("");
 
-  const [isPaymentIntent, setIsPaymentIntent] = useState(false);
   const {
     mutate: createPaymentIntent,
     data,
     isSuccess,
     isError,
   } = useCretePaymentIntentMutations();
+  const { mutate: updateUserPlane } = useUpdateUserPlaneMutations(
+    user?._id ? user?._id : "",
+  );
+
   console.log(data);
 
   const stripe = useStripe();
@@ -33,12 +41,12 @@ const CheckoutForm = ({ price }: IProps) => {
       setClientSecret(data.clientSecret);
     }
   }, [price, clientSecret, isSuccess, isError, data, createPaymentIntent]);
-  console.log(clientSecret);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     const tostId = toast.loading(
-      "Please wait a few seconds while we process your payment..."
+      "Please wait a few seconds while we process your payment...",
     );
+
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -58,6 +66,7 @@ const CheckoutForm = ({ price }: IProps) => {
 
     if (error) {
       console.error("[error]", error);
+
       return;
     }
 
@@ -65,18 +74,19 @@ const CheckoutForm = ({ price }: IProps) => {
       payment_method: {
         card: card,
         billing_details: {
-          name: "mr:sumon",
+          name: `${user?.name}`,
         },
       },
     });
 
     if (paymentIntent?.status === "succeeded") {
       toast.success("Your payment was successful!", { id: tostId });
+      updateUserPlane(user?._id ? user?._id : "");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className=" border  p-8">
+    <form className=" border  p-8" onSubmit={handleSubmit}>
       <CardElement
         options={{
           style: {
@@ -95,8 +105,8 @@ const CheckoutForm = ({ price }: IProps) => {
       />
       <Button
         className="bg-green-500 text-white my-8 w-full "
-        type="submit"
         disabled={!stripe}
+        type="submit"
       >
         Purchase
       </Button>

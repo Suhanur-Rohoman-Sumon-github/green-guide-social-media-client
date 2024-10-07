@@ -5,7 +5,7 @@ import { Button } from "@nextui-org/button";
 
 import { useUser } from "@/src/context/useProviders";
 import {
-  getSinglePostsFromDB,
+  useGetSinglePostQuery,
   useCreateCommentsMutation,
 } from "@/src/hook/post.hook";
 import { IComment } from "@/src/types";
@@ -29,7 +29,7 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useUser();
   // Use the getSinglePostsFromDB hook directly
-  const { data, isLoading, isError } = getSinglePostsFromDB(postId);
+  const { data, isLoading, isError } = useGetSinglePostQuery(postId);
   const { mutate: handleComments } = useCreateCommentsMutation();
   const handlesubmit = (data: any) => {
     const content = data.comments;

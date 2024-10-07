@@ -4,11 +4,12 @@ import Link from "next/link";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { useSearchParams } from "next/navigation";
 
-import { getSinglePostsFromDB } from "@/src/hook/post.hook";
+import { useGetSinglePostQuery } from "@/src/hook/post.hook";
 import Loading from "@/src/components/ui/Loading";
 import Reaction from "@/src/components/modules/home/Reaction";
 
 import "./print.css";
+import Image from "next/image";
 
 type ParamsType = {
   [key: string]: string;
@@ -16,8 +17,8 @@ type ParamsType = {
 
 const PostLayout = ({ params }: { params: ParamsType }) => {
   const searchParams = useSearchParams();
-  const { data: singlePosts, isLoading } = getSinglePostsFromDB(
-    params?.singlePosts
+  const { data: singlePosts, isLoading } = useGetSinglePostQuery(
+    params?.singlePosts,
   );
   const printContent = () => {
     window.print();
@@ -46,7 +47,7 @@ const PostLayout = ({ params }: { params: ParamsType }) => {
           {/* Map over imageUrls array */}
           {singlePosts?.imageUrls?.length > 0 ? (
             singlePosts.imageUrls.map((url: string, index: number) => (
-              <img
+              <Image
                 key={index}
                 alt={`Post image ${index + 1}`}
                 className="w-full h-full object-cover"
