@@ -1,6 +1,4 @@
 "use client";
-import { useGetAllPostQuery } from "@/src/hook/post.hook";
-import { IPost } from "@/src/types";
 import {
   Table,
   TableBody,
@@ -10,7 +8,10 @@ import {
   TableRow,
 } from "@nextui-org/table";
 
-const page = () => {
+import { useGetAllPostQuery } from "@/src/hook/post.hook";
+import { IPost } from "@/src/types";
+
+const AllPosts = () => {
   // Fetch all posts data
   const { data: AllPosts } = useGetAllPostQuery({ searchTerm: "" });
 
@@ -34,4 +35,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default AllPosts;

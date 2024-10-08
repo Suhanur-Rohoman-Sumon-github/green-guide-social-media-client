@@ -1,6 +1,4 @@
 "use client";
-import { useGetAllPostQuery } from "@/src/hook/post.hook";
-import { useGetAllUserQuery } from "@/src/hook/user.hook";
 import { Bar, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -16,6 +14,9 @@ import {
 } from "chart.js";
 import React, { useEffect, useState } from "react";
 
+import { useGetAllUserQuery } from "@/src/hook/user.hook";
+import { useGetAllPostQuery } from "@/src/hook/post.hook";
+
 // Register Chart.js components
 ChartJS.register(
   CategoryScale,
@@ -25,7 +26,7 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 // Define the type for chart data

@@ -1,6 +1,5 @@
 import React from "react";
 
-import AdminContent from "./AdminContent";
 import AdminHome from "./AdminHome";
 
 const Admin = () => {

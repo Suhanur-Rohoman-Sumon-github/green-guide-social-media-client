@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react";
 import { SiSimpleanalytics } from "react-icons/si";
 import { usePathname } from "next/navigation"; // Import the usePathname hook
-import { FaRegCreditCard } from "react-icons/fa6";
 import { FaUserFriends } from "react-icons/fa";
 import { BsPostcardFill } from "react-icons/bs";
 

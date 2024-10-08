@@ -1,6 +1,4 @@
 "use client";
-import { useGetAllUserQuery } from "@/src/hook/user.hook";
-import { IUser } from "@/src/types";
 import {
   Table,
   TableBody,
@@ -11,7 +9,10 @@ import {
 } from "@nextui-org/table";
 import React from "react";
 
-const page = () => {
+import { useGetAllUserQuery } from "@/src/hook/user.hook";
+import { IUser } from "@/src/types";
+
+const AllUser = () => {
   // Fetch all user data
   const { data: AllUser } = useGetAllUserQuery();
 
@@ -50,4 +51,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default AllUser;
