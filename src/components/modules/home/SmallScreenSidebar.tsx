@@ -2,10 +2,20 @@ import Link from "next/link";
 import React from "react";
 import { BiHome, BiSearch, BiPencil } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
-import { MdEventNote, MdForum, MdOutlineArticle } from "react-icons/md";
+import {
+  MdEventNote,
+  MdForum,
+  MdOutlineArticle,
+  MdOutlineContactSupport,
+  MdRoundaboutLeft,
+} from "react-icons/md";
 import { Tooltip } from "@nextui-org/tooltip";
 
 import SmallScreenProfile from "./SmallscreenProfile";
+import { FaUserFriends } from "react-icons/fa";
+import { FaRegMessage } from "react-icons/fa6";
+import { IoMdImages } from "react-icons/io";
+import { LiaUserCheckSolid } from "react-icons/lia";
 
 const SmallScreenSidebar = () => {
   const iconStyle = "text-xl md:text-2xl";
@@ -21,45 +31,66 @@ const SmallScreenSidebar = () => {
             </button>
           </Tooltip>
         </Link>
-        <Link href="/">
+        <Link href="/search">
           <Tooltip content="Explore" placement="right">
             <button className={iconStyle}>
               <BiSearch />
             </button>
           </Tooltip>
         </Link>
-        <Link href="/">
+        <Link href="/profile">
           <Tooltip content="Profile" placement="right">
             <button className={iconStyle}>
               <CgProfile />
             </button>
           </Tooltip>
         </Link>
-        <Link href="/">
-          <Tooltip content="My Posts" placement="right">
+        <Link href="/my-favorit-posts">
+          <Tooltip content="My Favorite" placement="right">
             <button className={iconStyle}>
               <MdOutlineArticle />
             </button>
           </Tooltip>
         </Link>
-        <Link href="/">
-          <Tooltip content="Comments" placement="right">
+        <Link href="/add-friends">
+          <Tooltip content="Find Friends" placement="right">
             <button className={iconStyle}>
-              <BiPencil />
+              <FaUserFriends />
             </button>
           </Tooltip>
         </Link>
-        <Link href="/">
-          <Tooltip content="Discussions" placement="right">
+        <Link href="/chat">
+          <Tooltip content="Messages" placement="right">
             <button className={iconStyle}>
-              <MdForum />
+              <FaRegMessage />
             </button>
           </Tooltip>
         </Link>
-        <Link href="/">
-          <Tooltip content="Events" placement="right">
+        <Link href="/pricing">
+          <Tooltip content="Premium" placement="right">
             <button className={iconStyle}>
-              <MdEventNote />
+              <LiaUserCheckSolid />
+            </button>
+          </Tooltip>
+        </Link>
+        <Link href="/ImageGalleryNew">
+          <Tooltip content="Gallery" placement="right">
+            <button className={iconStyle}>
+              <IoMdImages />
+            </button>
+          </Tooltip>
+        </Link>
+        <Link href="/about">
+          <Tooltip content="About us" placement="right">
+            <button className={iconStyle}>
+              <MdRoundaboutLeft />
+            </button>
+          </Tooltip>
+        </Link>
+        <Link href="/contact">
+          <Tooltip content="Contact us" placement="right">
+            <button className={iconStyle}>
+              <MdOutlineContactSupport />
             </button>
           </Tooltip>
         </Link>

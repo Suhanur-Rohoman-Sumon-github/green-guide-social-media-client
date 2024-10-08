@@ -1,8 +1,7 @@
-// TODO Implement serch fucntionality
+// TODO Implement serch fucntionality solved
 
 // TODO update user profile picture and cover photo and bio  done
 
-// TODO Implement serch fucntionality
 
 // TODO add admin dashboard
 
