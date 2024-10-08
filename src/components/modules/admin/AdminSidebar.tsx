@@ -36,11 +36,6 @@ const AdminSidebar = () => {
             <BsPostcardFill /> All posts
           </button>
         </Link>
-        <Link href={"/admin/allPosts"}>
-          <button className={`${f} ${activeStyle("/admin/allPosts")}`}>
-            <FaRegCreditCard /> Recent Parches
-          </button>
-        </Link>
 
         {/* Community profile at the bottom on larger screens */}
         <div className="mt-14 hidden md:block">

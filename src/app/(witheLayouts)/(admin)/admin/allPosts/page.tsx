@@ -1,4 +1,6 @@
 "use client";
+import { useGetAllPostQuery } from "@/src/hook/post.hook";
+import { IPost } from "@/src/types";
 import {
   Table,
   TableBody,
@@ -9,34 +11,24 @@ import {
 } from "@nextui-org/table";
 
 const page = () => {
+  // Fetch all posts data
+  const { data: AllPosts } = useGetAllPostQuery({ searchTerm: "" });
+
   return (
-    <Table aria-label="Example static collection table">
+    <Table aria-label="Posts Table">
       <TableHeader>
-        <TableColumn>NAME</TableColumn>
-        <TableColumn>ROLE</TableColumn>
+        <TableColumn>POST TITLE</TableColumn>
+        <TableColumn>AUTHOR</TableColumn>
         <TableColumn>STATUS</TableColumn>
       </TableHeader>
       <TableBody>
-        <TableRow key="1">
-          <TableCell>Tony Reichert</TableCell>
-          <TableCell>CEO</TableCell>
-          <TableCell>Active</TableCell>
-        </TableRow>
-        <TableRow key="2">
-          <TableCell>Zoey Lang</TableCell>
-          <TableCell>Technical Lead</TableCell>
-          <TableCell>Paused</TableCell>
-        </TableRow>
-        <TableRow key="3">
-          <TableCell>Jane Fisher</TableCell>
-          <TableCell>Senior Developer</TableCell>
-          <TableCell>Active</TableCell>
-        </TableRow>
-        <TableRow key="4">
-          <TableCell>William Howard</TableCell>
-          <TableCell>Community Manager</TableCell>
-          <TableCell>Vacation</TableCell>
-        </TableRow>
+        {AllPosts?.map((post: IPost) => (
+          <TableRow key={post._id}>
+            <TableCell>{post.postType}</TableCell>
+            <TableCell>{post.user?.name}</TableCell>
+            <TableCell>{post.createdAt}</TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
