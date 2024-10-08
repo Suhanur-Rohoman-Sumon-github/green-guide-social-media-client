@@ -44,6 +44,7 @@ export interface IPost {
   updatedAt: string;
   likes: number;
   comments: number;
+  postType:string
 }
 
 export type FriendsProps = {

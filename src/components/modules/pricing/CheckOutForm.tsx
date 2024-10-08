@@ -24,10 +24,8 @@ const CheckoutForm = ({ price }: IProps) => {
     isError,
   } = useCretePaymentIntentMutations();
   const { mutate: updateUserPlane } = useUpdateUserPlaneMutations(
-    user?._id ? user?._id : "",
+    user?._id ? user?._id : ""
   );
-
-  console.log(data);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -44,7 +42,7 @@ const CheckoutForm = ({ price }: IProps) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     const tostId = toast.loading(
-      "Please wait a few seconds while we process your payment...",
+      "Please wait a few seconds while we process your payment..."
     );
 
     event.preventDefault();

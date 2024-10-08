@@ -22,12 +22,9 @@ const RegisterModal = () => {
     isSuccess,
   } = useUserRegistretion();
   const handleRegister = (data: any) => {
-    console.log(data);
     const userData = {
       ...data,
     };
-
-    console.log(userData);
 
     handleUserRegistretion(userData);
   };

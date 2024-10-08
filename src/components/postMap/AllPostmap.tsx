@@ -16,8 +16,34 @@ import {
   DropdownTrigger,
 } from "@nextui-org/dropdown";
 import { Button } from "@nextui-org/button";
+import {
+  useDeletePostMutation,
+  useDeleteSharedPostMutation,
+} from "@/src/hook/post.hook";
+import { useUser } from "@/src/context/useProviders";
 
-const AllPostsMap = ({ data }: { data: IPost[] }) => {
+const AllPostsMap = ({
+  data,
+  isMyPosts = false,
+}: {
+  data: IPost[];
+  isMyPosts?: boolean;
+}) => {
+  const { user } = useUser();
+  const userId = user?._id ? user?._id : "";
+  const { mutate: DeleteMyPost } = useDeletePostMutation();
+  const { mutate: DeletePostId } = useDeleteSharedPostMutation();
+
+  const handleDeletePost = (postId: string, isCreated: boolean) => {
+    console.log(isCreated);
+    if (isCreated) {
+      DeleteMyPost({ userId, postId });
+      console.log("this is created posts ");
+    } else {
+      DeletePostId({ userId, postId });
+      console.log("this is shared posts ");
+    }
+  };
   return (
     <div>
       {data?.map((post: IPost) => (
@@ -52,25 +78,33 @@ const AllPostsMap = ({ data }: { data: IPost[] }) => {
               <p>{formatDistanceToNow(new Date(post.createdAt))} ago</p>{" "}
               {/* Display "time ago" */}
               {/* Dropdown for post actions */}
-              <div className="ml-24">
-                <Dropdown>
-                  <DropdownTrigger>
-                    <p className="cursor-pointer">
-                      <GrTransaction />
-                    </p>
-                  </DropdownTrigger>
-                  <DropdownMenu aria-label="Static Actions">
-                    <DropdownItem key="edit">Edit Posts</DropdownItem>
-                    <DropdownItem
-                      key="delete"
-                      className="text-danger"
-                      color="danger"
-                    >
-                      Delete Posts
-                    </DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-              </div>
+              {isMyPosts && (
+                <div className="ml-24">
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <p className="cursor-pointer">
+                        <GrTransaction />
+                      </p>
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Static Actions">
+                      <DropdownItem key="edit">Edit Posts</DropdownItem>
+                      <DropdownItem
+                        key="delete"
+                        className="text-danger"
+                        color="danger"
+                        onClick={() =>
+                          handleDeletePost(
+                            post._id,
+                            post.postType === "created" ? true : false
+                          )
+                        }
+                      >
+                        Delete Posts
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                </div>
+              )}
             </div>
 
             <div>

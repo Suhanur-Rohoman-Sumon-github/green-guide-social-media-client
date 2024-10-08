@@ -1,7 +1,7 @@
 import axiosInstance from "@/src/lib/AxiosInostance";
 
 export const cretePaymentsIntent = async (price: number) => {
-  console.log(price);
+
   try {
     const { data } = await axiosInstance.post("/payments", { price });
 

@@ -23,7 +23,7 @@ const Posts: React.FC = () => {
 
   const { mutate: handlePosts, isPending } = useCreatePosts();
   const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
-  console.log(myData);
+
   // const { data: posts, refetch } = getAllPostsFromDb();
   const handleSubmit = (data: FieldValues): void => {
     const formData = new FormData();

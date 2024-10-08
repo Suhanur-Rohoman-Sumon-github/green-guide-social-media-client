@@ -22,7 +22,6 @@ interface TProps {
 const LoginModal = ({ isProfile = false, isOpens }: TProps) => {
   const [isOpen, setIsOpen] = useState(isOpens ? isOpens : false);
 
-  console.log(isOpen);
   const serchPerams = useSearchParams();
   const redirect = serchPerams.get("redirect");
   const router = useRouter();

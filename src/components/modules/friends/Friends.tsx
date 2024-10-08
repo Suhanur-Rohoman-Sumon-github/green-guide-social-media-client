@@ -31,14 +31,12 @@ const Friends = () => {
   const { data: AllFriends, refetch } = useGetAllMyFriends(
     user?._id ? user?._id : ""
   );
-  console.log(AllFriends);
 
   useEffect(() => {
     refetch();
   }, [refetch]);
 
   const handleUnfriend = (friendId: string) => {
-    console.log(friendId);
     handleUnfriendMutations(friendId);
   };
 

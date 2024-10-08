@@ -60,14 +60,14 @@ export const getMyPosts = async (userId: string | undefined) => {
   }
 };
 export const creteShare = async (postId: string, userId: string) => {
-  console.log(postId);
+
   try {
     // Replace ':userId' and ':postId' with actual values
     const { data } = await axiosInstance.patch(
       `/posts/share/${postId}/${userId}`,
     );
 
-    console.log(data);
+
 
     return data;
   } catch (error: any) {
@@ -120,6 +120,24 @@ export const getFavoritePosts = async (userId: string) => {
   try {
     const { data } = await axiosInstance.get(`/posts/All-Favorite/${userId}`);
 
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};
+
+
+export const deletePost = async (postId: string, userId: string) => {
+  try {
+    const { data } = await axiosInstance.delete(`/posts/delete-myPost/${postId}/${userId}`);
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};
+export const deleteSharedPost = async (postId: string, userId: string) => {
+  try {
+    const { data } = await axiosInstance.delete(`/posts/delete-sharedPosts/${postId}/${userId}`);
     return data;
   } catch (error: any) {
     throw new Error(error.response?.data?.message || error.message);

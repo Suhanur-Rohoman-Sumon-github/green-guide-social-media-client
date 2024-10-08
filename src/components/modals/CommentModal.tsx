@@ -30,7 +30,6 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useUser();
   const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
-  console.log(myData);
 
   // Use the getSinglePostsFromDB hook directly
   const { data, isLoading, isError } = useGetSinglePostQuery(postId);

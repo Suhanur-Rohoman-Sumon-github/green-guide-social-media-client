@@ -8,6 +8,8 @@ import {
   createLikes,
   createPosts,
   creteShare,
+  deletePost,
+  deleteSharedPost,
   getAllPosts,
   getFavoritePosts,
   getIsLikes,
@@ -221,4 +223,45 @@ export const useAddFavoritePostsMutations = (
   });
 };
 
-// Example usage of fetching payments data
+export const useDeletePostMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation<void, Error, { postId: string; userId: string }>({
+    mutationKey: ["delete post"],
+    mutationFn: async ({ postId, userId }) => {
+      await deletePost(postId, userId);
+    },
+    onSuccess: () => {
+      toast.success("Post deleted successfully");
+      // Refetch posts after deletion
+      queryClient.refetchQueries({
+        queryKey: ["get-posts"],
+      });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+};
+export const useDeleteSharedPostMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation<void, Error, { postId: string; userId: string }>({
+    mutationKey: ["delete shared posts"],
+    mutationFn: async ({ postId, userId }) => {
+      await deleteSharedPost(postId, userId);
+    },
+    onSuccess: () => {
+      toast.success("Post deleted successfully");
+      // Refetch posts after deletion
+      queryClient.refetchQueries({
+        queryKey: ["get-posts"],
+      });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+
