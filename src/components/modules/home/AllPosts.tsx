@@ -6,7 +6,9 @@ import SkeletonPost from "../../skeleton/SkeletonPost";
 import AllPostsMap from "../../postMap/AllPostmap";
 
 const AllPosts = () => {
-  const { data: posts, isLoading } = useGetAllPostQuery();
+  const { data: posts, isLoading } = useGetAllPostQuery({
+    searchTerm: "",
+  });
 
   return (
     <div>

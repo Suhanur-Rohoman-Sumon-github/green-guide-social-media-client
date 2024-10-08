@@ -33,7 +33,7 @@ const HomeSidebar = () => {
           </button>
         </Link>
         <Link href={"/search"}>
-          <button className={`${f} ${activeStyle("/explore")}`}>
+          <button className={`${f} ${activeStyle("/search")}`}>
             <BiSearch /> Explore
           </button>
         </Link>

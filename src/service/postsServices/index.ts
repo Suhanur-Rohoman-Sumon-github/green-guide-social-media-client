@@ -17,15 +17,20 @@ export const createPosts = async (postData: FieldValues) => {
     throw new Error(error.response?.data?.message || error.message);
   }
 };
-export const getAllPosts = async () => {
+export const getAllPosts = async (searchTerm:string) => {
   try {
-    const { data } = await axiosInstance.get("/posts?sort=likes");
-
+   if(searchTerm){
+     const { data } = await axiosInstance.get(`/posts?sort=likes&searchTerm=${searchTerm}`);
     return data;
+   }else{
+    const { data } = await axiosInstance.get(`/posts?sort=likes`);
+    return data;
+   }
   } catch (error: any) {
     throw new Error(error);
   }
 };
+
 export const getSinglePosts = async (postId: string) => {
   try {
     const { data } = await axiosInstance.get(`/posts/${postId}`);

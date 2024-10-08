@@ -9,12 +9,13 @@ interface CardData {
   description: string;
 }
 const page = () => {
-  const { data: posts, isLoading } = useGetAllPostQuery();
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filteredCards, setFilteredCards] = useState<CardData[]>([]);
+  const { data: posts, isLoading } = useGetAllPostQuery({
+    searchTerm: searchQuery || "",
+  });
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
+    setSearchQuery(event.target.value);
   };
   return (
     <div className="container mx-auto p-4 border">
@@ -24,7 +25,7 @@ const page = () => {
           value={searchQuery}
           onChange={handleSearch}
           className="w-full p-2 border border-gray-300 rounded-md"
-          placeholder="Search for something..."
+          placeholder="Search by category or title"
         />
       </div>
 

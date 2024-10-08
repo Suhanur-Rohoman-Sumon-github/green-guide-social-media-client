@@ -1,7 +1,9 @@
 import { FieldValues } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-
+export interface UseGetAllPostQueryProps {
+  searchTerm: string;
+}
 import {
   addFavoritePosts,
   createComments,
@@ -42,14 +44,15 @@ export const useCreatePosts = () => {
 };
 
 // Hook to get all posts
-export const useGetAllPostQuery = () => {
+export const useGetAllPostQuery = ({ searchTerm }:UseGetAllPostQueryProps  ) => {
+  console.log(searchTerm);
   const { data, refetch, isLoading, isError } = useQuery<any, Error>({
-    queryKey: ["get-posts"],
+    queryKey: ["get-posts", searchTerm], // Include searchTerm
     queryFn: async () => {
-      const data = await getAllPosts();
-
+      const data = await getAllPosts(searchTerm);
       return data?.data;
     },
+     // Prevent the query from running if searchTerm is empty
   });
 
   return { data, refetch, isLoading, isError };
