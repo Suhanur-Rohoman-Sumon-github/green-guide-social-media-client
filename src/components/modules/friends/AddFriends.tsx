@@ -17,12 +17,14 @@ const FindFriends = () => {
   const { data: myRequests, refetch: friendRequestRefetch } =
     useGetAllMyFriendsRequest(user?._id ? user?._id : "");
 
+  console.log(Alluser);
+
   const { mutate: createFriendRequests } = useCreateFriendRequestsMutations();
   const { mutate: acceptFriendRequests } = useAcceptFriendRequestMutation(
-    user?._id ? user?._id : "",
+    user?._id ? user?._id : ""
   );
   const { mutate: RejectFriendRequest } = useRejectFriendRequestMutation(
-    user?._id ? user?._id : "",
+    user?._id ? user?._id : ""
   );
   const [users, setUsers] = useState<IUser[]>([]);
 

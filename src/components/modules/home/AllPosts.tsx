@@ -10,6 +10,8 @@ const AllPosts = () => {
     searchTerm: "",
   });
 
+  console.log(posts);
+
   return (
     <div>
       {isLoading && <SkeletonPost />}
