@@ -18,7 +18,7 @@ type ParamsType = {
 const PostLayout = ({ params }: { params: ParamsType }) => {
   const searchParams = useSearchParams();
   const { data: singlePosts, isLoading } = useGetSinglePostQuery(
-    params?.singlePosts,
+    params?.singlePosts
   );
   const printContent = () => {
     window.print();
@@ -36,7 +36,7 @@ const PostLayout = ({ params }: { params: ParamsType }) => {
     <>
       {isLoading && <Loading />}
       <Link
-        className="flex items-center gap-4 mt-10 non-print-content"
+        className="flex items-center gap-4 mt-24 non-print-content "
         href={"/"}
       >
         <FaLongArrowAltLeft />
@@ -49,9 +49,12 @@ const PostLayout = ({ params }: { params: ParamsType }) => {
             singlePosts.imageUrls.map((url: string, index: number) => (
               <Image
                 key={index}
-                alt={`Post image ${index + 1}`}
                 className="w-full h-full object-cover"
                 src={url}
+                alt={`Image for post ${params.singlePosts}`} // Add a meaningful alt text
+                layout="responsive" // Optional: You can set layout to responsive
+                width={500} // Specify a width for the image (required when using next/image)
+                height={300} // Specify a height for the image (required when using next/image)
               />
             ))
           ) : (

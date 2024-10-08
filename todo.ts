@@ -18,4 +18,4 @@
 
 // TODO add a slider in the top of the navbar what is show some memobarabol quet of the other gardenar 
 
-// TODO fixed the friend request problem
+// TODO fixed the friend request problem done

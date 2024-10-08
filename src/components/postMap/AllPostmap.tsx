@@ -3,12 +3,19 @@ import Link from "next/link";
 import React from "react";
 import { TbRosetteDiscountCheck } from "react-icons/tb";
 import { formatDistanceToNow } from "date-fns";
-
+import { GrTransaction } from "react-icons/gr";
 import { IPost } from "@/src/types";
 
 import Reaction from "../modules/home/Reaction";
 
 import LightGelary from "./LightGelary";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/dropdown";
+import { Button } from "@nextui-org/button";
 
 const AllPostsMap = ({ data }: { data: IPost[] }) => {
   return (
@@ -44,6 +51,26 @@ const AllPostsMap = ({ data }: { data: IPost[] }) => {
               <p>.</p>
               <p>{formatDistanceToNow(new Date(post.createdAt))} ago</p>{" "}
               {/* Display "time ago" */}
+              {/* Dropdown for post actions */}
+              <div className="ml-24">
+                <Dropdown>
+                  <DropdownTrigger>
+                    <p className="cursor-pointer">
+                      <GrTransaction />
+                    </p>
+                  </DropdownTrigger>
+                  <DropdownMenu aria-label="Static Actions">
+                    <DropdownItem key="edit">Edit Posts</DropdownItem>
+                    <DropdownItem
+                      key="delete"
+                      className="text-danger"
+                      color="danger"
+                    >
+                      Delete Posts
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
             </div>
 
             <div>
