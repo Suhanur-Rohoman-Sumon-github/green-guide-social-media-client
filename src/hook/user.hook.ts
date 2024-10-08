@@ -9,6 +9,9 @@ import {
   getMe,
   getMyFriendRequests,
   rejectFriendRequests,
+  unfriendUserService,
+  updateBioService,
+  updateCoverPhotoService,
   updateProfilePictureService,
 } from "../service/userservices";
 import { FieldValues } from "react-hook-form";
@@ -146,3 +149,69 @@ export const useUpdateProfilePictureMutation = (userId:string) => {
     },
   });
 };
+
+export const useUpdateCoverPhotoMutation = (userId: string) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (coverPhoto: File) => {
+      return await updateCoverPhotoService({coverPhoto, userId});
+    },
+    onSuccess: () => {
+      toast.success("Cover photo updated successfully");
+      // Optionally refetch user data or other queries here
+      queryClient.invalidateQueries({
+        queryKey: ["get-me", userId],
+      });
+    },
+    onError: (error: Error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+// Mutation to update bio
+export const useUpdateBioMutation = (userId: string) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (bio: string) => {
+      return await updateBioService({bio, userId});
+    },
+    onSuccess: () => {
+      toast.success("Bio updated successfully");
+      // Optionally refetch user data or other queries here
+      queryClient.invalidateQueries({
+        queryKey: ["get-me", userId],
+      });
+    },
+    onError: (error: Error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+export const useUnfriendUserMutation = (userId: string) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (friendId: string) => {
+      return await unfriendUserService(userId, friendId);
+    },
+    onSuccess: () => {
+      toast.success("Unfriended successfully");
+      // Invalidate the friends and friend requests queries
+      queryClient.invalidateQueries({
+        queryKey: ["get-all-my-friends", userId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["get-all-my-friend-requests", userId],
+      });
+    },
+    onError: (error: Error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+

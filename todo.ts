@@ -1,6 +1,6 @@
 // TODO Implement serch fucntionality
 
-// TODO update user profile picture and cover photo and bio 
+// TODO update user profile picture and cover photo and bio  done
 
 // TODO Implement serch fucntionality
 

@@ -20,6 +20,7 @@ const Posts: React.FC = () => {
   const [showPicker, setShowPicker] = useState<boolean>(false);
   const pickerRef = useRef<HTMLDivElement | null>(null);
   const { user } = useUser();
+
   const { mutate: handlePosts, isPending } = useCreatePosts();
   const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
   console.log(myData);

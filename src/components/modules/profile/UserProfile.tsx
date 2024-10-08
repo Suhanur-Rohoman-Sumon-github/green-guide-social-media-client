@@ -28,7 +28,11 @@ const UserProfile = () => {
           alt="Cover Photo"
           className="object-cover rounded-lg shadow-md bg-cover bg-center"
           layout="fill"
-          src="https://i.ibb.co.com/9stCLLd/278570326-1155325175267831-4816482073671559265-n-1.jpg"
+          src={
+            myData?.coverPhoto
+              ? myData?.coverPhoto
+              : "https://via.placeholder.com/1200x300"
+          }
         />
 
         <div className="absolute bottom-[-30px] left-4 w-32 h-32 ">
@@ -48,8 +52,8 @@ const UserProfile = () => {
       {/* User Information */}
       <div className="flex flex-col items-start mt-16">
         <h1 className="text-2xl font-bold">{`${user?.name}(${user?.username})`}</h1>
-        <p className="text-gray-600">Bio: Lorem ipsum dolor sit amet.</p>
-        <p className="text-gray-600">Location: City, Country</p>
+        <p className="text-gray-600">{myData?.bio}</p>
+        <p className="text-gray-600">{`Friends:${myData?.friends.length}`}</p>
         <div className="flex space-x-4 mt-2">
           <EditProfileModal
             buttonText={

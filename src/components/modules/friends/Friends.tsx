@@ -12,23 +12,35 @@ import {
 } from "@nextui-org/table";
 import React, { useEffect } from "react";
 
-import { useGetAllMyFriends } from "@/src/hook/user.hook";
+import {
+  useGetAllMyFriends,
+  useUnfriendUserMutation,
+} from "@/src/hook/user.hook";
 import { useUser } from "@/src/context/useProviders";
 interface IFriends {
-  id: string;
+  _id: string;
   profilePicture: string;
   name: string;
 }
 
 const Friends = () => {
   const { user } = useUser();
-  const { data: AllFriends, refetch } = useGetAllMyFriends(
-    user?._id ? user?._id : "",
+  const { mutate: handleUnfriendMutations } = useUnfriendUserMutation(
+    user?._id ? user?._id : ""
   );
+  const { data: AllFriends, refetch } = useGetAllMyFriends(
+    user?._id ? user?._id : ""
+  );
+  console.log(AllFriends);
 
   useEffect(() => {
     refetch();
   }, [refetch]);
+
+  const handleUnfriend = (friendId: string) => {
+    console.log(friendId);
+    handleUnfriendMutations(friendId);
+  };
 
   return (
     <div className="w-full mx-auto p-4">
@@ -41,7 +53,7 @@ const Friends = () => {
         </TableHeader>
         <TableBody>
           {AllFriends?.map((friend: IFriends) => (
-            <TableRow key={friend.id}>
+            <TableRow key={friend._id}>
               <TableCell>
                 <Avatar size="lg" src={friend.profilePicture} />
               </TableCell>
@@ -52,6 +64,7 @@ const Friends = () => {
                   className="bg-green-500 text-white"
                   color="primary"
                   size="sm"
+                  onClick={() => handleUnfriend(friend._id)}
                 >
                   Unfriend
                 </Button>

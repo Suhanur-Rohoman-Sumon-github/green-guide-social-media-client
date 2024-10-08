@@ -101,3 +101,54 @@ export const updateProfilePictureService = async (
     throw new Error(error.response?.data?.message || error.message);
   }
 };
+
+export const updateCoverPhotoService = async ({
+  coverPhoto,
+  userId,
+}: {
+  coverPhoto: File;
+  userId: string;
+}): Promise<any> => {
+  const formData = new FormData();
+  formData.append("coverPhoto", coverPhoto);
+
+  try {
+    const { data } = await axiosInstance.post(`/users/update-cover/${userId}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};
+
+// Service to update bio
+export const updateBioService = async ({
+  bio,
+  userId,
+}: {
+  bio: string;
+  userId: string;
+}): Promise<any> => {
+  try {
+    const { data } = await axiosInstance.patch(`/users/update-bio/${userId}`, { bio });
+
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};
+
+// Service to unfriend a user
+export const unfriendUserService = async (userId: string, friendId: string): Promise<any> => {
+  
+  try {
+    const { data } = await axiosInstance.delete(`/users/unfriend-user/${userId}/${friendId}`);
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};
