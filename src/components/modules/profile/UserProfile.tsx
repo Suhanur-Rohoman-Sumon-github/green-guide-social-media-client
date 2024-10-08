@@ -8,10 +8,15 @@ import Link from "next/link";
 import { useUser } from "@/src/context/useProviders";
 
 import EditProfileModal from "../../modals/EditProfileModal";
+import { useGetMeQuery } from "@/src/hook/user.hook";
 
 const UserProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
+  const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
+  console.log(myData);
+
+  console.log(user?.profilePicture);
 
   console.log(user);
 
@@ -32,8 +37,8 @@ const UserProfile = () => {
             className="rounded-full border-4 border-white shadow-lg"
             layout="fill"
             src={
-              user?.profilePicture
-                ? user?.profilePicture
+              myData?.profilePicture
+                ? myData?.profilePicture
                 : "https://via.placeholder.com/1200x300"
             }
           />

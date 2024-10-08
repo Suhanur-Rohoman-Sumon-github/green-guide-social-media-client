@@ -71,16 +71,26 @@ export const createFriendRequests = async (friends: FriendsProps) => {
     throw new Error(error.response?.data?.message || error.message);
   }
 };
+export const getMe = async (userId: string) => {
+  try {
+    const { data } = await axiosInstance.get(`/users/get-me/${userId}`);
+
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};
 
 
 export const updateProfilePictureService = async (
   profilePicture: File,
+  userId:string
 ): Promise<any> => {
   const formData = new FormData();
   formData.append('profilePicture', profilePicture);
 
   try {
-    const { data } = await axiosInstance.post('/update-profile', formData, {
+    const { data } = await axiosInstance.post(`/users/update-profile/${userId}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

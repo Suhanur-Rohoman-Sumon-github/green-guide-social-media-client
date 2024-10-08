@@ -17,3 +17,5 @@
 // TODO Add privious navbar like becouse it will show user defarent type of newsfeed once who he is follow in 
 
 // TODO add a slider in the top of the navbar what is show some memobarabol quet of the other gardenar 
+
+// TODO fixed the friend request problem

@@ -11,6 +11,7 @@ import { useCreatePosts } from "@/src/hook/post.hook";
 import GGForm from "../../Form/GGForm";
 import { GGTextArea } from "../../Form/GGTextArea";
 import Loading from "../../ui/Loading";
+import { useGetMeQuery } from "@/src/hook/user.hook";
 
 const Posts: React.FC = () => {
   const [imageFiles, setImageFiles] = useState<File[]>([]);
@@ -20,6 +21,8 @@ const Posts: React.FC = () => {
   const pickerRef = useRef<HTMLDivElement | null>(null);
   const { user } = useUser();
   const { mutate: handlePosts, isPending } = useCreatePosts();
+  const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
+  console.log(myData);
   // const { data: posts, refetch } = getAllPostsFromDb();
   const handleSubmit = (data: FieldValues): void => {
     const formData = new FormData();
@@ -62,7 +65,7 @@ const Posts: React.FC = () => {
   };
   const handleEmojiClick = (
     event: any,
-    emojiObject: MouseEvent | undefined,
+    emojiObject: MouseEvent | undefined
   ) => {
     setDescription((prev) => prev + event.emoji);
   };
@@ -92,7 +95,7 @@ const Posts: React.FC = () => {
             alt="profile"
             className="rounded-full"
             height={40}
-            src={user?.profilePicture}
+            src={myData?.profilePicture}
             width={40}
           />
         )}

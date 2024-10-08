@@ -14,6 +14,7 @@ import GGForm from "../Form/GGForm";
 import GGInput from "../Form/GGInput";
 
 import GGModal from "./GGModal";
+import { useGetMeQuery } from "@/src/hook/user.hook";
 
 interface TPostsProps {
   buttonText: ReactNode | string;
@@ -28,6 +29,9 @@ export interface ICommentData {
 const CommentModal = ({ buttonText, postId }: TPostsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useUser();
+  const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
+  console.log(myData);
+
   // Use the getSinglePostsFromDB hook directly
   const { data, isLoading, isError } = useGetSinglePostQuery(postId);
   const { mutate: handleComments } = useCreateCommentsMutation();
@@ -156,7 +160,7 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
               alt="profile pic"
               className="rounded-full"
               height={40}
-              src={user?.profilePicture || ""}
+              src={myData?.profilePicture || ""}
               width={40}
             />
             <GGForm onSubmit={handlesubmit}>

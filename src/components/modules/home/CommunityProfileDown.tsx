@@ -13,10 +13,12 @@ import React from "react";
 import { logout } from "@/src/service/authServices";
 import { useUser } from "@/src/context/useProviders";
 import { protectedRoutes } from "@/src/constant";
+import { useGetMeQuery } from "@/src/hook/user.hook";
 
 const CommunityProfileDown = () => {
   const { setIsLoading: userLoading, setUser, user } = useUser();
-  console.log(user?.username);
+  const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
+  console.log(myData);
   const pathname = usePathname();
   const router = useRouter();
   const handleNavigation = (pathname: string) => {
@@ -41,8 +43,8 @@ const CommunityProfileDown = () => {
               className="rounded-full"
               height={40}
               src={
-                user?.profilePicture
-                  ? user?.profilePicture
+                myData?.profilePicture
+                  ? myData?.profilePicture
                   : "https://i.ibb.co.com/3BWM0Wz/images.png"
               }
               width={40}
