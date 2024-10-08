@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { useRef, useState, useEffect } from "react";
 import { BiSolidPaperPlane, BiSolidPhotoAlbum } from "react-icons/bi";
+import { AiOutlineClose } from "react-icons/ai"; // Import close icon
 import Picker from "emoji-picker-react";
 import { Button } from "@nextui-org/button";
 import { FieldValues } from "react-hook-form";
@@ -24,34 +25,23 @@ const Posts: React.FC = () => {
   const { mutate: handlePosts, isPending } = useCreatePosts();
   const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
 
-  // const { data: posts, refetch } = getAllPostsFromDb();
   const handleSubmit = (data: FieldValues): void => {
     const formData = new FormData();
-
     data.user = user?._id;
 
-    // Adding user id to form data
     formData.append("data", JSON.stringify(data));
-
-    // Adding other form data
-
-    // Adding images
     imageFiles.forEach((image) => {
       formData.append("images", image);
     });
 
-    // Call the mutation to create the post
     handlePosts(formData);
-
-    // // Refetch posts upon success
-    // refetch();
   };
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
 
     if (files) {
       const newFiles = Array.from(files);
-
       setImageFiles((prev) => [...prev, ...newFiles]);
 
       newFiles.forEach((file) => {
@@ -64,12 +54,11 @@ const Posts: React.FC = () => {
       });
     }
   };
-  const handleEmojiClick = (
-    event: any,
-    emojiObject: MouseEvent | undefined
-  ) => {
+
+  const handleEmojiClick = (event: any) => {
     setDescription((prev) => prev + event.emoji);
   };
+
   const handleClickOutside = (event: MouseEvent) => {
     if (
       pickerRef.current &&
@@ -77,6 +66,12 @@ const Posts: React.FC = () => {
     ) {
       setShowPicker(false);
     }
+  };
+
+  const removeImage = (index: number) => {
+    // Remove image from both arrays
+    setImageFiles((prev) => prev.filter((_, i) => i !== index));
+    setImagePreview((prev) => prev.filter((_, i) => i !== index));
   };
 
   useEffect(() => {
@@ -103,14 +98,12 @@ const Posts: React.FC = () => {
       </div>
       <div className="col-span-10 mt-4 px-2 md:px-0 md:mt-0">
         <GGForm onSubmit={handleSubmit}>
-          {/* Textarea */}
           <label className="mr-4" htmlFor="text">
             <GGTextArea label="What's Going on?" name="content" />
           </label>
 
           <div className="divider" />
 
-          {/* Icons for image upload and emoji picker */}
           <div className="flex items-center gap-3">
             <label
               className="flex items-center gap-2 cursor-pointer"
@@ -118,7 +111,7 @@ const Posts: React.FC = () => {
             >
               <BiSolidPhotoAlbum className="text-xl text-green-500" />
               <input
-                multiple // Allow multiple files
+                multiple
                 accept="image/*"
                 id="image-upload"
                 style={{ display: "none" }}
@@ -135,7 +128,6 @@ const Posts: React.FC = () => {
               <span className="text-lg">😀</span>
             </button>
 
-            {/* Emoji Picker */}
             {showPicker && (
               <div ref={pickerRef} className="absolute z-10 mt-[500px]">
                 <Picker onEmojiClick={handleEmojiClick} />
@@ -143,23 +135,29 @@ const Posts: React.FC = () => {
             )}
           </div>
 
-          {/* Image Previews */}
+          {/* Image Previews with Remove Icon */}
           {imagePreview.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-2">
               {imagePreview.map((image, index) => (
-                <Image
-                  key={index}
-                  alt={`Preview ${index + 1}`}
-                  className="border-2 border-dashed"
-                  height={100}
-                  src={image}
-                  width={100}
-                />
+                <div key={index} className="relative">
+                  <Image
+                    alt={`Preview ${index + 1}`}
+                    className="border-2 border-dashed h-32"
+                    height={100}
+                    src={image}
+                    width={100}
+                  />
+                  <button
+                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1"
+                    onClick={() => removeImage(index)}
+                  >
+                    <AiOutlineClose />
+                  </button>
+                </div>
               ))}
             </div>
           )}
 
-          {/* Submit Button */}
           <div className="mt-4">
             <Button
               className="bg-green-500 text-white"

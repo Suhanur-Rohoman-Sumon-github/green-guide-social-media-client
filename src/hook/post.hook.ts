@@ -18,6 +18,7 @@ import {
 } from "../service/postsServices";
 import { ICommentData } from "../components/modals/CommentModal";
 
+
 // Hook to create posts and refetch posts
 export const useCreatePosts = () => {
   const queryClient = useQueryClient();
@@ -108,7 +109,7 @@ export const useSharePostsMutation = () => {
     Error,
     { postId: string; userId: string | undefined }
   >({
-    mutationKey: ["share posts"],
+    mutationKey: ["share-posts"],
     mutationFn: async ({ postId, userId }) => {
       if (!userId) {
         throw new Error("User ID is required to share a post");
@@ -187,10 +188,11 @@ export const useCreateCommentsMutation = () => {
     mutationFn: async ({ postId, commentData }) => {
       await createComments(postId, commentData);
     },
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
+      // variables contain { postId, commentData }
       toast.success("Comment added successfully");
       queryClient.refetchQueries({
-        queryKey: ["get-posts"],
+        queryKey: ['singlePost', variables.postId],  // Use variables.postId here
       });
     },
     onError: (error) => {
@@ -198,6 +200,7 @@ export const useCreateCommentsMutation = () => {
     },
   });
 };
+
 
 // Hook to add favorite posts and refetch favorite posts
 export const useAddFavoritePostsMutations = (

@@ -32,9 +32,11 @@ const HomeSidebar = () => {
             <BiHome /> Home
           </button>
         </Link>
-        <button className={`${f} ${activeStyle("/explore")}`}>
-          <BiSearch /> Explore
-        </button>
+        <Link href={"/search"}>
+          <button className={`${f} ${activeStyle("/explore")}`}>
+            <BiSearch /> Explore
+          </button>
+        </Link>
         <Link href={"/profile"}>
           <button className={`${f} ${activeStyle("/profile")}`}>
             <CgProfile /> Profile

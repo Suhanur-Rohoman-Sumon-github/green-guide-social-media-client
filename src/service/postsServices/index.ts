@@ -19,7 +19,7 @@ export const createPosts = async (postData: FieldValues) => {
 };
 export const getAllPosts = async () => {
   try {
-    const { data } = await axiosInstance.get("/posts");
+    const { data } = await axiosInstance.get("/posts?sort=likes");
 
     return data;
   } catch (error: any) {
