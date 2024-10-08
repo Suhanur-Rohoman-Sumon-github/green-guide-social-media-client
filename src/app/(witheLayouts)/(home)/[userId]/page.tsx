@@ -4,7 +4,7 @@ interface CardData {
   title: string;
   description: string;
 }
-const SingleUser = () => {
+const Page = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredCards, setFilteredCards] = useState<CardData[]>([]);
 
@@ -35,7 +35,7 @@ const SingleUser = () => {
     const filtered = cardData.filter(
       (card) =>
         card.title.toLowerCase().includes(query) ||
-        card.description.toLowerCase().includes(query),
+        card.description.toLowerCase().includes(query)
     );
 
     setFilteredCards(filtered);
@@ -72,4 +72,4 @@ const SingleUser = () => {
   );
 };
 
-export default SingleUser;
+export default Page;
