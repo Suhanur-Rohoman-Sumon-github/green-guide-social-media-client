@@ -4,7 +4,7 @@ import { BiSolidPaperPlane, BiSolidPhotoAlbum } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import Picker from "emoji-picker-react";
 import { Button } from "@nextui-org/button";
-import { FieldValues } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { TbBrandOpenai } from "react-icons/tb";
 
 import { useUser } from "@/src/context/useProviders";
@@ -12,9 +12,11 @@ import { useCreatePosts } from "@/src/hook/post.hook";
 import { useGetMeQuery } from "@/src/hook/user.hook";
 
 import GGForm from "../../Form/GGForm";
-import { GGTextArea } from "../../Form/GGTextArea";
+
 import Loading from "../../ui/Loading";
 import GGselect from "../../Form/GGSelects";
+import generateDescription from "@/src/service/desciption";
+import GGTextArea from "../../Form/GGTextArea";
 
 const Posts: React.FC = () => {
   const [imageFiles, setImageFiles] = useState<File[]>([]);
@@ -30,6 +32,7 @@ const Posts: React.FC = () => {
   const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
 
   const handleSubmit = (data: FieldValues): void => {
+    const methods = useForm();
     console.log(data);
     const formData = new FormData();
 
@@ -98,6 +101,18 @@ const Posts: React.FC = () => {
     { key: "Container Gardening", label: "Container Gardening" },
     { key: "Urban Gardening", label: "Urban Gardening" },
   ];
+  const methods = useForm();
+  const handleDescriptions = async () => {
+    try {
+      const respone = await generateDescription(
+        imagePreview[0],
+        "write a desciption depend on this picture where starting withe the importance of gardening "
+      );
+      setDescription(respone);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="grid md:grid-cols-12 py-5">
@@ -116,7 +131,11 @@ const Posts: React.FC = () => {
       <div className="col-span-10 mt-4 px-2 md:px-0 md:mt-0">
         <GGForm onSubmit={handleSubmit}>
           <label className="mr-4" htmlFor="text">
-            <GGTextArea label="What's Going on?" name="content" />
+            <GGTextArea
+              description={description}
+              label="What's Going on?"
+              name="content"
+            />
           </label>
 
           {/* Category Selection */}
@@ -193,8 +212,9 @@ const Posts: React.FC = () => {
           <div className=" flex items-center gap-4 justify-between mt-8">
             <Button
               className="bg-green-500 text-white"
-              type="submit"
               variant="shadow"
+              onClick={() => handleDescriptions()}
+              isDisabled={imagePreview.length > 0 ? false : true}
             >
               <TbBrandOpenai />
               use AI get magic
