@@ -1,6 +1,5 @@
 import axiosInstance from "@/src/lib/AxiosInostance";
 import { FriendsProps } from "@/src/types";
-import { FieldValues } from "react-hook-form";
 
 export const getAllUsers = async () => {
   try {
@@ -81,20 +80,24 @@ export const getMe = async (userId: string) => {
   }
 };
 
-
 export const updateProfilePictureService = async (
   profilePicture: File,
-  userId:string
+  userId: string,
 ): Promise<any> => {
   const formData = new FormData();
-  formData.append('profilePicture', profilePicture);
+
+  formData.append("profilePicture", profilePicture);
 
   try {
-    const { data } = await axiosInstance.post(`/users/update-profile/${userId}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
+    const { data } = await axiosInstance.post(
+      `/users/update-profile/${userId}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       },
-    });
+    );
 
     return data;
   } catch (error: any) {
@@ -110,14 +113,19 @@ export const updateCoverPhotoService = async ({
   userId: string;
 }): Promise<any> => {
   const formData = new FormData();
+
   formData.append("coverPhoto", coverPhoto);
 
   try {
-    const { data } = await axiosInstance.post(`/users/update-cover/${userId}`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
+    const { data } = await axiosInstance.post(
+      `/users/update-cover/${userId}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       },
-    });
+    );
 
     return data;
   } catch (error: any) {
@@ -134,7 +142,9 @@ export const updateBioService = async ({
   userId: string;
 }): Promise<any> => {
   try {
-    const { data } = await axiosInstance.patch(`/users/update-bio/${userId}`, { bio });
+    const { data } = await axiosInstance.patch(`/users/update-bio/${userId}`, {
+      bio,
+    });
 
     return data;
   } catch (error: any) {
@@ -143,10 +153,15 @@ export const updateBioService = async ({
 };
 
 // Service to unfriend a user
-export const unfriendUserService = async (userId: string, friendId: string): Promise<any> => {
-  
+export const unfriendUserService = async (
+  userId: string,
+  friendId: string,
+): Promise<any> => {
   try {
-    const { data } = await axiosInstance.delete(`/users/unfriend-user/${userId}/${friendId}`);
+    const { data } = await axiosInstance.delete(
+      `/users/unfriend-user/${userId}/${friendId}`,
+    );
+
     return data;
   } catch (error: any) {
     throw new Error(error.response?.data?.message || error.message);

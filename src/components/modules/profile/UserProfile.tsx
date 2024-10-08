@@ -6,9 +6,9 @@ import { FaUserEdit, FaUserFriends } from "react-icons/fa";
 import Link from "next/link";
 
 import { useUser } from "@/src/context/useProviders";
+import { useGetMeQuery } from "@/src/hook/user.hook";
 
 import EditProfileModal from "../../modals/EditProfileModal";
-import { useGetMeQuery } from "@/src/hook/user.hook";
 
 const UserProfile = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,6 +1,5 @@
 "use client";
 import {
-  getKeyValue,
   Table,
   TableBody,
   TableCell,
@@ -52,6 +51,7 @@ const page = () => {
       label: "STATUS",
     },
   ];
+
   return (
     <Table aria-label="Example static collection table">
       <TableHeader>

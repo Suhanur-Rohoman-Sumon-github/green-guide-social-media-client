@@ -4,7 +4,7 @@ interface CardData {
   title: string;
   description: string;
 }
-const page = () => {
+const SingleUser = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredCards, setFilteredCards] = useState<CardData[]>([]);
 
@@ -29,24 +29,27 @@ const page = () => {
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value.toLowerCase();
+
     setSearchQuery(query);
 
     const filtered = cardData.filter(
       (card) =>
         card.title.toLowerCase().includes(query) ||
-        card.description.toLowerCase().includes(query)
+        card.description.toLowerCase().includes(query),
     );
+
     setFilteredCards(filtered);
   };
+
   return (
     <div className="container mx-auto p-4">
       <div className="mb-6">
         <input
+          className="w-full p-2 border border-gray-300 rounded-md"
+          placeholder="Search for something..."
           type="text"
           value={searchQuery}
           onChange={handleSearch}
-          className="w-full p-2 border border-gray-300 rounded-md"
-          placeholder="Search for something..."
         />
       </div>
 
@@ -69,4 +72,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SingleUser;

@@ -1,18 +1,14 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { BiHome, BiSearch, BiSolidPaperPlane } from "react-icons/bi";
-import { CgProfile } from "react-icons/cg";
 import { SiSimpleanalytics } from "react-icons/si";
-import { LiaUserCheckSolid } from "react-icons/lia";
 import { usePathname } from "next/navigation"; // Import the usePathname hook
-import { FaRegCreditCard, FaRegMessage, FaUsers } from "react-icons/fa6";
-import { Button } from "@nextui-org/button";
+import { FaRegCreditCard } from "react-icons/fa6";
 import { FaUserFriends } from "react-icons/fa";
-
-import { IoMdImages } from "react-icons/io";
-import CommunityProfileDown from "../home/CommunityProfileDown";
 import { BsPostcardFill } from "react-icons/bs";
+
+import CommunityProfileDown from "../home/CommunityProfileDown";
+
 const AdminSidebar = () => {
   const pathname = usePathname();
   const f = "flex item-center gap-4 text-xl md:text-xl";

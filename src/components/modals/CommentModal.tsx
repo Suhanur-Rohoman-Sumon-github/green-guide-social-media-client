@@ -2,17 +2,20 @@ import React, { ReactNode, useEffect, useState } from "react";
 import Image from "next/image";
 import { TbRosetteDiscountCheck } from "react-icons/tb";
 import { Button } from "@nextui-org/button";
+
 import { useUser } from "@/src/context/useProviders";
 import {
   useGetSinglePostQuery,
   useCreateCommentsMutation,
 } from "@/src/hook/post.hook";
 import { IComment } from "@/src/types";
+import { useGetMeQuery } from "@/src/hook/user.hook";
+
 import GGForm from "../Form/GGForm";
 import GGInput from "../Form/GGInput";
-import GGModal from "./GGModal";
-import { useGetMeQuery } from "@/src/hook/user.hook";
 import Loading from "../ui/Loading";
+
+import GGModal from "./GGModal";
 
 interface TPostsProps {
   buttonText: ReactNode | string;
@@ -61,10 +64,10 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
         <div className="my-4">
           <Image
             alt="post image"
+            className="w-full h-64"
             height={200}
             src={images[0]}
             width={400}
-            className="w-full h-64"
           />
         </div>
       );
@@ -75,10 +78,10 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
             <Image
               key={index}
               alt={`post image ${index + 1}`}
+              className="w-full h-64"
               height={200}
               src={src}
               width={200}
-              className="w-full h-64"
             />
           ))}
         </div>
@@ -88,20 +91,20 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
         <div className="my-4">
           <Image
             alt="post image"
+            className="w-full h-64"
             height={200}
             src={images[0]}
             width={400}
-            className="w-full h-64"
           />
           <div className="grid grid-cols-2 gap-2">
             {images.slice(1).map((src, index) => (
               <Image
                 key={index}
                 alt={`post image ${index + 2}`}
+                className="w-full"
                 height={200}
                 src={src}
                 width={200}
-                className="w-full"
               />
             ))}
           </div>
@@ -114,10 +117,10 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
             <Image
               key={index}
               alt={`post image ${index + 1}`}
+              className="w-full h-64"
               height={200}
               src={src}
               width={200}
-              className="w-full h-64"
             />
           ))}
         </div>
@@ -185,11 +188,11 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
                       alt="profile pic"
                       className="rounded-full"
                       height={40}
-                      width={40}
                       src={
                         comment?.user?.profilePicture ||
                         "https://example.com/default-profile-pic.png"
                       }
+                      width={40}
                     />
                   </div>
                   <div className="col-span-7 border rounded-md p-2">

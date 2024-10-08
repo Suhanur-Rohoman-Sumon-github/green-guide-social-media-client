@@ -26,10 +26,10 @@ interface IFriends {
 const Friends = () => {
   const { user } = useUser();
   const { mutate: handleUnfriendMutations } = useUnfriendUserMutation(
-    user?._id ? user?._id : ""
+    user?._id ? user?._id : "",
   );
   const { data: AllFriends, refetch } = useGetAllMyFriends(
-    user?._id ? user?._id : ""
+    user?._id ? user?._id : "",
   );
 
   useEffect(() => {

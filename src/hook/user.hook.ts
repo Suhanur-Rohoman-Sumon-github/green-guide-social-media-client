@@ -14,7 +14,6 @@ import {
   updateCoverPhotoService,
   updateProfilePictureService,
 } from "../service/userservices";
-import { FieldValues } from "react-hook-form";
 
 // Fetch all users
 export const useGetAllUserQuery = () => {
@@ -58,6 +57,7 @@ export const useGetMeQuery = (userId: string) => {
     queryKey: ["get-me", userId],
     queryFn: async () => {
       const data = await getMe(userId);
+
       return data?.data;
     },
   });
@@ -132,17 +132,16 @@ export const useRejectFriendRequestMutation = (userId: string) => {
   });
 };
 
-export const useUpdateProfilePictureMutation = (userId:string) => {
+export const useUpdateProfilePictureMutation = (userId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (profilePicture: File) => {
-      return await updateProfilePictureService(profilePicture,userId);
+      return await updateProfilePictureService(profilePicture, userId);
     },
     onSuccess: (data) => {
       toast.success("Profile picture updated successfully");
       // Optionally refetch user data or other queries here
-      
     },
     onError: (error: Error) => {
       toast.error(error.message);
@@ -155,7 +154,7 @@ export const useUpdateCoverPhotoMutation = (userId: string) => {
 
   return useMutation({
     mutationFn: async (coverPhoto: File) => {
-      return await updateCoverPhotoService({coverPhoto, userId});
+      return await updateCoverPhotoService({ coverPhoto, userId });
     },
     onSuccess: () => {
       toast.success("Cover photo updated successfully");
@@ -176,7 +175,7 @@ export const useUpdateBioMutation = (userId: string) => {
 
   return useMutation({
     mutationFn: async (bio: string) => {
-      return await updateBioService({bio, userId});
+      return await updateBioService({ bio, userId });
     },
     onSuccess: () => {
       toast.success("Bio updated successfully");
@@ -213,5 +212,3 @@ export const useUnfriendUserMutation = (userId: string) => {
     },
   });
 };
-
-

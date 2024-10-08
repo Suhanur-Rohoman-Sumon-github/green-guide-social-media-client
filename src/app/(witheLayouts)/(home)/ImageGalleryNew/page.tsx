@@ -40,18 +40,18 @@ const ImageGallery = () => {
   return (
     <div>
       <h2 className="text-center text-2xl font-bold mb-5">Gallery</h2>
-      <LightGallery plugins={[lgThumbnail, lgZoom]} mode="lg-fade">
+      <LightGallery mode="lg-fade" plugins={[lgThumbnail, lgZoom]}>
         {images.map((image, index) => (
           <a
-            href={image.src}
             key={index}
-            data-lg-size="1406-1390"
             className="gallery-item"
+            data-lg-size="1406-1390"
+            href={image.src}
           >
             <img
-              src={image.thumb}
               alt={image.alt}
               className="w-full h-auto rounded-md my-5"
+              src={image.thumb}
             />
           </a>
         ))}

@@ -30,7 +30,7 @@ export const AllNavbar = () => {
       position="sticky"
     >
       {/* Left side with logo */}
-      <NavbarContent justify="start" className="max-w-xl mx-auto">
+      <NavbarContent className="max-w-xl mx-auto" justify="start">
         <NavbarBrand>
           <NextLink passHref href="/">
             <div className="flex items-center space-x-2">
@@ -50,11 +50,11 @@ export const AllNavbar = () => {
 
       {/* Center with Marquee */}
       <NavbarContent
-        justify="center"
         className="w-full max-w-xl mx-auto hidden md:block mt-8"
+        justify="center"
       >
         <NavbarItem className="w-full">
-          <Marquee gradient={false} speed={50} pauseOnHover>
+          <Marquee pauseOnHover gradient={false} speed={50}>
             {gardeningQuotes.map((quote, index) => (
               <span key={index} className="mx-4 text-sm ">
                 {quote}
@@ -65,7 +65,7 @@ export const AllNavbar = () => {
       </NavbarContent>
 
       {/* Right side with Theme Switch */}
-      <NavbarContent justify="end" className="max-w-xl mx-auto">
+      <NavbarContent className="max-w-xl mx-auto" justify="end">
         <NavbarItem>
           <ThemeSwitch />
         </NavbarItem>

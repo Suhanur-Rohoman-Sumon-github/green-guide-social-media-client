@@ -1,8 +1,6 @@
 "use client";
 import React, { useState } from "react";
 
-import { AllNavbar } from "../../ui/AllsideNavbar";
-
 import AllPosts from "./AllPosts";
 import Posts from "./PostsHeader";
 

@@ -1,6 +1,7 @@
 import { FieldValues } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+
 export interface UseGetAllPostQueryProps {
   searchTerm: string;
 }
@@ -19,7 +20,6 @@ import {
   getSinglePosts,
 } from "../service/postsServices";
 import { ICommentData } from "../components/modals/CommentModal";
-
 
 // Hook to create posts and refetch posts
 export const useCreatePosts = () => {
@@ -44,15 +44,16 @@ export const useCreatePosts = () => {
 };
 
 // Hook to get all posts
-export const useGetAllPostQuery = ({ searchTerm }:UseGetAllPostQueryProps  ) => {
+export const useGetAllPostQuery = ({ searchTerm }: UseGetAllPostQueryProps) => {
   console.log(searchTerm);
   const { data, refetch, isLoading, isError } = useQuery<any, Error>({
     queryKey: ["get-posts", searchTerm], // Include searchTerm
     queryFn: async () => {
       const data = await getAllPosts(searchTerm);
+
       return data?.data;
     },
-     // Prevent the query from running if searchTerm is empty
+    // Prevent the query from running if searchTerm is empty
   });
 
   return { data, refetch, isLoading, isError };
@@ -85,7 +86,7 @@ export const useGetMyPostsQuery = (userId: string) => {
     enabled: Boolean(userId),
   });
 
-  return { data, refetch, isLoading,isError };
+  return { data, refetch, isLoading, isError };
 };
 
 // Hook to get favorite posts
@@ -195,7 +196,7 @@ export const useCreateCommentsMutation = () => {
       // variables contain { postId, commentData }
       toast.success("Comment added successfully");
       queryClient.refetchQueries({
-        queryKey: ['singlePost', variables.postId],  // Use variables.postId here
+        queryKey: ["singlePost", variables.postId], // Use variables.postId here
       });
     },
     onError: (error) => {
@@ -203,7 +204,6 @@ export const useCreateCommentsMutation = () => {
     },
   });
 };
-
 
 // Hook to add favorite posts and refetch favorite posts
 export const useAddFavoritePostsMutations = (
@@ -269,5 +269,3 @@ export const useDeleteSharedPostMutation = () => {
     },
   });
 };
-
-

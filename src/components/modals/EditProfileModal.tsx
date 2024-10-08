@@ -4,7 +4,7 @@ import { FaCamera, FaPen } from "react-icons/fa6";
 import { Button } from "@nextui-org/button";
 import { Textarea } from "@nextui-org/input";
 import { Divider } from "@nextui-org/divider";
-import GGModal from "./GGModal";
+
 import {
   useGetMeQuery,
   useUpdateBioMutation,
@@ -14,11 +14,10 @@ import {
 import { useUser } from "@/src/context/useProviders";
 
 // Import mutation hooks for profile picture and bio update
-import {
-  updateCoverPhotoService,
-  updateBioService,
-} from "@/src/service/userservices";
+
 import Loading from "../ui/Loading";
+
+import GGModal from "./GGModal";
 
 interface TPostsProps {
   buttonText: ReactNode | string;
@@ -45,11 +44,11 @@ const EditProfileModal = ({ isOpen, setIsOpen, buttonText }: TPostsProps) => {
   const { mutate: updateCoverPhoto, isPending: coverPhotoPending } =
     useUpdateCoverPhotoMutation(user?._id ? user?._id : "");
   const { mutate: updateBio, isPending: BioPending } = useUpdateBioMutation(
-    user?._id ? user?._id : ""
+    user?._id ? user?._id : "",
   );
 
   const handleProfilePictureChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (e.target.files && e.target.files[0]) {
       setProfilePicture(e.target.files[0]);

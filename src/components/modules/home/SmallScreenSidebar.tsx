@@ -1,21 +1,19 @@
 import Link from "next/link";
 import React from "react";
-import { BiHome, BiSearch, BiPencil } from "react-icons/bi";
+import { BiHome, BiSearch } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import {
-  MdEventNote,
-  MdForum,
   MdOutlineArticle,
   MdOutlineContactSupport,
   MdRoundaboutLeft,
 } from "react-icons/md";
 import { Tooltip } from "@nextui-org/tooltip";
-
-import SmallScreenProfile from "./SmallscreenProfile";
 import { FaUserFriends } from "react-icons/fa";
 import { FaRegMessage } from "react-icons/fa6";
 import { IoMdImages } from "react-icons/io";
 import { LiaUserCheckSolid } from "react-icons/lia";
+
+import SmallScreenProfile from "./SmallscreenProfile";
 
 const SmallScreenSidebar = () => {
   const iconStyle = "text-xl md:text-2xl";

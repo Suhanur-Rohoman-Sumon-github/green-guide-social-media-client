@@ -10,7 +10,7 @@ import AllPostsMap from "../../postMap/AllPostmap";
 const MyPost = () => {
   const { user } = useUser();
   const { data: myPosts, isLoading } = useGetMyPostsQuery(
-    user?._id ? user?._id : ""
+    user?._id ? user?._id : "",
   );
 
   return (

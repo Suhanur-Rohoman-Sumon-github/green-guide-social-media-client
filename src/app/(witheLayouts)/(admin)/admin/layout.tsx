@@ -1,7 +1,5 @@
 import React from "react";
 
-import CommunityProfileRight from "@/src/components/modules/home/CommunityProfileRight";
-import HomeSidebar from "@/src/components/modules/home/HomeSidebar";
 import SmallScreenSidebar from "@/src/components/modules/home/SmallScreenSidebar";
 import { AllNavbar } from "@/src/components/ui/AllsideNavbar";
 import AdminSidebar from "@/src/components/modules/admin/AdminSidebar";

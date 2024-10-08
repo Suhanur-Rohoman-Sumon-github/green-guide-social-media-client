@@ -10,7 +10,7 @@ interface IProps extends IInput {
   }[];
 }
 
-export default function FXSelect({
+export default function GGselect({
   options,
   name,
   label,
@@ -25,6 +25,7 @@ export default function FXSelect({
 
   return (
     <Select
+      size="sm"
       {...register(name)}
       className="min-w-full sm:min-w-[225px]"
       isDisabled={disabled}

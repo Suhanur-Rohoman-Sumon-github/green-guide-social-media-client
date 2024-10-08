@@ -17,15 +17,19 @@ export const createPosts = async (postData: FieldValues) => {
     throw new Error(error.response?.data?.message || error.message);
   }
 };
-export const getAllPosts = async (searchTerm:string) => {
+export const getAllPosts = async (searchTerm: string) => {
   try {
-   if(searchTerm){
-     const { data } = await axiosInstance.get(`/posts?sort=likes&searchTerm=${searchTerm}`);
-    return data;
-   }else{
-    const { data } = await axiosInstance.get(`/posts?sort=likes`);
-    return data;
-   }
+    if (searchTerm) {
+      const { data } = await axiosInstance.get(
+        `/posts?sort=likes&searchTerm=${searchTerm}`,
+      );
+
+      return data;
+    } else {
+      const { data } = await axiosInstance.get(`/posts?sort=likes`);
+
+      return data;
+    }
   } catch (error: any) {
     throw new Error(error);
   }
@@ -65,14 +69,11 @@ export const getMyPosts = async (userId: string | undefined) => {
   }
 };
 export const creteShare = async (postId: string, userId: string) => {
-
   try {
     // Replace ':userId' and ':postId' with actual values
     const { data } = await axiosInstance.patch(
       `/posts/share/${postId}/${userId}`,
     );
-
-
 
     return data;
   } catch (error: any) {
@@ -131,10 +132,12 @@ export const getFavoritePosts = async (userId: string) => {
   }
 };
 
-
 export const deletePost = async (postId: string, userId: string) => {
   try {
-    const { data } = await axiosInstance.delete(`/posts/delete-myPost/${postId}/${userId}`);
+    const { data } = await axiosInstance.delete(
+      `/posts/delete-myPost/${postId}/${userId}`,
+    );
+
     return data;
   } catch (error: any) {
     throw new Error(error.response?.data?.message || error.message);
@@ -142,7 +145,10 @@ export const deletePost = async (postId: string, userId: string) => {
 };
 export const deleteSharedPost = async (postId: string, userId: string) => {
   try {
-    const { data } = await axiosInstance.delete(`/posts/delete-sharedPosts/${postId}/${userId}`);
+    const { data } = await axiosInstance.delete(
+      `/posts/delete-sharedPosts/${postId}/${userId}`,
+    );
+
     return data;
   } catch (error: any) {
     throw new Error(error.response?.data?.message || error.message);

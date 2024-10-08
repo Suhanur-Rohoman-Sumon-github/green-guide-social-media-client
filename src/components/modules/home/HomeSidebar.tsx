@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { BiHome, BiSearch, BiSolidPaperPlane } from "react-icons/bi";
+import { BiHome, BiSearch } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import {
   MdOutlineArticle,
@@ -11,11 +11,10 @@ import {
 import { LiaUserCheckSolid } from "react-icons/lia";
 import { usePathname } from "next/navigation"; // Import the usePathname hook
 import { FaRegMessage } from "react-icons/fa6";
-import { Button } from "@nextui-org/button";
 import { FaUserFriends } from "react-icons/fa";
+import { IoMdImages } from "react-icons/io";
 
 import CommunityProfileDown from "./CommunityProfileDown";
-import { IoMdImages } from "react-icons/io";
 const HomeSidebar = () => {
   const pathname = usePathname();
   const f = "flex gap-4 text-xl md:text-xl";
