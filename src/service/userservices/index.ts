@@ -79,7 +79,7 @@ export const createFriendRequests = async (friends: FriendsProps) => {
 };
 export const getMe = async (userId: string) => {
   try {
-    const { data } = await axiosInstance.get(`/users/get-me/${userId}`);
+    const { data } = await axios.get(`http://localhost:5000/api/v1/users/get-me/${userId}`);
 
     return data;
   } catch (error: any) {
@@ -96,8 +96,8 @@ export const updateProfilePictureService = async (
   formData.append("profilePicture", profilePicture);
 
   try {
-    const { data } = await axiosInstance.post(
-      `/users/update-profile/${userId}`,
+    const { data } = await axios.post(
+      `http://localhost:5000/api/v1/users/update-profile/${userId}`,
       formData,
       {
         headers: {
@@ -124,8 +124,8 @@ export const updateCoverPhotoService = async ({
   formData.append("coverPhoto", coverPhoto);
 
   try {
-    const { data } = await axiosInstance.post(
-      `/users/update-cover/${userId}`,
+    const { data } = await axios.post(
+      `http://localhost:5000/api/v1/users/update-cover/${userId}`,
       formData,
       {
         headers: {
@@ -136,6 +136,7 @@ export const updateCoverPhotoService = async ({
 
     return data;
   } catch (error: any) {
+    console.log(error);
     throw new Error(error.response?.data?.message || error.message);
   }
 };
@@ -149,12 +150,13 @@ export const updateBioService = async ({
   userId: string;
 }): Promise<any> => {
   try {
-    const { data } = await axiosInstance.patch(`/users/update-bio/${userId}`, {
+    const { data } = await axios.patch(`http://localhost:5000/api/v1/users/update-bio/${userId}`, {
       bio,
     });
 
     return data;
   } catch (error: any) {
+    console.log(error);
     throw new Error(error.response?.data?.message || error.message);
   }
 };
@@ -165,8 +167,8 @@ export const unfriendUserService = async (
   friendId: string,
 ): Promise<any> => {
   try {
-    const { data } = await axiosInstance.delete(
-      `/users/unfriend-user/${userId}/${friendId}`,
+    const { data } = await axios.delete(
+      `http://localhost:5000/api/v1/users/unfriend-user/${userId}/${friendId}`,
     );
 
     return data;

@@ -14,6 +14,7 @@ const UserProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
   const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
+  console.log(myData);
 
   return (
     <div className="max-w-4xl mx-auto p-4">

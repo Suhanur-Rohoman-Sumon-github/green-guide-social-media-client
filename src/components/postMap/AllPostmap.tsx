@@ -52,7 +52,7 @@ const AllPostsMap = ({
 
   // Array of booleans to manage "see more" state for each post
   const [seeMoreStates, setSeeMoreStates] = useState(
-    Array(data?.length)?.fill(false),
+    Array(data?.length)?.fill(false)
   );
 
   const handleSeeMore = (index: number) => {
@@ -70,10 +70,6 @@ const AllPostsMap = ({
         const isBlurred =
           post.postType === "pro" && post?.user?.currentState === "free";
         const seeMore = seeMoreStates[index];
-
-        // Check user and post state
-        console.log("User current state:", user?.currentState);
-        console.log(`Post ID: ${post._id}, postType: ${post.postType}`);
 
         return (
           <div
@@ -124,7 +120,7 @@ const AllPostsMap = ({
                           onClick={() =>
                             handleDeletePost(
                               post._id,
-                              post.postType === "created",
+                              post.postType === "created"
                             )
                           }
                         >
