@@ -20,12 +20,16 @@ export const useGetAllUserQuery = () => {
   return useQuery<any, Error>({
     queryKey: ["get-user"],
     queryFn: async () => {
-      const data = await getAllUsers();
+      try {
+        const data = await getAllUsers();
 
-      return data?.data;
+        return data?.data;
+      } catch (error) {
+        throw error; // Ensure errors are passed to the query for proper handling
+      }
     },
-    // Add loading state
-    staleTime: 10000, // Cache time to prevent refetching immediately
+    staleTime: 10000, // Cache the response for 10 seconds
+    refetchOnWindowFocus: false, // Disable refetching when window regains focus
   });
 };
 

@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 import {
-  cretePaymentsIntent,
+  createPaymentsIntent,
   updateUserPlane,
 } from "../service/paymentServices";
 
@@ -10,7 +10,9 @@ export const useCretePaymentIntentMutations = () => {
   return useMutation<any, Error, number>({
     mutationKey: ["create payment intent"],
     mutationFn: async (price) => {
-      return await cretePaymentsIntent(price);
+      console.log(price);
+
+      return await createPaymentsIntent(price);
     },
     onSuccess: (data) => {},
     onError: (error) => {

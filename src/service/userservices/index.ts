@@ -1,9 +1,13 @@
+import axios from "axios";
+
 import axiosInstance from "@/src/lib/AxiosInostance";
 import { FriendsProps } from "@/src/types";
 
 export const getAllUsers = async () => {
   try {
-    const { data } = await axiosInstance.get("/users/get-all-user");
+    const { data } = await axios.get(
+      "http://localhost:5000/api/v1/users/get-all-user",
+    );
 
     return data;
   } catch (error: any) {
@@ -12,8 +16,8 @@ export const getAllUsers = async () => {
 };
 export const getMyFriendRequests = async (userId: string) => {
   try {
-    const { data } = await axiosInstance.get(
-      `/friends/get-my-friendsRequests/${userId}`,
+    const { data } = await axios.get(
+      `http://localhost:5000/api/v1/friends/get-my-friendsRequests/${userId}`,
     );
 
     return data;
@@ -26,8 +30,8 @@ export const acceptFriendRequest = async (
   friendsId: string,
 ) => {
   try {
-    const { data } = await axiosInstance.patch(
-      `/friends/accept/${userId}/${friendsId}`,
+    const { data } = await axios.patch(
+      `http://localhost:5000/api/v1/friends/accept/${userId}/${friendsId}`,
     );
 
     return data;
@@ -40,8 +44,8 @@ export const rejectFriendRequests = async (
   friendsId: string,
 ) => {
   try {
-    const { data } = await axiosInstance.patch(
-      `/friends/reject/${userId}/${friendsId}`,
+    const { data } = await axios.patch(
+      `http://localhost:5000/api/v1/friends/reject/${userId}/${friendsId}`,
     );
 
     return data;
@@ -51,8 +55,8 @@ export const rejectFriendRequests = async (
 };
 export const getAllMyFriends = async (userId: string) => {
   try {
-    const { data } = await axiosInstance.get(
-      `/users/get-all-friends/${userId}/`,
+    const { data } = await axios.get(
+      `http://localhost:5000/api/v1/users/get-all-friends/${userId}/`,
     );
 
     return data;
@@ -63,7 +67,10 @@ export const getAllMyFriends = async (userId: string) => {
 // The mutation function to create a friend request
 export const createFriendRequests = async (friends: FriendsProps) => {
   try {
-    const { data } = await axiosInstance.post("/friends", friends);
+    const { data } = await axios.post(
+      "http://localhost:5000/api/v1/friends",
+      friends,
+    );
 
     return data;
   } catch (error: any) {

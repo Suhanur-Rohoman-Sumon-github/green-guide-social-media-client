@@ -13,7 +13,8 @@ import { FriendRequest, IUser } from "@/src/types";
 
 const FindFriends = () => {
   const { user } = useUser();
-  const { data: Alluser, refetch } = useGetAllUserQuery();
+  const { data: Alluser, refetch, isFetching } = useGetAllUserQuery();
+
   const { data: myRequests, refetch: friendRequestRefetch } =
     useGetAllMyFriendsRequest(user?._id ? user?._id : "");
 
@@ -21,10 +22,10 @@ const FindFriends = () => {
 
   const { mutate: createFriendRequests } = useCreateFriendRequestsMutations();
   const { mutate: acceptFriendRequests } = useAcceptFriendRequestMutation(
-    user?._id ? user?._id : ""
+    user?._id ? user?._id : "",
   );
   const { mutate: RejectFriendRequest } = useRejectFriendRequestMutation(
-    user?._id ? user?._id : ""
+    user?._id ? user?._id : "",
   );
   const [users, setUsers] = useState<IUser[]>([]);
 
