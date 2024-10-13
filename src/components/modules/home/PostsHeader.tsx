@@ -115,7 +115,7 @@ const Posts: React.FC = () => {
       Context: Explain the gardening setting depicted in the image (e.g., a backyard garden, a balcony, an indoor space).
       Key Points: Highlight any gardening tips, techniques, or concepts that are relevant to the image.
       Purpose: Explain how this information can benefit readers, such as improving their gardening skills or inspiring them to create similar arrangements.
-      Call to Action: Encourage readers to share their thoughts or experiences related to the image. and also add some relevant emojis`
+      Call to Action: Encourage readers to share their thoughts or experiences related to the image. and also add some relevant emojis`,
       );
 
       setDescription(response);

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import axiosInstance from "@/src/lib/AxiosInostance";
 import { FriendsProps } from "@/src/types";
 
 export const getAllUsers = async () => {
@@ -79,7 +78,9 @@ export const createFriendRequests = async (friends: FriendsProps) => {
 };
 export const getMe = async (userId: string) => {
   try {
-    const { data } = await axios.get(`http://localhost:5000/api/v1/users/get-me/${userId}`);
+    const { data } = await axios.get(
+      `http://localhost:5000/api/v1/users/get-me/${userId}`,
+    );
 
     return data;
   } catch (error: any) {
@@ -150,9 +151,12 @@ export const updateBioService = async ({
   userId: string;
 }): Promise<any> => {
   try {
-    const { data } = await axios.patch(`http://localhost:5000/api/v1/users/update-bio/${userId}`, {
-      bio,
-    });
+    const { data } = await axios.patch(
+      `http://localhost:5000/api/v1/users/update-bio/${userId}`,
+      {
+        bio,
+      },
+    );
 
     return data;
   } catch (error: any) {
@@ -177,16 +181,20 @@ export const unfriendUserService = async (
   }
 };
 
-export const resetPasswordService = async (email: string, newPassword: string, token: string) => {
+export const resetPasswordService = async (
+  email: string,
+  newPassword: string,
+  token: string,
+) => {
   try {
     const { data } = await axios.post(
       `http://localhost:5000/api/v1/auth/reset-password`,
-      { email,newPassword },
+      { email, newPassword },
       {
         headers: {
-          Authorization: `${token}`,  
+          Authorization: `${token}`,
         },
-      }
+      },
     );
 
     return data;

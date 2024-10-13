@@ -47,14 +47,14 @@ export const useUpdatePostMutations = (postId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation<any, Error, FieldValues>({
-    mutationKey: ["update-post", postId], 
+    mutationKey: ["update-post", postId],
     mutationFn: async (postData: FieldValues) => {
-      await updatePosts(postData, postId); 
+      await updatePosts(postData, postId);
     },
     onSuccess: () => {
       toast.success("Post updated successfully");
       // Refetch posts after updating
-       queryClient.refetchQueries({
+      queryClient.refetchQueries({
         queryKey: ["get-posts"],
       });
     },

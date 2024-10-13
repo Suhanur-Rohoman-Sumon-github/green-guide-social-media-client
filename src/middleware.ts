@@ -1,5 +1,7 @@
 import type { NextRequest } from "next/server";
+
 import { NextResponse } from "next/server";
+
 import { getCurrentUser } from "./service/authServices";
 import { protectedRoutes } from "./constant";
 
@@ -8,12 +10,13 @@ const authRoutes = ["/login", "/register"];
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const user = await getCurrentUser(); // Fetch the current user
-  
+
   // If no user is authenticated
   if (!user) {
     if (authRoutes.includes(pathname)) {
       return NextResponse.next(); // Allow access to login and register
     }
+
     // Redirect unauthenticated users to register, preserving their intended path
     return NextResponse.redirect(
       new URL(`/register?redirect=${pathname}`, request.url),

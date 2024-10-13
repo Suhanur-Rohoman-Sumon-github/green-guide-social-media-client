@@ -32,7 +32,7 @@ export const loginUser = async (userData: FieldValues) => {
     return data;
   } catch (error: any) {
     console.log(error);
-     throw new Error(error.response?.data?.message || error.message);
+    throw new Error(error.response?.data?.message || error.message);
   }
 };
 
@@ -79,6 +79,6 @@ export const getNewAccessToken = async () => {
     return res.data;
   } catch (error: any) {
     console.log(error);
-     throw new Error(error.response?.data?.message || error.message);
+    throw new Error(error.response?.data?.message || error.message);
   }
 };

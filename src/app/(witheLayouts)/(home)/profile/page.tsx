@@ -1,13 +1,13 @@
 import React from "react";
 
-import MyPost from "@/src/components/modules/profile/MyPost";
 import UserProfile from "@/src/components/modules/profile/UserProfile";
+import SingleUserPosts from "@/src/components/modules/profile/SingleUserProfilePosts";
 
 const page = () => {
   return (
     <div className="border">
-      <UserProfile />
-      <MyPost />
+      <UserProfile isUserProfile={true} />
+      <SingleUserPosts />
     </div>
   );
 };

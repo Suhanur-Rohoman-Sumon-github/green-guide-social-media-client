@@ -1,12 +1,10 @@
 "use client";
-import GGForm from "@/src/components/Form/GGForm";
-import GGInput from "@/src/components/Form/GGInput";
-import {
-  useForgetPasswordMutations,
-  usePasswordResetMutations,
-} from "@/src/hook/auth.hook";
 import { Button } from "@nextui-org/button";
 import React from "react";
+
+import GGForm from "@/src/components/Form/GGForm";
+import GGInput from "@/src/components/Form/GGInput";
+import { useForgetPasswordMutations } from "@/src/hook/auth.hook";
 interface ForgetPasswordData {
   email: string;
 }
@@ -17,6 +15,7 @@ const RequestResetEmailForm = () => {
 
   const handleSubmit = (data: ForgetPasswordData) => {
     const email = data.email;
+
     handlePasswordReset(email);
     console.log(data);
   };
@@ -26,9 +25,9 @@ const RequestResetEmailForm = () => {
       <GGForm onSubmit={handleSubmit}>
         <h2 className="text-xl font-semibold mb-4">Reset Password</h2>
         <div className="mb-4 w-full">
-          <GGInput name="email" type="text" label="Enter your email" />
+          <GGInput label="Enter your email" name="email" type="text" />
         </div>
-        <Button type="submit" className="bg-green-500 w-full">
+        <Button className="bg-green-500 w-full" type="submit">
           Send Reset Email
         </Button>
       </GGForm>

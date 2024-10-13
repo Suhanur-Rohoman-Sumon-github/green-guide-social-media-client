@@ -4,7 +4,6 @@ import React from "react";
 import { SiSimpleanalytics } from "react-icons/si";
 import { usePathname } from "next/navigation"; // Import the usePathname hook
 import { FaUserFriends } from "react-icons/fa";
-import { BsPostcardFill } from "react-icons/bs";
 
 import CommunityProfileDown from "../home/CommunityProfileDown";
 

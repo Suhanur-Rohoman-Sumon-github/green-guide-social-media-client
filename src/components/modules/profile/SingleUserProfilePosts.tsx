@@ -12,7 +12,7 @@ interface TPostsProps {
   UserId?: string;
 }
 
-const MyPost = ({ UserId }: TPostsProps) => {
+const SingleUserPosts = ({ UserId }: TPostsProps) => {
   const { user } = useUser();
 
   // Determine which ID to use
@@ -22,7 +22,7 @@ const MyPost = ({ UserId }: TPostsProps) => {
     data: myPosts,
     isLoading,
     isError,
-  } = useGetMyPostsQuery(UserId ? UserId : "");
+  } = useGetMyPostsQuery(user?._id ? user?._id : "");
 
   if (isLoading) {
     return <SkeletonPost />;
@@ -43,4 +43,4 @@ const MyPost = ({ UserId }: TPostsProps) => {
   );
 };
 
-export default MyPost;
+export default SingleUserPosts;

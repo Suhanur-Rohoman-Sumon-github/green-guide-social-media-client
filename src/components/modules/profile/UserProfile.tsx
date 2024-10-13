@@ -10,11 +10,24 @@ import { useGetMeQuery } from "@/src/hook/user.hook";
 
 import EditProfileModal from "../../modals/EditProfileModal";
 
-const UserProfile = () => {
+interface TPostsProps {
+  isUserProfile?: boolean;
+  UserId?: string;
+}
+
+const UserProfile = ({ isUserProfile = false, UserId }: TPostsProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
-  const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
-  console.log(myData);
+
+  const userIdToFetch = isUserProfile ? user?._id : UserId;
+
+  const {
+    data: myData,
+    isLoading,
+    isError,
+  } = useGetMeQuery(userIdToFetch || "");
+
+  const isFriend = myData?.friends?.includes(user?._id);
 
   return (
     <div className="max-w-4xl mx-auto p-4">
@@ -47,26 +60,38 @@ const UserProfile = () => {
 
       {/* User Information */}
       <div className="flex flex-col items-start mt-16">
-        <h1 className="text-2xl font-bold">{`${user?.name}(${user?.username})`}</h1>
+        <h1 className="text-2xl font-bold">{`${myData?.name}(${myData?.username})`}</h1>
         <p className="text-gray-600">{myData?.bio}</p>
-        <p className="text-gray-600">{`Friends:${myData?.friends.length}`}</p>
+        <p className="text-gray-600">{`Friends: ${myData?.friends.length}`}</p>
+
         <div className="flex space-x-4 mt-2">
-          <EditProfileModal
-            buttonText={
-              <div className="flex">
-                <FaUserEdit />
-                <p className="ml-1 text-xs ">Edit profile</p>
-              </div>
-            }
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
-          <Link href={"/friends"}>
-            {" "}
-            <Button variant="shadow">
-              <FaUserFriends /> view friends
-            </Button>
-          </Link>
+          <div>
+            {isUserProfile ? (
+              <EditProfileModal
+                buttonText={
+                  <div className="flex">
+                    <FaUserEdit />
+                    <p className="ml-1 text-xs ">Edit profile</p>
+                  </div>
+                }
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+              />
+            ) : (
+              <Button className="bg-green-500" variant="shadow">
+                <FaUserFriends /> {isFriend ? "Unfriend" : "Add Friend"}
+              </Button>
+            )}
+          </div>
+          <div>
+            {isUserProfile && (
+              <Link href={"/friends"}>
+                <Button variant="shadow">
+                  <FaUserFriends /> View Friends
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -5,19 +5,21 @@ import React, {
   useRef,
   useState,
 } from "react";
-import GGModal from "./GGModal";
 import Image from "next/image";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiSolidPaperPlane, BiSolidPhotoAlbum } from "react-icons/bi";
 import Picker from "emoji-picker-react";
 import { Button } from "@nextui-org/button";
 import { FieldValues, useForm } from "react-hook-form";
+
+import { useUpdatePostMutations } from "@/src/hook/post.hook";
+
 import GGForm from "../Form/GGForm";
 import Loading from "../ui/Loading";
 import GGTextArea from "../Form/GGTextArea";
 import GGselect from "../Form/GGSelects";
-import { useUpdatePostMutations } from "@/src/hook/post.hook";
-import { useUser } from "@/src/context/useProviders";
+
+import GGModal from "./GGModal";
 
 interface TEditPostModalProps {
   buttonText?: React.ReactNode | string;
@@ -58,11 +60,12 @@ const EditePostModal: React.FC<TEditPostModalProps> = ({
   // Convert image URLs to File objects
   const convertUrlToFile = async (
     imageUrl: string,
-    fileName: string
+    fileName: string,
   ): Promise<File> => {
     const response = await fetch(imageUrl);
     const blob = await response.blob();
     const file = new File([blob], fileName, { type: blob.type });
+
     return file;
   };
 
@@ -71,9 +74,10 @@ const EditePostModal: React.FC<TEditPostModalProps> = ({
     const convertImages = async () => {
       if (images) {
         const filePromises = images.map((image, index) =>
-          convertUrlToFile(image, `image-${index}.jpg`)
+          convertUrlToFile(image, `image-${index}.jpg`),
         );
         const convertedFiles = await Promise.all(filePromises);
+
         setImageFiles(convertedFiles);
       }
     };
@@ -90,10 +94,12 @@ const EditePostModal: React.FC<TEditPostModalProps> = ({
 
     if (files) {
       const newFiles = Array.from(files);
+
       setImageFiles((prev) => [...prev, ...newFiles]);
 
       newFiles.forEach((file) => {
         const reader = new FileReader();
+
         reader.onloadend = () => {
           setImagePreview((prev) => [...prev, reader.result as string]);
         };
@@ -122,6 +128,7 @@ const EditePostModal: React.FC<TEditPostModalProps> = ({
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -142,6 +149,7 @@ const EditePostModal: React.FC<TEditPostModalProps> = ({
 
   const handleSubmit = (data: FieldValues): void => {
     const formData = new FormData();
+
     formData.append("data", JSON.stringify(data));
 
     // Append previous images to the formData
@@ -164,12 +172,12 @@ const EditePostModal: React.FC<TEditPostModalProps> = ({
     <div>
       {isPending && <Loading />}
       <GGModal
+        buttonText="Edit Post"
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        buttonText="Edit Post"
         sizes="lg"
       >
-        <GGForm onSubmit={handleSubmit} defaultValues={methods.getValues()}>
+        <GGForm defaultValues={methods.getValues()} onSubmit={handleSubmit}>
           <label htmlFor="content">
             <GGTextArea
               descriptions={description}
@@ -195,17 +203,17 @@ const EditePostModal: React.FC<TEditPostModalProps> = ({
             </label>
 
             <button
-              type="button"
               className="flex gap-2"
+              type="button"
               onClick={() => setShowPicker((prev) => !prev)}
             >
               <span className="text-lg">😀</span>
             </button>
 
             <GGselect
+              label="Category"
               name="category"
               options={categoryOptions}
-              label="Category"
             />
 
             {showPicker && (

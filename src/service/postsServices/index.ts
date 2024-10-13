@@ -19,11 +19,15 @@ export const createPosts = async (postData: FieldValues) => {
 };
 export const updatePosts = async (postData: FieldValues, postId: string) => {
   try {
-    const { data } = await axiosInstance.post(`/posts/updatePosts/${postId}`, postData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
+    const { data } = await axiosInstance.post(
+      `/posts/updatePosts/${postId}`,
+      postData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       },
-    });
+    );
 
     return data;
   } catch (error: any) {
