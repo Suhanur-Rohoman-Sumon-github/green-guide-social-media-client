@@ -2,15 +2,9 @@
 
 Welcome to the **Gardening Social Media Website**, a platform dedicated to gardening enthusiasts where users can share tips, advice, and experiences related to gardening.
 
-## Table of Contents
 
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
-- [License](#license)
+
+https://go-reverse-client.vercel.app/
 
 ## Features
 
@@ -25,8 +19,8 @@ Welcome to the **Gardening Social Media Website**, a platform dedicated to garde
 
 - **Frontend**: 
   - [Next.js](https://nextjs.org/)
-  - [React](https://reactjs.org/)
   - [Tailwind CSS](https://tailwindcss.com/)
+  
   
 - **Backend**:
   - [Express.js](https://expressjs.com/)
@@ -44,5 +38,20 @@ To set up the project locally, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/gardening-social-media.git
-   cd gardening-social-media
+   git clone https://github.com/Suhanur-Rohoman-Sumon-github/green-guide-social-media-client.git
+   cd green-guide-social-media-client
+### Install dependencies
+
+```bash
+npm install
+```
+### Install dependencies
+```bash
+npm start
+```
+The application will be running at http://localhost:3000/
+
+### credentials
+- admin: user name: admin@gmail.com, password:123456
+- user:user@gmail.com : password:123456
+
