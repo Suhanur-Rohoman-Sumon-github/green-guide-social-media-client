@@ -10,7 +10,7 @@ export const useCretePaymentIntentMutations = () => {
   return useMutation<any, Error, number>({
     mutationKey: ["create payment intent"],
     mutationFn: async (price) => {
-      console.log(price);
+     
 
       return await createPaymentsIntent(price);
     },

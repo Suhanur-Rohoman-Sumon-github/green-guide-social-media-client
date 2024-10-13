@@ -4,7 +4,7 @@ import axios from "axios";
 export const createPaymentsIntent = async (price: number) => {
   try {
     const { data } = await axios.post(
-      "https://green-guide-server.vercel.app/api/v1/api/v1/payments",
+      "https://green-guide-server.vercel.app/api/v1/payments",
       { price }, // Pass price as the request body
     );
 
@@ -18,7 +18,7 @@ export const createPaymentsIntent = async (price: number) => {
 export const updateUserPlane = async (userId: string) => {
   try {
     const { data } = await axios.patch(
-      `https://green-guide-server.vercel.app/api/v1/api/v1/payments/update-user-plane/${userId}`,
+      `https://green-guide-server.vercel.app/api/v1/payments/update-user-plane/${userId}`,
     );
 
     return data.data;
