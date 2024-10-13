@@ -176,3 +176,33 @@ export const unfriendUserService = async (
     throw new Error(error.response?.data?.message || error.message);
   }
 };
+
+export const resetPasswordService = async (email: string, newPassword: string, token: string) => {
+  try {
+    const { data } = await axios.post(
+      `http://localhost:5000/api/v1/auth/reset-password`,
+      { email,newPassword },
+      {
+        headers: {
+          Authorization: `${token}`,  
+        },
+      }
+    );
+
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};
+export const ForgetPasswordServices = async (email: string) => {
+  try {
+    const { data } = await axios.post(
+      `http://localhost:5000/api/v1/auth/forget-password`,
+      { email },
+    );
+
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};

@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 
 import envConfig from "@/src/config/envConfig";
 import { getNewAccessToken } from "@/src/service/authServices";
+import { toast } from "sonner";
 
 const axiosInstance = axios.create({
   baseURL: envConfig.baseApi,
@@ -32,6 +33,7 @@ axiosInstance.interceptors.response.use(
   async function (error) {
     const config = error.config;
 
+  
     if (error?.response?.status === 401 && !config?.sent) {
       config.sent = true;
       const res = await getNewAccessToken();
@@ -42,7 +44,10 @@ axiosInstance.interceptors.response.use(
 
       return axiosInstance(config);
     } else {
+     
+     
       return Promise.reject(error);
+      
     }
   },
 );

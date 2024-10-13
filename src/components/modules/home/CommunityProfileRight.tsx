@@ -1,5 +1,6 @@
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
+import Link from "next/link";
 import React from "react";
 import { IoIosNotifications } from "react-icons/io";
 const CommunityProfileRight = () => {
@@ -25,9 +26,11 @@ const CommunityProfileRight = () => {
         <p className="">
           Subscribe to unlock all news and articles, and get weekly newsletter.
         </p>
-        <Button className="bg-green-500 text-white" variant="shadow">
-          <IoIosNotifications /> Subscribe
-        </Button>
+        <Link href={"/pricing"}>
+          <Button className="bg-green-500 text-white w-full" variant="shadow">
+            <IoIosNotifications /> Subscribe
+          </Button>
+        </Link>
       </div>
       <div className={style}>
         {" "}

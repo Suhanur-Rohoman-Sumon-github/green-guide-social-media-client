@@ -21,6 +21,8 @@ import { useUser } from "@/src/context/useProviders";
 import Reaction from "../modules/home/Reaction";
 
 import LightGelary from "./LightGelary";
+import EditProfileModal from "../modals/EditProfileModal";
+import EditePostModal from "../modals/EditePostModal";
 
 const AllPostsMap = ({
   data,
@@ -33,6 +35,8 @@ const AllPostsMap = ({
   const userId = user?._id || "";
   const { mutate: DeleteMyPost } = useDeletePostMutation();
   const { mutate: DeletePostId } = useDeleteSharedPostMutation();
+  const [isOpen, setIsOpen] = useState(false); // Modal open state
+  const [postToEdit, setPostToEdit] = useState<IPost | null>(null); // Track post being edited
 
   const handleDeletePost = (postId: string, isCreated: boolean) => {
     if (isCreated) {
@@ -50,23 +54,25 @@ const AllPostsMap = ({
       : { shortText: text, fullText: text };
   };
 
-  // Array of booleans to manage "see more" state for each post
   const [seeMoreStates, setSeeMoreStates] = useState(
     Array(data?.length)?.fill(false)
   );
 
   const handleSeeMore = (index: number) => {
     const updatedStates = [...seeMoreStates];
-
     updatedStates[index] = true;
     setSeeMoreStates(updatedStates);
+  };
+
+  const handleOpenEditModal = (post: IPost) => {
+    setPostToEdit(post);
+    setIsOpen(true);
   };
 
   return (
     <div>
       {data?.map((post: IPost, index: number) => {
         const { shortText, fullText } = truncateText(post.content, 30);
-        // Determine blur state for each post individually
         const isBlurred =
           post.postType === "pro" && post?.user?.currentState === "free";
         const seeMore = seeMoreStates[index];
@@ -112,7 +118,12 @@ const AllPostsMap = ({
                         </p>
                       </DropdownTrigger>
                       <DropdownMenu aria-label="Static Actions">
-                        <DropdownItem key="edit">Edit Posts</DropdownItem>
+                        <DropdownItem
+                          key="edit"
+                          onClick={() => handleOpenEditModal(post)}
+                        >
+                          Edit Post
+                        </DropdownItem>
                         <DropdownItem
                           key="delete"
                           className="text-danger"
@@ -124,7 +135,7 @@ const AllPostsMap = ({
                             )
                           }
                         >
-                          Delete Posts
+                          Delete Post
                         </DropdownItem>
                       </DropdownMenu>
                     </Dropdown>
@@ -134,7 +145,6 @@ const AllPostsMap = ({
 
               {/* Content and Image section */}
               <div className={`${isBlurred ? "blur-sm" : ""} relative`}>
-                {/* Post Content */}
                 <p className="my-8">
                   {seeMore ? fullText : shortText}
                   {!seeMore && fullText?.length > shortText?.length && (
@@ -147,17 +157,13 @@ const AllPostsMap = ({
                   )}
                 </p>
 
-                {/* Post Images */}
                 <Link href={`${post._id}`}>
                   <div className="flex flex-col">
                     <LightGelary images={post.imageUrls} />
                   </div>
                 </Link>
-
-                {/* Blur Overlay for Pro Posts */}
               </div>
 
-              {/* Reaction Component */}
               <div className={`${isBlurred ? "hidden" : ""}`}>
                 <Reaction postId={post._id} />
               </div>
@@ -165,6 +171,21 @@ const AllPostsMap = ({
           </div>
         );
       })}
+
+      {/* Edit Profile Modal */}
+      {isOpen && postToEdit && (
+        <EditePostModal
+          initialPostData={{
+            postId: postToEdit._id,
+            content: postToEdit.content,
+            category: postToEdit.category,
+            images: postToEdit.imageUrls,
+            postType: postToEdit.postType,
+          }}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
+      )}
     </div>
   );
 };

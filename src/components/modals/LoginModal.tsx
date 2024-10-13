@@ -4,6 +4,7 @@ import { Button } from "@nextui-org/button";
 import { FieldValues, SubmitErrorHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link"; // Import Link from Next.js
 
 import loginValidationSchema from "@/src/schema/loginValidationSchema";
 import { useUserLogin } from "@/src/hook/auth.hook";
@@ -19,6 +20,7 @@ interface TProps {
   isProfile: boolean;
   isOpens: boolean;
 }
+
 const LoginModal = ({ isProfile = false, isOpens }: TProps) => {
   const [isOpen, setIsOpen] = useState(isOpens ? isOpens : false);
 
@@ -74,7 +76,13 @@ const LoginModal = ({ isProfile = false, isOpens }: TProps) => {
             />
 
             <Spacer y={2} />
-
+            {/* Forgot Password Link */}
+            <div className="">
+              <Link href="/auth/forget-password">
+                <p className="underline">Forgot Password?</p>
+              </Link>
+            </div>
+            <Spacer y={2} />
             {/* Login Button */}
             <Button
               className="w-full"
@@ -84,6 +92,8 @@ const LoginModal = ({ isProfile = false, isOpens }: TProps) => {
             >
               Login
             </Button>
+
+            <Spacer y={1.5} />
           </GGForm>
         </div>
       </div>

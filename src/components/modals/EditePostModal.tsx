@@ -1,64 +1,99 @@
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import GGModal from "./GGModal";
 import Image from "next/image";
-import React, { useRef, useState, useEffect } from "react";
-import { BiSolidPaperPlane, BiSolidPhotoAlbum } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
+import { BiSolidPaperPlane, BiSolidPhotoAlbum } from "react-icons/bi";
 import Picker from "emoji-picker-react";
 import { Button } from "@nextui-org/button";
 import { FieldValues, useForm } from "react-hook-form";
-import { TbBrandOpenai } from "react-icons/tb";
-
+import GGForm from "../Form/GGForm";
+import Loading from "../ui/Loading";
+import GGTextArea from "../Form/GGTextArea";
+import GGselect from "../Form/GGSelects";
+import { useUpdatePostMutations } from "@/src/hook/post.hook";
 import { useUser } from "@/src/context/useProviders";
-import { useCreatePosts } from "@/src/hook/post.hook";
-import { useGetMeQuery } from "@/src/hook/user.hook";
-import generateDescription from "@/src/service/desciption";
 
-import GGForm from "../../Form/GGForm";
-import Loading from "../../ui/Loading";
-import GGselect from "../../Form/GGSelects";
-import GGTextArea from "../../Form/GGTextArea";
+interface TEditPostModalProps {
+  buttonText?: React.ReactNode | string;
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  initialPostData: {
+    postId: string;
+    content: string;
+    category: string;
+    postType: string;
+    images: string[] | undefined;
+  };
+}
 
-const Posts: React.FC = () => {
-  const methods = useForm();
+const EditePostModal: React.FC<TEditPostModalProps> = ({
+  isOpen,
+  setIsOpen,
+  initialPostData,
+}) => {
+  const { content, category, postType, images, postId } = initialPostData;
   const [imageFiles, setImageFiles] = useState<File[]>([]);
-  const [imagePreview, setImagePreview] = useState<string[]>([]);
-  const [description, setDescription] = useState<string>("");
+  const [imagePreview, setImagePreview] = useState<string[]>(images || []);
+  const [description, setDescription] = useState<string>(content);
   const [showPicker, setShowPicker] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
-  const defaultValues = {
-    content: description,
-    category: "",
-    postType: "",
-  };
+  const { mutate: UpdatePost, isPending } = useUpdatePostMutations(postId);
+
+  const methods = useForm({
+    defaultValues: {
+      content: description,
+      category: category,
+      postType: postType,
+    },
+  });
 
   const pickerRef = useRef<HTMLDivElement | null>(null);
-  const { user } = useUser();
 
-  const { mutate: handlePosts, isPending } = useCreatePosts();
-  const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
-
-  const handleSubmit = (data: FieldValues): void => {
-    const formData = new FormData();
-
-    data.user = user?._id;
-    formData.append("data", JSON.stringify(data));
-    imageFiles.forEach((image) => {
-      formData.append("images", image);
-    });
-
-    handlePosts(formData);
+  // Convert image URLs to File objects
+  const convertUrlToFile = async (
+    imageUrl: string,
+    fileName: string
+  ): Promise<File> => {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    const file = new File([blob], fileName, { type: blob.type });
+    return file;
   };
+
+  // Handle modal opening and converting existing images
+  useEffect(() => {
+    const convertImages = async () => {
+      if (images) {
+        const filePromises = images.map((image, index) =>
+          convertUrlToFile(image, `image-${index}.jpg`)
+        );
+        const convertedFiles = await Promise.all(filePromises);
+        setImageFiles(convertedFiles);
+      }
+    };
+
+    if (isOpen) {
+      setDescription(content);
+      setImagePreview(images || []);
+      convertImages();
+    }
+  }, [isOpen, images, content]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
 
     if (files) {
       const newFiles = Array.from(files);
-
       setImageFiles((prev) => [...prev, ...newFiles]);
 
       newFiles.forEach((file) => {
         const reader = new FileReader();
-
         reader.onloadend = () => {
           setImagePreview((prev) => [...prev, reader.result as string]);
         };
@@ -87,7 +122,6 @@ const Posts: React.FC = () => {
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -97,67 +131,54 @@ const Posts: React.FC = () => {
     { key: "free", label: "free" },
     { key: "pro", label: "pro" },
   ];
+
   const categoryOptions = [
-    { key: "Vegetable Gardening ", label: "Vegetable Gardening " },
+    { key: "Vegetable Gardening", label: "Vegetable Gardening" },
     { key: "Flower Gardening", label: "Flower Gardening" },
     { key: "Succulent Gardening", label: "Succulent Gardening" },
     { key: "Container Gardening", label: "Container Gardening" },
     { key: "Urban Gardening", label: "Urban Gardening" },
   ];
 
-  const handleDescriptions = async () => {
-    setIsLoading(true);
-    try {
-      const response = await generateDescription(
-        imagePreview[0],
-        `Analyze the uploaded image of a gardening post and generate a descriptive text that captures the essence of the content. The description should include the following elements:
-      Visual Elements: Describe the plants, flowers, or gardening techniques visible in the image. Include colors, shapes, and any notable features.
-      Context: Explain the gardening setting depicted in the image (e.g., a backyard garden, a balcony, an indoor space).
-      Key Points: Highlight any gardening tips, techniques, or concepts that are relevant to the image.
-      Purpose: Explain how this information can benefit readers, such as improving their gardening skills or inspiring them to create similar arrangements.
-      Call to Action: Encourage readers to share their thoughts or experiences related to the image. and also add some relevant emojis`
-      );
+  const handleSubmit = (data: FieldValues): void => {
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(data));
 
-      setDescription(response);
-
-      methods.setValue("content", response);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
+    // Append previous images to the formData
+    if (images) {
+      images.forEach((image) => {
+        formData.append("images", image);
+      });
     }
+
+    // Append new image files to the formData
+    imageFiles.forEach((image) => {
+      formData.append("images", image);
+    });
+
+    // Call the UpdatePost function with the combined images
+    UpdatePost(formData);
   };
 
   return (
-    <div className="grid md:grid-cols-12 py-5">
+    <div>
       {isPending && <Loading />}
-      <div className="col-span-1 mx-auto">
-        {user && (
-          <Image
-            alt="profile"
-            className="rounded-full"
-            height={40}
-            src={myData?.profilePicture}
-            width={40}
-          />
-        )}
-      </div>
-      <div className="col-span-10 mt-4 px-2 md:px-0 md:mt-0">
-        <GGForm defaultValues={defaultValues} onSubmit={handleSubmit}>
-          <label className="mr-4" htmlFor="text">
+      <GGModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        buttonText="Edit Post"
+        sizes="lg"
+      >
+        <GGForm onSubmit={handleSubmit} defaultValues={methods.getValues()}>
+          <label htmlFor="content">
             <GGTextArea
               descriptions={description}
-              label="What's Going on?"
+              label="Edit your post"
               name="content"
             />
           </label>
 
-          {/* Category Selection */}
-
-          {/* AI Generation Toggle */}
-
-          <div className="divider" />
-
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 mt-3">
             <label
               className="flex items-center gap-2 cursor-pointer"
               htmlFor="image-upload"
@@ -174,22 +195,17 @@ const Posts: React.FC = () => {
             </label>
 
             <button
-              className="flex gap-2"
               type="button"
+              className="flex gap-2"
               onClick={() => setShowPicker((prev) => !prev)}
             >
               <span className="text-lg">😀</span>
             </button>
 
             <GGselect
-              label="category"
-              name="category" // This should match the categoryOptions
+              name="category"
               options={categoryOptions}
-            />
-            <GGselect
-              label="select post type"
-              name="postType" // This should match the typeOptions
-              options={typeOptions}
+              label="Category"
             />
 
             {showPicker && (
@@ -199,7 +215,6 @@ const Posts: React.FC = () => {
             )}
           </div>
 
-          {/* Image Previews with Remove Icon */}
           {imagePreview.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-2">
               {imagePreview.map((image, index) => (
@@ -222,31 +237,20 @@ const Posts: React.FC = () => {
             </div>
           )}
 
-          <div className=" flex items-center gap-4 justify-between mt-8">
+          <div className="flex items-center gap-4 justify-between mt-8">
             <Button
               className="bg-green-500 text-white"
-              isDisabled={imagePreview.length > 0 ? false : true}
-              isLoading={isLoading}
-              variant="shadow"
-              onClick={() => handleDescriptions()}
-            >
-              <TbBrandOpenai />
-              {isLoading ? "generating" : "use AI get magic"}
-            </Button>
-            <Button
-              className="bg-green-500 text-white"
-              size="md"
               type="submit"
               variant="shadow"
             >
               <BiSolidPaperPlane />
-              Post
+              Save
             </Button>
           </div>
         </GGForm>
-      </div>
+      </GGModal>
     </div>
   );
 };
 
-export default Posts;
+export default EditePostModal;

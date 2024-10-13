@@ -18,6 +18,7 @@ import {
   getIsLikes,
   getMyPosts,
   getSinglePosts,
+  updatePosts,
 } from "../service/postsServices";
 import { ICommentData } from "../components/modals/CommentModal";
 
@@ -38,6 +39,26 @@ export const useCreatePosts = () => {
       });
     },
     onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+};
+export const useUpdatePostMutations = (postId: string) => {
+  const queryClient = useQueryClient();
+
+  return useMutation<any, Error, FieldValues>({
+    mutationKey: ["update-post", postId], 
+    mutationFn: async (postData: FieldValues) => {
+      await updatePosts(postData, postId); 
+    },
+    onSuccess: () => {
+      toast.success("Post updated successfully");
+      // Refetch posts after updating
+       queryClient.refetchQueries({
+        queryKey: ["get-posts"],
+      });
+    },
+    onError: (error: Error) => {
       toast.error(error.message);
     },
   });

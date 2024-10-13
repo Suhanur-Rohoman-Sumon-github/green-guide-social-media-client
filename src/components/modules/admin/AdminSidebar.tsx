@@ -30,11 +30,6 @@ const AdminSidebar = () => {
             <FaUserFriends /> All user
           </button>
         </Link>
-        <Link href={"/admin/allPosts"}>
-          <button className={`${f} ${activeStyle("/admin/allPosts")}`}>
-            <BsPostcardFill /> All posts
-          </button>
-        </Link>
 
         {/* Community profile at the bottom on larger screens */}
         <div className="mt-14 hidden md:block">

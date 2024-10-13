@@ -17,6 +17,19 @@ export const createPosts = async (postData: FieldValues) => {
     throw new Error(error.response?.data?.message || error.message);
   }
 };
+export const updatePosts = async (postData: FieldValues, postId: string) => {
+  try {
+    const { data } = await axiosInstance.post(`/posts/updatePosts/${postId}`, postData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};
 export const getAllPosts = async (searchTerm: string) => {
   try {
     if (searchTerm) {
@@ -134,7 +147,7 @@ export const getFavoritePosts = async (userId: string) => {
 
 export const deletePost = async (postId: string, userId: string) => {
   try {
-    const { data } = await axiosInstance.delete(
+    const { data } = await axiosInstance.patch(
       `/posts/delete-myPost/${postId}/${userId}`,
     );
 
