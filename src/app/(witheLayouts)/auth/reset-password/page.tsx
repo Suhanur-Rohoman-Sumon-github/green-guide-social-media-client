@@ -1,12 +1,10 @@
 "use client";
+import React, { Suspense } from "react";
 import { Button } from "@nextui-org/button";
 import { useSearchParams } from "next/navigation";
-import React from "react";
-
 import GGForm from "@/src/components/Form/GGForm";
 import GGInput from "@/src/components/Form/GGInput";
 import { usePasswordResetMutations } from "@/src/hook/auth.hook";
-// Assuming GGInput is your custom input component
 
 const ResetPasswordForm = () => {
   const searchParams = useSearchParams();
@@ -19,8 +17,9 @@ const ResetPasswordForm = () => {
   }
 
   const { mutate: handlePasswordReset } = usePasswordResetMutations();
+
   const handleSubmit = (data: ResetPasswordData) => {
-    data.token = token;
+    data.token = token; // Use the token retrieved from search params
     handlePasswordReset(data);
     console.log(data);
   };
@@ -30,7 +29,7 @@ const ResetPasswordForm = () => {
       <GGForm onSubmit={handleSubmit}>
         <h2 className="text-xl font-semibold mb-4">Reset Password</h2>
         <div className="mb-4 w-full ">
-          <GGInput label="enter your email " name="email" type="text" />
+          <GGInput label="Enter your email" name="email" type="text" />
           <div className="mt-8">
             <GGInput
               fullWidth={true}
@@ -49,4 +48,13 @@ const ResetPasswordForm = () => {
   );
 };
 
-export default ResetPasswordForm;
+// Wrapper Component with Suspense
+const ResetPasswordPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPasswordForm />
+    </Suspense>
+  );
+};
+
+export default ResetPasswordPage;

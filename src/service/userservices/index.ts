@@ -5,7 +5,7 @@ import { FriendsProps } from "@/src/types";
 export const getAllUsers = async () => {
   try {
     const { data } = await axios.get(
-      "http://localhost:5000/api/v1/users/get-all-user",
+      "https://green-guide-server.vercel.app/api/v1/users/get-all-user",
     );
 
     return data;
@@ -16,7 +16,7 @@ export const getAllUsers = async () => {
 export const getMyFriendRequests = async (userId: string) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:5000/api/v1/friends/get-my-friendsRequests/${userId}`,
+      `https://green-guide-server.vercel.app/api/v1/friends/get-my-friendsRequests/${userId}`,
     );
 
     return data;
@@ -30,7 +30,7 @@ export const acceptFriendRequest = async (
 ) => {
   try {
     const { data } = await axios.patch(
-      `http://localhost:5000/api/v1/friends/accept/${userId}/${friendsId}`,
+      `https://green-guide-server.vercel.app/api/v1/friends/accept/${userId}/${friendsId}`,
     );
 
     return data;
@@ -44,7 +44,7 @@ export const rejectFriendRequests = async (
 ) => {
   try {
     const { data } = await axios.patch(
-      `http://localhost:5000/api/v1/friends/reject/${userId}/${friendsId}`,
+      `https://green-guide-server.vercel.app/api/v1/friends/reject/${userId}/${friendsId}`,
     );
 
     return data;
@@ -55,7 +55,7 @@ export const rejectFriendRequests = async (
 export const getAllMyFriends = async (userId: string) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:5000/api/v1/users/get-all-friends/${userId}/`,
+      `https://green-guide-server.vercel.app/api/v1/users/get-all-friends/${userId}/`,
     );
 
     return data;
@@ -67,7 +67,7 @@ export const getAllMyFriends = async (userId: string) => {
 export const createFriendRequests = async (friends: FriendsProps) => {
   try {
     const { data } = await axios.post(
-      "http://localhost:5000/api/v1/friends",
+      "https://green-guide-server.vercel.app/api/v1/friends",
       friends,
     );
 
@@ -79,7 +79,7 @@ export const createFriendRequests = async (friends: FriendsProps) => {
 export const getMe = async (userId: string) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:5000/api/v1/users/get-me/${userId}`,
+      `https://green-guide-server.vercel.app/api/v1/users/get-me/${userId}`,
     );
 
     return data;
@@ -98,7 +98,7 @@ export const updateProfilePictureService = async (
 
   try {
     const { data } = await axios.post(
-      `http://localhost:5000/api/v1/users/update-profile/${userId}`,
+      `https://green-guide-server.vercel.app/api/v1/users/update-profile/${userId}`,
       formData,
       {
         headers: {
@@ -126,7 +126,7 @@ export const updateCoverPhotoService = async ({
 
   try {
     const { data } = await axios.post(
-      `http://localhost:5000/api/v1/users/update-cover/${userId}`,
+      `https://green-guide-server.vercel.app/api/v1/users/update-cover/${userId}`,
       formData,
       {
         headers: {
@@ -152,7 +152,7 @@ export const updateBioService = async ({
 }): Promise<any> => {
   try {
     const { data } = await axios.patch(
-      `http://localhost:5000/api/v1/users/update-bio/${userId}`,
+      `https://green-guide-server.vercel.app/api/v1/users/update-bio/${userId}`,
       {
         bio,
       },
@@ -172,7 +172,7 @@ export const unfriendUserService = async (
 ): Promise<any> => {
   try {
     const { data } = await axios.delete(
-      `http://localhost:5000/api/v1/users/unfriend-user/${userId}/${friendId}`,
+      `https://green-guide-server.vercel.app/api/v1/users/unfriend-user/${userId}/${friendId}`,
     );
 
     return data;
@@ -188,7 +188,7 @@ export const resetPasswordService = async (
 ) => {
   try {
     const { data } = await axios.post(
-      `http://localhost:5000/api/v1/auth/reset-password`,
+      `https://green-guide-server.vercel.app/api/v1/auth/reset-password`,
       { email, newPassword },
       {
         headers: {
@@ -205,7 +205,7 @@ export const resetPasswordService = async (
 export const ForgetPasswordServices = async (email: string) => {
   try {
     const { data } = await axios.post(
-      `http://localhost:5000/api/v1/auth/forget-password`,
+      `https://green-guide-server.vercel.app/api/v1/auth/forget-password`,
       { email },
     );
 
