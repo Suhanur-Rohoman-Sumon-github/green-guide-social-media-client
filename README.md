@@ -4,7 +4,7 @@ Welcome to the **Gardening Social Media Website**, a platform dedicated to garde
 
 
 
-https://go-reverse-client.vercel.app/
+https://greenguide-delta.vercel.app/register?redirect=%2F
 
 ## Features
 
