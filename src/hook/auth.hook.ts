@@ -67,7 +67,7 @@ export const useForgetPasswordMutations = () => {
     },
     onSuccess: () => {
       toast.success(
-        "Password reset successfully. You can now login with your new password.",
+        "Password reset successfully. ",
       );
     },
     onError: (error) => {
