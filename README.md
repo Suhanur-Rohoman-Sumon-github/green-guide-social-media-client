@@ -1,54 +1,57 @@
-# Next.js & NextUI Template
+# Gardening Social Media Website
 
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
+Welcome to the **Gardening Social Media Website**, a platform dedicated to gardening enthusiasts where users can share tips, advice, and experiences related to gardening.
 
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
+
+
+https://greenguide-delta.vercel.app/register?redirect=%2F
+
+## Features
+
+- **User Profiles**: Create and manage user profiles with personal gardening tips.
+- **Post Sharing**: Share posts about gardening, including images and text.
+- **Comment System**: Engage with other users through comments on posts.
+- **Friend System**: Connect with other gardening enthusiasts.
+- **Search Functionality**: Easily find posts and users with integrated search.
+- **Responsive Design**: Fully responsive layout for a seamless experience on all devices.
 
 ## Technologies Used
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+- **Frontend**: 
+  - [Next.js](https://nextjs.org/)
+  - [Tailwind CSS](https://tailwindcss.com/)
+  
+  
+- **Backend**:
+  - [Express.js](https://expressjs.com/)
+  - [MongoDB](https://www.mongodb.com/) (with Mongoose)
+  - [Node.js](https://nodejs.org/)
 
-## How to Use
+- **Additional Libraries**:
+  - [Axios](https://axios-http.com/)
+  - [NextAuth.js](https://next-auth.js.org/) (for authentication)
+  - [React Query](https://react-query.tanstack.com/) (for data fetching)
 
-### Use the template with create-next-app
+## Installation
 
-To create a new project based on this template using `create-next-app`, run the following command:
+To set up the project locally, follow these steps:
 
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
-
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Suhanur-Rohoman-Sumon-github/green-guide-social-media-client.git
+   cd green-guide-social-media-client
 ### Install dependencies
-
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
 
 ```bash
 npm install
 ```
-
-### Run the development server
-
+### Install dependencies
 ```bash
-npm run dev
+npm start
 ```
+The application will be running at http://localhost:3000/
 
-### Setup pnpm (optional)
+### credentials
+- admin: user name: admin@gmail.com, password:123456
+- user:user@gmail.com : password:123456
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@nextui-org/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
-# green-guide-social-media-client
