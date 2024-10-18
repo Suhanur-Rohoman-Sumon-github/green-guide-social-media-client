@@ -9,7 +9,7 @@ import axios from "axios";
 export const registerUser = async (userData: FieldValues) => {
   try {
     const { data } = await axios.post(
-      "https://green-guide-server.vercel.app/api/v1/auth/register",
+      "https://express-server-startar-pack-main.vercel.app/api/v1/auth/register",
       userData,
     );
 

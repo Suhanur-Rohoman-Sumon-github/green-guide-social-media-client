@@ -62,12 +62,12 @@ export const useForgetPasswordMutations = () => {
   return useMutation<any, Error, string>({
     mutationKey: ["forget password"],
     mutationFn: async (email) => {
-      console.log(email);
+    
       await ForgetPasswordServices(email);
     },
     onSuccess: () => {
       toast.success(
-        "Password reset successfully. ",
+        "Email send successfully. ",
       );
     },
     onError: (error) => {

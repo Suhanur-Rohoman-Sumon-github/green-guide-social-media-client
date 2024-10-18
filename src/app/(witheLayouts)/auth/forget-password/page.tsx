@@ -22,8 +22,8 @@ const RequestResetEmailForm = () => {
 
   return (
     <div className="mt-32">
+      <h2 className="text-xl font-semibold mb-4">Forget Password</h2>
       <GGForm onSubmit={handleSubmit}>
-        <h2 className="text-xl font-semibold mb-4">Reset Password</h2>
         <div className="mb-4 w-full">
           <GGInput label="Enter your email" name="email" type="text" />
         </div>
