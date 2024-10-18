@@ -4,10 +4,14 @@ import { FieldValues } from "react-hook-form";
 import { jwtDecode } from "jwt-decode";
 
 import axiosInstance from "@/src/lib/AxiosInostance";
+import axios from "axios";
 
 export const registerUser = async (userData: FieldValues) => {
   try {
-    const { data } = await axiosInstance.post("/auth/register", userData);
+    const { data } = await axios.post(
+      "https://green-guide-server.vercel.app/api/v1/auth/register",
+      userData,
+    );
 
     if (data.success) {
       cookies().set("accessToken", data.data.accessToken);
