@@ -55,7 +55,7 @@ const AllPostsMap = ({
   };
 
   const [seeMoreStates, setSeeMoreStates] = useState(
-    Array(data?.length)?.fill(false),
+    Array(data?.length)?.fill(false)
   );
 
   const handleSeeMore = (index: number) => {
@@ -81,9 +81,7 @@ const AllPostsMap = ({
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvrHQdL-jOHhdgyyIQADFhVCmu0RDBgbmjNw&s"
             width={150}
           />
-          <h2 className="text-lg font-semibold">
-            Please create your first post now
-          </h2>
+          <h2 className="text-lg font-semibold">Please shere a post</h2>
         </div>
       ) : (
         data?.map((post: IPost, index: number) => {
@@ -146,7 +144,7 @@ const AllPostsMap = ({
                             onClick={() =>
                               handleDeletePost(
                                 post._id,
-                                post.postType === "created",
+                                post.postType === "created"
                               )
                             }
                           >
