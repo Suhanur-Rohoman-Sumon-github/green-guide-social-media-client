@@ -10,7 +10,7 @@ import CheckoutForm from "./CheckOutForm";
 
 const Pricing = () => {
   const stripePromise = loadStripe(
-    "pk_test_51Q6wvwF9KoYQU66VV99jrgUnGwIk0NUWA5UcSrkaw5RQuKI5DfgFXrJv74NJ2SmL4vLIukf71purwYKsIsTwJMYS00rSM4YY8s",
+    "pk_test_51Q6wvwF9KoYQU66VV99jrgUnGwIk0NUWA5UcSrkaw5RQuKI5DfgFXrJv74NJ2SmL4vLIukf71purwYKsIsTwJMYS00rSM4YY8s"
   );
   const [selectedPlan, setSelectedPlan] = useState<{
     id: number;
@@ -85,8 +85,10 @@ const Pricing = () => {
         {cards.map((card) => (
           <div
             key={card.id}
-            className={`cursor-pointer grid flex-grow border p-8 ${
-              selectedPlan?.id === card.id ? "border-green-500" : ""
+            className={`cursor-pointer grid flex-grow border  border-gray-500 p-8 ${
+              selectedPlan?.id === card.id
+                ? "border  border-gray-500-green-500"
+                : ""
             }`}
             role="button"
             tabIndex={0}

@@ -15,7 +15,7 @@ const AdminSidebar = () => {
     pathname === route ? "text-green-500" : "text-gray-700";
 
   return (
-    <div className="border">
+    <div className="border  border-gray-500">
       <div className="flex flex-col gap-6 py-2 fixed  ">
         {/* Main navigation */}
         <Link href={"/admin"}>

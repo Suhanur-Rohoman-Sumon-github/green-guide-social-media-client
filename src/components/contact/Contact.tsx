@@ -8,7 +8,7 @@ const ContactUs = () => {
     message: "",
   });
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
 
@@ -43,7 +43,7 @@ const ContactUs = () => {
               </label>
               <input
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                className="w-full px-4 py-2 border  border-gray-500 border  border-gray-500-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border  border-gray-500-green-500"
                 id="name"
                 name="name"
                 placeholder="Enter your name"
@@ -61,7 +61,7 @@ const ContactUs = () => {
               </label>
               <input
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                className="w-full px-4 py-2 border  border-gray-500 border  border-gray-500-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border  border-gray-500-green-500"
                 id="email"
                 name="email"
                 placeholder="Enter your email"
@@ -79,7 +79,7 @@ const ContactUs = () => {
               </label>
               <textarea
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                className="w-full px-4 py-2 border  border-gray-500 border  border-gray-500-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border  border-gray-500-green-500"
                 id="message"
                 name="message"
                 placeholder="Write your message here"

@@ -60,7 +60,7 @@ const EditePostModal: React.FC<TEditPostModalProps> = ({
   // Convert image URLs to File objects
   const convertUrlToFile = async (
     imageUrl: string,
-    fileName: string,
+    fileName: string
   ): Promise<File> => {
     const response = await fetch(imageUrl);
     const blob = await response.blob();
@@ -74,7 +74,7 @@ const EditePostModal: React.FC<TEditPostModalProps> = ({
     const convertImages = async () => {
       if (images) {
         const filePromises = images.map((image, index) =>
-          convertUrlToFile(image, `image-${index}.jpg`),
+          convertUrlToFile(image, `image-${index}.jpg`)
         );
         const convertedFiles = await Promise.all(filePromises);
 
@@ -229,7 +229,7 @@ const EditePostModal: React.FC<TEditPostModalProps> = ({
                 <div key={index} className="relative">
                   <Image
                     alt={`Preview ${index + 1}`}
-                    className="border-2 border-dashed h-32"
+                    className="border  border-gray-500-2 border  border-gray-500-dashed h-32"
                     height={100}
                     src={image}
                     width={100}

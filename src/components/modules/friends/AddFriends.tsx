@@ -72,7 +72,7 @@ const FindFriends = () => {
         {myRequests?.map((request: FriendRequest) => (
           <div
             key={request._id}
-            className=" shadow-md hover:shadow-lg transition rounded-lg p-4 flex items-center gap-4 border"
+            className=" shadow-md hover:shadow-lg transition rounded-lg p-4 flex items-center gap-4 border  border-gray-500"
           >
             <img
               alt={request?.sender?.name}
@@ -110,7 +110,7 @@ const FindFriends = () => {
         {Alluser?.map((user: IUser) => (
           <div
             key={user._id}
-            className=" border shadow-md hover:shadow-lg transition rounded-lg p-4 flex flex-col items-center text-center"
+            className=" border  border-gray-500 shadow-md hover:shadow-lg transition rounded-lg p-4 flex flex-col items-center text-center"
           >
             <img
               alt={user?.name}

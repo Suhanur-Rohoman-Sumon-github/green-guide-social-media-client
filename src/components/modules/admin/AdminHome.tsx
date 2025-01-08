@@ -76,7 +76,7 @@ const HomePage: React.FC = () => {
             label: "Users",
             data: AllUsers.map((user: User) => user.postCount || 0),
             backgroundColor: "#3B82F6",
-            borderColor: "#3B82F6",
+            border  border-gray-500Color: "#3B82F6",
             fill: false,
           },
         ],
@@ -93,11 +93,11 @@ const HomePage: React.FC = () => {
 
       {/* Cards for Total Users, Total Posts, Total Purchases */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        <div className="p-4 shadow rounded-lg border  text-center">
+        <div className="p-4 shadow rounded-lg border  border-gray-500  text-center">
           <h3 className="text-lg font-semibold">Total Users</h3>
           <p className="text-2xl font-bold">{AllUsers ? AllUsers.length : 0}</p>
         </div>
-        <div className="p-4 shadow rounded-lg border  text-center">
+        <div className="p-4 shadow rounded-lg border  border-gray-500  text-center">
           <h3 className="text-lg font-semibold">Total Posts</h3>
           <p className="text-2xl font-bold">{AllPosts ? AllPosts.length : 0}</p>
         </div>
@@ -105,7 +105,7 @@ const HomePage: React.FC = () => {
 
       {/* Charts for Posts and Users */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="p-4 shadow rounded-lg border">
+        <div className="p-4 shadow rounded-lg border  border-gray-500">
           <h2 className="text-xl font-semibold mb-4">All Posts</h2>
           {postChartData.labels && postChartData.labels.length > 0 ? (
             <Bar data={postChartData} />
@@ -114,7 +114,7 @@ const HomePage: React.FC = () => {
           )}
         </div>
 
-        <div className="p-4 shadow rounded-lg border">
+        <div className="p-4 shadow rounded-lg border  border-gray-500">
           <h2 className="text-xl font-semibold mb-4">All Users</h2>
           {userChartData.labels && userChartData.labels.length > 0 ? (
             <Line data={userChartData} />

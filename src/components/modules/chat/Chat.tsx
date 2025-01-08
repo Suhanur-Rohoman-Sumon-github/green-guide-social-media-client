@@ -113,14 +113,16 @@ const Chat = () => {
       </Link>
       <div className="flex  font-sans">
         {/* Sidebar for Users */}
-        <div className="w-1/4  border-r overflow-y-auto">
+        <div className="w-1/4  border  border-gray-500-r overflow-y-auto">
           <div className="p-4 space-y-4">
             {users.map((user) => (
               <div
                 key={user.id}
                 onClick={() => switchUser(user)}
                 className={`flex items-center p-3 rounded-lg cursor-pointer transition  justify-between ${
-                  user.id === currentUser.id ? "bg-green-500" : "border"
+                  user.id === currentUser.id
+                    ? "bg-green-500"
+                    : "border  border-gray-500"
                 }`}
               >
                 <div className="flex items-center ">
@@ -140,9 +142,9 @@ const Chat = () => {
         </div>
 
         {/* Chat Section */}
-        <div className="flex-1 flex flex-col border">
+        <div className="flex-1 flex flex-col border  border-gray-500">
           {/* Header */}
-          <div className="p-4 flex items-center justify-between border">
+          <div className="p-4 flex items-center justify-between border  border-gray-500">
             <h2 className="text-xl font-semibold">{currentUser.name}</h2>
             <div className="flex items-center gap-4">
               <span>
@@ -165,7 +167,9 @@ const Chat = () => {
               >
                 <div
                   className={`p-3 rounded-lg max-w-sm ${
-                    message.sender === "You" ? "bg-green-500 " : "border"
+                    message.sender === "You"
+                      ? "bg-green-500 "
+                      : "border  border-gray-500"
                   }`}
                 >
                   <p className="text-sm">{message.text}</p>
@@ -176,11 +180,11 @@ const Chat = () => {
           </div>
 
           {/* Input Box */}
-          <div className="p-4  border-t flex items-center space-x-4">
+          <div className="p-4  border  border-gray-500-t flex items-center space-x-4">
             <input
               type="text"
               placeholder="Type a message..."
-              className="flex-1 border rounded-lg px-4 py-2 focus:outline-none"
+              className="flex-1 border  border-gray-500 rounded-lg px-4 py-2 focus:outline-none"
             />
             <Button
               onClick={addMessage}

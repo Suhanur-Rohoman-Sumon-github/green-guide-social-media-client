@@ -81,7 +81,7 @@ const AllPostsMap = ({
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvrHQdL-jOHhdgyyIQADFhVCmu0RDBgbmjNw&s"
             width={150}
           />
-          <h2 className="text-lg font-semibold">Please shere a post</h2>
+          <h2 className="text-lg font-semibold">Please share a post</h2>
         </div>
       ) : (
         data?.map((post: IPost, index: number) => {
@@ -93,7 +93,7 @@ const AllPostsMap = ({
           return (
             <div
               key={post._id}
-              className="relative grid grid-cols-8 border-t border-b px-2 py-3 my-4"
+              className="relative grid grid-cols-8 border border-t   border-gray-500 px-2 py-3 my-4"
             >
               <div className="col-span-1 mx-auto">
                 <Link href={`/user/${post?.user?._id}`}>

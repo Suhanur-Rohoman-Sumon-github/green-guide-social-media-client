@@ -47,7 +47,7 @@ const UserProfile = ({ isUserProfile = false, UserId }: TPostsProps) => {
         <div className="absolute bottom-[-30px] left-4 w-32 h-32 ">
           <Image
             alt="Profile Picture"
-            className="rounded-full border-4 border-white shadow-lg"
+            className="rounded-full border  border-gray-500-4 border  border-gray-500-white shadow-lg"
             layout="fill"
             src={
               myData?.profilePicture

@@ -115,7 +115,7 @@ const Posts: React.FC = () => {
       Context: Explain the gardening setting depicted in the image (e.g., a backyard garden, a balcony, an indoor space).
       Key Points: Highlight any gardening tips, techniques, or concepts that are relevant to the image.
       Purpose: Explain how this information can benefit readers, such as improving their gardening skills or inspiring them to create similar arrangements.
-      Call to Action: Encourage readers to share their thoughts or experiences related to the image. and also add some relevant emojis`,
+      Call to Action: Encourage readers to share their thoughts or experiences related to the image. and also add some relevant emojis`
       );
 
       setDescription(response);
@@ -151,13 +151,9 @@ const Posts: React.FC = () => {
             />
           </label>
 
-          {/* Category Selection */}
-
-          {/* AI Generation Toggle */}
-
           <div className="divider" />
 
-          <div className="flex items-center gap-3">
+          <div className="md:flex items-center gap-3">
             <label
               className="flex items-center gap-2 cursor-pointer"
               htmlFor="image-upload"
@@ -183,12 +179,12 @@ const Posts: React.FC = () => {
 
             <GGselect
               label="category"
-              name="category" // This should match the categoryOptions
+              name="category"
               options={categoryOptions}
             />
             <GGselect
               label="select post type"
-              name="postType" // This should match the typeOptions
+              name="postType"
               options={typeOptions}
             />
 
@@ -206,7 +202,7 @@ const Posts: React.FC = () => {
                 <div key={index} className="relative">
                   <Image
                     alt={`Preview ${index + 1}`}
-                    className="border-2 border-dashed h-32"
+                    className="   h-32"
                     height={100}
                     src={image}
                     width={100}

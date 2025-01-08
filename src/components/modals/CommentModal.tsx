@@ -140,7 +140,7 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
         sizes={"2xl"}
       >
         <div className="flex flex-col h-full">
-          <div className="sticky top-0 z-10 p-4 border-b flex justify-between items-center">
+          <div className="sticky top-0 z-10 p-4 border  border-gray-500-b flex justify-between items-center">
             <h1 className="text-xl font-semibold">{`${data?.user?.name} posts`}</h1>
           </div>
 
@@ -195,7 +195,7 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
                       width={40}
                     />
                   </div>
-                  <div className="col-span-7 border rounded-md p-2">
+                  <div className="col-span-7 border  border-gray-500 rounded-md p-2">
                     <div className="flex items-center gap-2">
                       <h1 className="text-lg font-semibold">
                         {comment?.user?.name || "Anonymous"}
@@ -214,7 +214,7 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
               ))}
           </div>
 
-          <div className="sticky bottom-0 border-t mt-4 pt-4">
+          <div className="sticky bottom-0 border  border-gray-500-t mt-4 pt-4">
             <div className="flex items-center gap-2 p-2">
               <Image
                 alt="profile pic"

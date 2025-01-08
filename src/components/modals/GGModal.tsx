@@ -52,7 +52,7 @@ const GGModal = ({
         <Button
           className="w-9/12"
           color="primary"
-          variant="bordered"
+          variant="border  border-gray-500ed"
           onPress={handleOpen}
         >
           {buttonText}

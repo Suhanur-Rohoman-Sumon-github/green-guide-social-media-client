@@ -22,7 +22,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="flex  border mt-32">
+    <div className="flex  border  border-gray-500 mt-32">
       {/* Sidebar */}
       <SettingsSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 

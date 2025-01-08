@@ -12,7 +12,7 @@ import { LiaUserCheckSolid } from "react-icons/lia";
 import { usePathname } from "next/navigation"; // Import the usePathname hook
 import { FaRegMessage } from "react-icons/fa6";
 import { FaUserFriends } from "react-icons/fa";
-import { IoMdImages } from "react-icons/io";
+import { IoIosNotifications, IoMdImages } from "react-icons/io";
 
 import CommunityProfileDown from "./CommunityProfileDown";
 const HomeSidebar = () => {
@@ -34,6 +34,11 @@ const HomeSidebar = () => {
         <Link href={"/search"}>
           <button className={`${f} ${activeStyle("/search")}`}>
             <BiSearch /> Explore
+          </button>
+        </Link>
+        <Link href={"/search"}>
+          <button className={`${f} ${activeStyle("/search")}`}>
+            <IoIosNotifications /> Notifications
           </button>
         </Link>
         <Link href={"/profile"}>

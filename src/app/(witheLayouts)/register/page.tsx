@@ -49,9 +49,9 @@ const RegisterPage = () => {
         </Button>
 
         <div className="my-4 flex items-center w-full md:w-3/4">
-          <hr className="flex-grow border-t border-gray-300" />
+          <hr className="flex-grow border  border-gray-500-t border  border-gray-500-gray-300" />
           <span className="mx-2 text-gray-500">or</span>
-          <hr className="flex-grow border-t border-gray-300" />
+          <hr className="flex-grow border  border-gray-500-t border  border-gray-500-gray-300" />
         </div>
 
         <Suspense fallback={<div>Loading...</div>}>

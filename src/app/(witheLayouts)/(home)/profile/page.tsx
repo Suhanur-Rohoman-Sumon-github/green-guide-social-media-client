@@ -5,7 +5,7 @@ import SingleUserPosts from "@/src/components/modules/profile/SingleUserProfileP
 
 const page = () => {
   return (
-    <div className="border">
+    <div className="border  border-gray-500">
       <UserProfile isUserProfile={true} />
       <SingleUserPosts />
     </div>

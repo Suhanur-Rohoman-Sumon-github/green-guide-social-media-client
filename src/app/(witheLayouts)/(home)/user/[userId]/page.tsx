@@ -8,7 +8,7 @@ interface Params {
 
 const SingleUserProfile = ({ params }: { params: Params }) => {
   return (
-    <div className="border">
+    <div className="border  border-gray-500">
       <UserProfile UserId={params.userId} isUserProfile={false} />
       <MyPost UserId={params.userId} isUserProfile={false} />
     </div>

@@ -20,10 +20,10 @@ const Search = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 border">
+    <div className="container mx-auto p-4 border  border-gray-500">
       <div className="mb-6">
         <input
-          className="w-full p-2 border border-gray-300 rounded-md"
+          className="w-full p-2 border  border-gray-500 border  border-gray-500-gray-300 rounded-md"
           placeholder="Search by category or title"
           type="text"
           value={searchQuery}

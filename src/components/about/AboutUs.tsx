@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const AboutUs = () => {
   return (
-    <div className="  border">
+    <div className="  border  border-gray-500">
       <section className=" py-12">
         <div className="container mx-auto px-6 lg:px-20">
           <h1 className="text-4xl font-bold text-center text-green-500 mb-8">
@@ -47,14 +47,14 @@ const AboutUs = () => {
             Our Values
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
-            <div className=" p-6 rounded-lg shadow-lg text-center border">
+            <div className=" p-6 rounded-lg shadow-lg text-center border  border-gray-500">
               <h3 className="text-2xl font-semibold mb-4">Sustainability</h3>
               <p className="text-lg">
                 Sustainability is at the core of everything we do. We encourage
                 eco-friendly gardening practices for a healthier planet.
               </p>
             </div>
-            <div className=" p-6 rounded-lg shadow-lg text-center border">
+            <div className=" p-6 rounded-lg shadow-lg text-center border  border-gray-500">
               <h3 className="text-2xl font-semibold mb-4">Growth</h3>
               <p className="text-lg">
                 Gardening is a journey of growth, both for plants and people.

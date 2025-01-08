@@ -15,7 +15,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="md:col-span-2 col-span-2 md:hidden block mt-24">
           <SmallScreenSidebar />
         </div>
-        <div className="md:col-span-9 ml-14 col-span-10 mt-24 border">
+        <div className="md:col-span-9 ml-14 col-span-10 mt-24 border  border-gray-500">
           {children}
         </div>
       </div>

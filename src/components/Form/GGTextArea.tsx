@@ -12,7 +12,7 @@ interface IProps extends IInput {
 export default function GGTextArea({
   name,
   label,
-  variant = "bordered",
+  variant = "border  border-gray-500ed",
   descriptions,
 }: IProps) {
   const {

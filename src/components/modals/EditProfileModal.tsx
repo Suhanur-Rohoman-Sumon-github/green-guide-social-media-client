@@ -44,11 +44,11 @@ const EditProfileModal = ({ isOpen, setIsOpen, buttonText }: TPostsProps) => {
   const { mutate: updateCoverPhoto, isPending: coverPhotoPending } =
     useUpdateCoverPhotoMutation(user?._id ? user?._id : "");
   const { mutate: updateBio, isPending: BioPending } = useUpdateBioMutation(
-    user?._id ? user?._id : "",
+    user?._id ? user?._id : ""
   );
 
   const handleProfilePictureChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (e.target.files && e.target.files[0]) {
       setProfilePicture(e.target.files[0]);
@@ -115,7 +115,7 @@ const EditProfileModal = ({ isOpen, setIsOpen, buttonText }: TPostsProps) => {
             <div className="relative w-32 h-32">
               <Image
                 alt="Profile Picture"
-                className="rounded-full border-4 border-gray-200 shadow-lg"
+                className="rounded-full border  border-gray-500-4 border  border-gray-500-gray-200 shadow-lg"
                 layout="fill"
                 src={profilePreview}
               />

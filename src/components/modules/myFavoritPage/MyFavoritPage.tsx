@@ -10,11 +10,11 @@ import SkeletonPost from "../../skeleton/SkeletonPost";
 const MyFavoritPage = () => {
   const { user } = useUser();
   const { data: MyFavorite, isLoading } = useGetAllFavoritePostQuery(
-    user?._id ? user?._id : "",
+    user?._id ? user?._id : ""
   );
 
   return (
-    <div className="border">
+    <div className="border  border-gray-500">
       {isLoading && <SkeletonPost />}
       <AllPostsMap data={MyFavorite} />
     </div>

@@ -14,7 +14,7 @@ export default function GGselect({
   options,
   name,
   label,
-  variant = "bordered",
+  variant = "border  border-gray-500ed",
   disabled,
 }: IProps) {
   const {

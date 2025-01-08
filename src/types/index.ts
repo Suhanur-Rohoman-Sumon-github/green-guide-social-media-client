@@ -20,7 +20,7 @@ export interface IUser {
 }
 
 export interface IInput {
-  variant?: "flat" | "bordered" | "faded" | "underlined";
+  variant?: "flat" | "border  border-gray-500ed" | "faded" | "underlined";
   size?: "sm" | "md" | "lg";
   required?: boolean;
   type?: string;

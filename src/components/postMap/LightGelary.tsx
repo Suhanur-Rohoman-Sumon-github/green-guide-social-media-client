@@ -30,7 +30,7 @@ const LightGelary = ({ images }: IPros) => {
           >
             <Image
               alt="post image"
-              className="border h-[400px] w-full object-cover"
+              className="border  border-gray-500 h-[400px] w-full object-cover"
               height={300}
               src={image}
               width={300}

@@ -6,7 +6,7 @@ import { GoEye } from "react-icons/go";
 import { GoEyeClosed } from "react-icons/go";
 
 interface IProps {
-  variant?: "flat" | "bordered" | "faded" | "underlined";
+  variant?: "flat" | "border  border-gray-500ed" | "faded" | "underlined";
   size?: "sm" | "md" | "lg";
   required?: boolean;
   type: string;
@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const GGInput = ({
-  variant = "bordered",
+  variant = "border  border-gray-500ed",
   size = "md",
   required = false,
   type = "text",

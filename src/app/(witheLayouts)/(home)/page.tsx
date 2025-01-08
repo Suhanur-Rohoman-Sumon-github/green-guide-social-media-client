@@ -5,7 +5,7 @@ import "./page.css";
 
 const page = () => {
   return (
-    <div className="border relative">
+    <div className="border  border-gray-500 border-gray-500 relative">
       <Home />
     </div>
   );

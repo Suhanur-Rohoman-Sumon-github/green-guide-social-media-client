@@ -13,7 +13,7 @@ const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
   setActiveTab,
 }) => {
   return (
-    <div className="w-64 shadow-lg p-6 border-r-1">
+    <div className="w-64 shadow-lg p-6 border  border-gray-500-r-1">
       <ul className="space-y-4">
         <Link href={"/"}>
           <li className="flex items-center gap-2">
