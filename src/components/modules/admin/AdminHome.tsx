@@ -68,21 +68,21 @@ const HomePage: React.FC = () => {
       });
     }
 
-    if (AllUsers && AllUsers.length > 0) {
-      setUserChartData({
-        labels: AllUsers.map((user: User) => user.name),
-        datasets: [
-          {
-            label: "Users",
-            data: AllUsers.map((user: User) => user.postCount || 0),
-            backgroundColor: "#3B82F6",
-            border  border-gray-500Color: "#3B82F6",
-            fill: false,
-          },
-        ],
-      });
-    }
-  }, [AllPosts, AllUsers]);
+   if (AllUsers && AllUsers.length > 0) {
+  setUserChartData({
+    labels: AllUsers.map((user: User) => user.name),
+    datasets: [
+      {
+        label: "Users",
+        data: AllUsers.map((user: User) => user.postCount || 0),
+        backgroundColor: "#3B82F6",
+        borderColor: "#3B82F6",
+        fill: false,
+      },
+    ],
+  });
+}
+
 
   // Example data for purchases (you can replace it with your actual data)
   const totalPurchases = 100; // Replace with actual data fetching logic
