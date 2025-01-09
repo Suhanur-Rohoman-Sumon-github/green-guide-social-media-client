@@ -62,8 +62,6 @@ const CommunityProfileRight = () => {
         <div className="w-1/3">
           <img
             src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg"
-            bg-green-500
-            text-white
             alt="Sponsored Ad"
             className="w-full h-auto rounded-md"
           />
