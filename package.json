@@ -11,7 +11,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
     "@hookform/resolvers": "^3.9.0",
-    "@nextui-org/avatar": "^2.0.33",
+    "@nextui-org/avatar": "^2.2.6",
     "@nextui-org/button": "2.0.38",
     "@nextui-org/card": "^2.0.34",
     "@nextui-org/code": "2.0.33",
@@ -28,7 +28,7 @@
     "@nextui-org/snippet": "2.0.43",
     "@nextui-org/spacer": "^2.0.33",
     "@nextui-org/switch": "2.0.34",
-    "@nextui-org/system": "2.2.6",
+    "@nextui-org/system": "^2.4.6",
     "@nextui-org/table": "^2.0.40",
     "@nextui-org/tabs": "^2.0.37",
     "@nextui-org/theme": "2.2.11",
