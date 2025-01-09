@@ -36,7 +36,7 @@ export default function GGTextArea({
       label={label}
       minRows={6}
       value={currentValue || descriptions || ""}
-      variant={variant}
+      variant={"flat"}
     />
   );
 }

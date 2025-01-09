@@ -1,5 +1,5 @@
-import { Select, SelectItem } from "@nextui-org/select";
 import { useFormContext } from "react-hook-form";
+import { Select, SelectSection, SelectItem } from "@nextui-org/select";
 
 import { IInput } from "@/src/types";
 
@@ -30,7 +30,7 @@ export default function GGselect({
       className="min-w-full sm:min-w-[225px]"
       isDisabled={disabled}
       label={label}
-      variant={variant}
+      variant={"flat"}
     >
       {options.map((option) => (
         <SelectItem key={option.key}>{option.label}</SelectItem>
