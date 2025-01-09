@@ -26,7 +26,7 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend,
+  Legend
 );
 
 // Define the type for chart data
@@ -60,7 +60,7 @@ const HomePage: React.FC = () => {
         labels: AllPosts.map((post: Post) => post.title),
         datasets: [
           {
-            label: "Posts",
+            label: "Likes per Post",
             data: AllPosts.map((post: Post) => post.likeCount || 0),
             backgroundColor: "#4ADE80",
           },
@@ -68,36 +68,33 @@ const HomePage: React.FC = () => {
       });
     }
 
-   if (AllUsers && AllUsers.length > 0) {
-  setUserChartData({
-    labels: AllUsers.map((user: User) => user.name),
-    datasets: [
-      {
-        label: "Users",
-        data: AllUsers.map((user: User) => user.postCount || 0),
-        backgroundColor: "#3B82F6",
-        borderColor: "#3B82F6",
-        fill: false,
-      },
-    ],
-  });
-}
-
-
-  // Example data for purchases (you can replace it with your actual data)
-  const totalPurchases = 100; // Replace with actual data fetching logic
+    if (AllUsers && AllUsers.length > 0) {
+      setUserChartData({
+        labels: AllUsers.map((user: User) => user.name),
+        datasets: [
+          {
+            label: "Posts per User",
+            data: AllUsers.map((user: User) => user.postCount || 0),
+            backgroundColor: "#3B82F6",
+            borderColor: "#3B82F6",
+            fill: false,
+          },
+        ],
+      });
+    }
+  }, [AllPosts, AllUsers]);
 
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold mb-6">User Dashboard</h1>
 
-      {/* Cards for Total Users, Total Posts, Total Purchases */}
+      {/* Cards for Total Users, Total Posts */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        <div className="p-4 shadow rounded-lg border  border-gray-500  text-center">
+        <div className="p-4 shadow rounded-lg border border-gray-500 text-center">
           <h3 className="text-lg font-semibold">Total Users</h3>
           <p className="text-2xl font-bold">{AllUsers ? AllUsers.length : 0}</p>
         </div>
-        <div className="p-4 shadow rounded-lg border  border-gray-500  text-center">
+        <div className="p-4 shadow rounded-lg border border-gray-500 text-center">
           <h3 className="text-lg font-semibold">Total Posts</h3>
           <p className="text-2xl font-bold">{AllPosts ? AllPosts.length : 0}</p>
         </div>
@@ -105,7 +102,7 @@ const HomePage: React.FC = () => {
 
       {/* Charts for Posts and Users */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="p-4 shadow rounded-lg border  border-gray-500">
+        <div className="p-4 shadow rounded-lg border border-gray-500">
           <h2 className="text-xl font-semibold mb-4">All Posts</h2>
           {postChartData.labels && postChartData.labels.length > 0 ? (
             <Bar data={postChartData} />
@@ -114,7 +111,7 @@ const HomePage: React.FC = () => {
           )}
         </div>
 
-        <div className="p-4 shadow rounded-lg border  border-gray-500">
+        <div className="p-4 shadow rounded-lg border border-gray-500">
           <h2 className="text-xl font-semibold mb-4">All Users</h2>
           {userChartData.labels && userChartData.labels.length > 0 ? (
             <Line data={userChartData} />
