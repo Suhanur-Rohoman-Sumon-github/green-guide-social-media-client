@@ -6,7 +6,7 @@ import { GoEye } from "react-icons/go";
 import { GoEyeClosed } from "react-icons/go";
 
 interface IProps {
-  variant?: "flat" | "border  border-gray-500ed" | "faded" | "underlined";
+  variant?: "flat" | "bordered" | "faded" | "underlined";
   size?: "sm" | "md" | "lg";
   required?: boolean;
   type: string;
@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const GGInput = ({
-  variant = "border  border-gray-500ed",
+  variant = "bordered",
   size = "md",
   required = false,
   type = "text",
@@ -47,7 +47,7 @@ const GGInput = ({
           required={required}
           size={size}
           type={type}
-          variant={variant}
+          variant={"flat"}
         />
       )}
       {islogin && (
@@ -56,7 +56,7 @@ const GGInput = ({
           placeholder="Enter your password"
           required={required}
           size={size}
-          variant={variant}
+          variant={"flat"}
           {...register(name)}
           className={`w-full ${fullWidth ? "w-full" : ""}`}
           endContent={
