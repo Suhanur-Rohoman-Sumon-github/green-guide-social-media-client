@@ -8,12 +8,14 @@ import {
   useUpdateUserPlaneMutations,
 } from "@/src/hook/price.hook";
 import { useUser } from "@/src/context/useProviders";
+import { useRouter } from "next/navigation";
 
 interface IProps {
   price: number;
 }
 
 const CheckoutForm = ({ price }: IProps) => {
+  const router = useRouter();
   const { user } = useUser();
   const [clientSecret, setClientSecret] = useState("");
 
@@ -80,6 +82,7 @@ const CheckoutForm = ({ price }: IProps) => {
     if (paymentIntent?.status === "succeeded") {
       toast.success("Your payment was successful!", { id: tostId });
       updateUserPlane(user?._id ? user?._id : "");
+      router.push("/");
     }
   };
 

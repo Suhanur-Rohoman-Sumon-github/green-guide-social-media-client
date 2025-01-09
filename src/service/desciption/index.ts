@@ -8,7 +8,9 @@ const generateDescription = async (imageURL: string, prompt: string) => {
     .then((res) => res.arrayBuffer())
     .then((arrayBuffer) => Base64.fromByteArray(new Uint8Array(arrayBuffer)));
 
-  console.log("Image string", imageBase64);
+  
+
+ 
 
   const contents = [
     {
@@ -23,8 +25,8 @@ const generateDescription = async (imageURL: string, prompt: string) => {
   ];
 
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
+  console.log(genAI.getGenerativeModel);
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
   //@ts-ignore
   const result = await model.generateContentStream({ contents });
 

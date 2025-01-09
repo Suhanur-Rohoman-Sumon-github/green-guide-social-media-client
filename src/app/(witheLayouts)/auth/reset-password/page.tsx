@@ -21,7 +21,7 @@ const ResetPasswordForm = () => {
   const handleSubmit = (data: ResetPasswordData) => {
     data.token = token; // Use the token retrieved from search params
     handlePasswordReset(data);
-    console.log(data);
+    
   };
 
   return (

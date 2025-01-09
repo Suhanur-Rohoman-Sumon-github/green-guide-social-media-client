@@ -30,7 +30,7 @@ const AllPostsMap = ({
   data: IPost[];
   isMyPosts?: boolean;
 }) => {
-  console.log(data);
+  
   const { user } = useUser();
   const userId = user?._id || "";
   const { mutate: DeleteMyPost } = useDeletePostMutation();

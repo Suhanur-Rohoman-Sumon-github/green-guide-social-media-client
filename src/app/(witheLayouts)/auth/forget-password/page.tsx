@@ -17,7 +17,7 @@ const RequestResetEmailForm = () => {
     const email = data.email;
 
     handlePasswordReset(email);
-    console.log(data);
+    
   };
 
   return (

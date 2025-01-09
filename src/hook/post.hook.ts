@@ -64,11 +64,11 @@ export const useUpdatePostMutations = (postId: string) => {
   });
 };
 
-// Hook to get all posts
+
 export const useGetAllPostQuery = ({ searchTerm }: UseGetAllPostQueryProps) => {
-  console.log(searchTerm);
+  
   const { data, refetch, isLoading, isError } = useQuery<any, Error>({
-    queryKey: ["get-posts", searchTerm], // Include searchTerm
+    queryKey: ["get-posts", searchTerm], 
     queryFn: async () => {
       const data = await getAllPosts(searchTerm);
 

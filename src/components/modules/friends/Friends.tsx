@@ -32,7 +32,7 @@ const Friends = () => {
     user?._id ? user?._id : "",
   );
 
-  console.log(AllFriends);
+  
 
   useEffect(() => {
     refetch();

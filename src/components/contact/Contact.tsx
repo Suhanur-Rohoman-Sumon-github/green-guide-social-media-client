@@ -16,9 +16,7 @@ const ContactUs = () => {
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic here (e.g., send data to an API or email service)
-    console.log("Form submitted:", formData);
-    // Reset form fields after submission
+
     setFormData({ name: "", email: "", message: "" });
   };
 

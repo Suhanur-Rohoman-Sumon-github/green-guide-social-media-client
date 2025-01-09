@@ -137,7 +137,7 @@ export const updateCoverPhotoService = async ({
 
     return data;
   } catch (error: any) {
-    console.log(error);
+    
     throw new Error(error.response?.data?.message || error.message);
   }
 };
@@ -160,7 +160,7 @@ export const updateBioService = async ({
 
     return data;
   } catch (error: any) {
-    console.log(error);
+    
     throw new Error(error.response?.data?.message || error.message);
   }
 };

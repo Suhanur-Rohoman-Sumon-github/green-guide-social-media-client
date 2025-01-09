@@ -17,6 +17,7 @@ import { useGetMeQuery } from "@/src/hook/user.hook";
 
 const CommunityProfileDown = () => {
   const { setIsLoading: userLoading, setUser, user } = useUser();
+  
   const { data: myData } = useGetMeQuery(user?._id ? user?._id : "");
 
   const pathname = usePathname();

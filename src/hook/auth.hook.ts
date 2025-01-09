@@ -45,7 +45,7 @@ export const usePasswordResetMutations = () => {
     mutationFn: async (userData) => {
       const { email, newPassword, token } = userData;
 
-      console.log(email, newPassword, token);
+      
       await resetPasswordService(email, newPassword, token);
     },
     onSuccess: () => {

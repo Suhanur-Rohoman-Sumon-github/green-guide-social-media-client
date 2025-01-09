@@ -48,7 +48,7 @@ const Reaction = ({ postId }: { postId: string }) => {
     user?._id,
     postId
   );
-  console.log(isLikedData);
+  
   const [isLiked, setIsLiked] = useState<boolean>(isLikedData);
   let userId: string;
 

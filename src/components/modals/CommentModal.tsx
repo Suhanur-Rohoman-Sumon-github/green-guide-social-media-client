@@ -48,7 +48,7 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
 
   useEffect(() => {
     if (isLoading) {
-      console.log("Loading post data...");
+      
     }
     if (isError) {
       console.error("Error fetching post data:", isError);
