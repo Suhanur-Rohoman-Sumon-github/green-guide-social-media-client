@@ -54,19 +54,29 @@ const CommunityProfileRight = () => {
       </div>
 
       {/* Sponsorship Section */}
-      <div className={`${style} flex items-center`}>
-        <img
-          src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg" // Replace with your product image URL
-          alt="Sponsored Product"
-          className="rounded-lg w-24 h-full mr-4"
-        />
-        <div>
-          <h2 className="text-xs font-semibold">Sponsored</h2>
-          <p className="mt-2">
+      {/* Sponsorship Section */}
+      <div
+        className={`${style} flex items-center p-4 border border-gray-400 rounded-lg shadow-md`}
+      >
+        {/* Image Section */}
+        <div className="w-1/3">
+          <img
+            src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg"
+            bg-green-500
+            text-white
+            alt="Sponsored Ad"
+            className="w-full h-auto rounded-md"
+          />
+        </div>
+
+        {/* Content Section */}
+        <div className="ml-4 w-2/3">
+          <h2 className="text-sm font-semibold">Sponsored</h2>
+          <p className="mt-2  text-sm">
             Check out our new range of eco-friendly products. 🌱
           </p>
           <Button
-            className="bg-green-500 text-white mt-3"
+            className="bg-green-500 text-white mt-3 px-4 py-2 text-sm rounded-lg"
             variant="shadow"
             as="a"
             href="#"
@@ -76,25 +86,31 @@ const CommunityProfileRight = () => {
         </div>
       </div>
 
-      {/* Another Sponsorship Section */}
-      <div className={`${style} flex items-center`}>
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlndpwDalSNF8TzBG6T7kGv73l0IOReNJpKw&s" // Replace with your product image URL
-          alt="Sponsored Product"
-          className="rounded-lg w-24 h-full object-cover mr-4"
-        />
-        <div>
-          <h2 className="text-xs font-semibold">Sponsored</h2>
-          <p className="mt-2">
-            Discover the latest tech gadgets and accessories! 💻
+      <div
+        className={`${style} flex items-center p-4 border border-gray-400 rounded-lg shadow-md mt-4`}
+      >
+        {/* Image Section */}
+        <div className="w-1/3">
+          <img
+            src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg"
+            alt="Sponsored Ad"
+            className="w-full h-full rounded-md"
+          />
+        </div>
+
+        {/* Content Section */}
+        <div className="ml-4 w-2/3">
+          <h2 className="text-sm font-semibold">Sponsored</h2>
+          <p className="mt-2  text-sm">
+            Discover amazing deals on tech gadgets. 📱
           </p>
           <Button
-            className="bg-green-500 text-white mt-3"
+            className="bg-green-500 text-white mt-3 px-4 py-2 text-sm rounded-lg"
             variant="shadow"
             as="a"
             href="#"
           >
-            Learn More
+            Shop Now
           </Button>
         </div>
       </div>
@@ -116,7 +132,7 @@ const CommunityProfileRight = () => {
               </h3>
               <div className="flex gap-2 mt-2">
                 <Button
-                  className="bg-green-500 text-white text-white"
+                  className="bg-green-500 text-white "
                   variant="shadow"
                   onClick={() => handleAcceptRequest(request?.sender?._id)}
                 >

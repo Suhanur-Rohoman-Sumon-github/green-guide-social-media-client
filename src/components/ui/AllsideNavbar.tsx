@@ -36,13 +36,10 @@ export const AllNavbar = () => {
             <div className="flex items-center space-x-2">
               <Image
                 alt="Logo"
-                height={40}
+                height={60}
                 src="https://i.ibb.co/kqFvCWJ/Black-White-Minimalist-Logo-removebg-preview.png"
-                width={40}
+                width={60}
               />
-              <span className="font-bold text-green-500 text-xl">
-                Green Guide
-              </span>
             </div>
           </NextLink>
         </NavbarBrand>

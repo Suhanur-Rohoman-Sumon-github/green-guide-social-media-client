@@ -17,7 +17,7 @@ import { IoIosNotifications, IoMdImages } from "react-icons/io";
 import CommunityProfileDown from "./CommunityProfileDown";
 const HomeSidebar = () => {
   const pathname = usePathname();
-  const f = "flex gap-4 text-xl md:text-xl";
+  const f = "flex item-center gap-4 text-xl md:text-xl";
   // Function to apply green text for the active route
   const activeStyle = (route: string) =>
     pathname === route ? "text-green-500" : "text-gray-700";

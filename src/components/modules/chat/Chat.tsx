@@ -107,7 +107,7 @@ const Chat = () => {
 
   return (
     <div className=" mt-32">
-      <Link className="flex items-center gap-4 ml-5" href={"/"}>
+      <Link className="flex items-center gap-4 ml-5 my-4" href={"/"}>
         <FaLongArrowAltLeft />
         <p>Back to home</p>
       </Link>

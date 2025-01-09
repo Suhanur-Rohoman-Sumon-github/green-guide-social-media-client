@@ -168,14 +168,7 @@ export const useCreateLikesMutation = (postId: string, userId: string) => {
     },
     onSuccess: () => {
       toast.success("Post liked successfully");
-
-      // Refetch the 'get-posts' query to update the posts
-      queryClient.refetchQueries({
-        queryKey: ["get-posts"],
-      });
-
-      // Refetch the 'get is liked' query to revalidate the "Like" page
-      queryClient.refetchQueries({
+ queryClient.refetchQueries({
         queryKey: ["get-is-liked", postId, userId],
       });
     },
@@ -186,7 +179,7 @@ export const useCreateLikesMutation = (postId: string, userId: string) => {
 };
 
 // Hook to check if a user liked a post
-export const useLikes = (userId: string | undefined, postId: string) => {
+export const useLikesQuery = (userId: string | undefined, postId: string) => {
   const { data, refetch } = useQuery<any, Error>({
     queryKey: ["get-is-liked", postId, userId],
     queryFn: async () => {
