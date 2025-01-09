@@ -83,7 +83,7 @@ export const useGetAllPostQuery = ({ searchTerm }: UseGetAllPostQueryProps) => {
 // Hook to get a single post
 export const useGetSinglePostQuery = (postId: string) => {
   const { data, refetch, isLoading, isError } = useQuery<any, Error>({
-    queryKey: ["get single posts", postId],
+    queryKey: ["get-single-posts", postId],
     queryFn: async () => {
       const data = await getSinglePosts(postId);
 
@@ -202,15 +202,15 @@ export const useCreateCommentsMutation = () => {
     Error,
     { postId: string; commentData: ICommentData }
   >({
-    mutationKey: ["create comments"],
+    mutationKey: ["create-comments"],
     mutationFn: async ({ postId, commentData }) => {
       await createComments(postId, commentData);
     },
-    onSuccess: (_data, variables) => {
+    onSuccess: () => {
       // variables contain { postId, commentData }
       toast.success("Comment added successfully");
       queryClient.refetchQueries({
-        queryKey: ["singlePost", variables.postId], // Use variables.postId here
+        queryKey: ["get-single-posts"], 
       });
     },
     onError: (error) => {

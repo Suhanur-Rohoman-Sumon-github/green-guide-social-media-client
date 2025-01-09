@@ -53,7 +53,8 @@ const CommentModal = ({ buttonText, postId }: TPostsProps) => {
     if (isError) {
       console.error("Error fetching post data:", isError);
     }
-  }, [isLoading, isError]);
+    refetch();
+  }, [isLoading, isError, refetch]);
 
   // Function to render images based on length
   const renderImages = (images: string[]) => {
