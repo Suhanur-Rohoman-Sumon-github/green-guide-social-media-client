@@ -32,7 +32,9 @@ const Chat = () => {
     { id: 4, sender: "Alice", text: "What’s new with you?", time: "10:03 AM" },
   ]);
 
-  const switchUser = (user) => {
+  const switchUser = (
+    user: React.SetStateAction<{ id: number; name: string; profileImg: string }>
+  ) => {
     setCurrentUser(user);
 
     // Dummy messages for each user
