@@ -38,7 +38,7 @@ const Chat = () => {
     setCurrentUser(user);
 
     // Dummy messages for each user
-    const dummyMessages = {
+    const dummyMessages: { [key: string]: { id: number; sender: string; text: string; time: string; }[] } = {
       Alice: [
         {
           id: 1,
@@ -92,7 +92,7 @@ const Chat = () => {
       ],
     };
 
-    setMessages(dummyMessages[user.name] || []);
+    setMessages(dummyMessages[user.name as keyof typeof dummyMessages] || []);
   };
 
   const addMessage = () => {
