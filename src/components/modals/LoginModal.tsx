@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/button";
 import { FieldValues, SubmitErrorHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link"; // Import Link from Next.js
+import Link from "next/link";
 
 import loginValidationSchema from "@/src/schema/loginValidationSchema";
 import { useUserLogin } from "@/src/hook/auth.hook";
@@ -23,15 +23,34 @@ interface TProps {
 
 const LoginModal = ({ isProfile = false, isOpens }: TProps) => {
   const [isOpen, setIsOpen] = useState(isOpens ? isOpens : false);
+  const [defaultValues, setDefaultValues] = useState({
+    email: "",
+    password: "",
+  });
 
-  const serchPerams = useSearchParams();
-  const redirect = serchPerams.get("redirect");
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
   const router = useRouter();
   const { setIsLoading: userLoading } = useUser();
   const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin();
+
   const handleLogin: SubmitErrorHandler<FieldValues> = (data) => {
     handleUserLogin(data);
     userLoading(true);
+  };
+
+  const handleAdminLoginClick = () => {
+    setDefaultValues({
+      email: "admin@example.com",
+      password: "admin123",
+    });
+  };
+
+  const handleUserLoginClick = () => {
+    setDefaultValues({
+      email: "user@example.com",
+      password: "user123",
+    });
   };
 
   useEffect(() => {
@@ -54,12 +73,9 @@ const LoginModal = ({ isProfile = false, isOpens }: TProps) => {
       sizes="2xl"
     >
       {isPending && <Loading />}
-      <div className="flex items-center justify-center h-[400px] ">
-        <div className="w-full ">
-          <GGForm
-            resolver={zodResolver(loginValidationSchema)}
-            onSubmit={handleLogin}
-          >
+      <div className="flex items-center justify-center h-[400px]">
+        <div className="w-full">
+          <GGForm defaultValues={defaultValues} onSubmit={handleLogin}>
             <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
 
             {/* Email Input */}
@@ -83,6 +99,25 @@ const LoginModal = ({ isProfile = false, isOpens }: TProps) => {
               </Link>
             </div>
             <Spacer y={2} />
+
+            {/* Buttons for Admin and User Login */}
+            <div className="flex justify-between mb-4">
+              <Button
+                color="primary"
+                variant="flat"
+                onPress={handleAdminLoginClick}
+              >
+                Admin Login
+              </Button>
+              <Button
+                color="primary"
+                variant="flat"
+                onPress={handleUserLoginClick}
+              >
+                User Login
+              </Button>
+            </div>
+
             {/* Login Button */}
             <Button
               className="w-full"

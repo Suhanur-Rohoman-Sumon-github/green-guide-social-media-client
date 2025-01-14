@@ -12,6 +12,7 @@ interface IProps extends IFormConfig {
 }
 
 const GGForm = ({ children, onSubmit, defaultValues, resolver }: IProps) => {
+  console.log(defaultValues);
   let formConfig: IFormConfig = {};
 
   if (!!defaultValues) {
