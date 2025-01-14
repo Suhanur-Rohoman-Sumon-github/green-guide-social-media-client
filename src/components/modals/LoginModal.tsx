@@ -41,15 +41,15 @@ const LoginModal = ({ isProfile = false, isOpens }: TProps) => {
 
   const handleAdminLoginClick = () => {
     setDefaultValues({
-      email: "admin@example.com",
-      password: "admin123",
+      email: "admin@gmail.com",
+      password: "123456",
     });
   };
 
   const handleUserLoginClick = () => {
     setDefaultValues({
-      email: "user@example.com",
-      password: "user123",
+      email: "user@tm.com",
+      password: "123456",
     });
   };
 
