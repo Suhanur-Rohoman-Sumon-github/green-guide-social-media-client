@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Spacer } from "@nextui-org/spacer";
 import { Button } from "@nextui-org/button";
-import { FieldValues, SubmitErrorHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
@@ -23,34 +22,39 @@ interface TProps {
 
 const LoginModal = ({ isProfile = false, isOpens }: TProps) => {
   const [isOpen, setIsOpen] = useState(isOpens ? isOpens : false);
-  const [defaultValues, setDefaultValues] = useState({
-    email: "",
-    password: "",
-  });
-
+  const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect");
-  const router = useRouter();
   const { setIsLoading: userLoading } = useUser();
   const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin();
 
-  const handleLogin: SubmitErrorHandler<FieldValues> = (data) => {
+  const formMethods = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+  const { reset, handleSubmit } = formMethods;
+
+  const handleLogin = (data: any) => {
     handleUserLogin(data);
     userLoading(true);
   };
 
   const handleAdminLoginClick = () => {
-    setDefaultValues({
+    reset({
       email: "admin@gmail.com",
       password: "123456",
     });
+    handleSubmit(handleLogin)();
   };
 
   const handleUserLoginClick = () => {
-    setDefaultValues({
+    reset({
       email: "user@tm.com",
       password: "123456",
     });
+    handleSubmit(handleLogin)();
   };
 
   useEffect(() => {
@@ -75,7 +79,7 @@ const LoginModal = ({ isProfile = false, isOpens }: TProps) => {
       {isPending && <Loading />}
       <div className="flex items-center justify-center h-[400px]">
         <div className="w-full">
-          <GGForm defaultValues={defaultValues} onSubmit={handleLogin}>
+          <GGForm {...formMethods} onSubmit={handleSubmit(handleLogin)}>
             <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
 
             {/* Email Input */}
